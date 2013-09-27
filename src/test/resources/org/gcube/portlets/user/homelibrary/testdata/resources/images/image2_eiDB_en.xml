@@ -1,0 +1,38 @@
+
+<RECORD>
+    <image_id>492</image_id>
+    <title>Ship Detection, Italy</title>
+    <caption>ERS-1 SAR is capable of imaging ships day and night under all weather conditions. 
+This image of Genoa, Italy, shows two stationery tankers in front of the harbour; they are the cigar shapes shown in bright tones. </caption>
+    <width>10</width>
+    <image_type_id>1</image_type_id>
+    <orbit>7868</orbit>
+    <sensed>1993-01-16</sensed>
+    <center_latitude>44.90</center_latitude>
+    <center_longitude>8.91</center_longitude>
+    <file_reference>EOB77.tif</file_reference>
+    <credits>European Space Agency. All rights reserved.</credits>
+    <satellite>ERS-1</satellite>
+    <instrument>SAR</instrument>
+    <resolution/>
+    <extra>
+        <group>Europe</group>
+        <category>Countries</category>
+        <keyword>Italy</keyword>
+    </extra>
+    <extra>
+        <group>Europe</group>
+        <category>Cities</category>
+        <keyword>Genoa - Italy</keyword>
+    </extra>
+    <extra>
+        <group>Europe</group>
+        <category>Water Bodies</category>
+        <keyword>Tyrrhenian Sea</keyword>
+    </extra>
+    <extra>
+        <group>Europe</group>
+        <category>Water Bodies</category>
+        <keyword>Ligurian Sea</keyword>
+    </extra>
+</RECORD>

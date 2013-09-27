@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workflowtemplates>
+	<workflowtemplate>
+	    <name>Time Series Workflow Template</name>
+	    <description>Aquaculture SO With Time Series</description>
+	    <workflowId>e521d970-ae6d-11de-9329-cc37995d2e12</workflowId>
+	    <workflowStatus>On Edit</workflowStatus>
+	    <workflowData>Test Workflow Data</workflowData>
+	</workflowtemplate>
+	<workflowtemplate>
+	    <name>Aquaculture Sector Overview Workflow Template</name>
+	    <description>Aquaculture Sector Overview</description>
+	    <workflowId>a538d170-ae6d-11de-9329-cd37035d2f12</workflowId>
+	    <workflowStatus></workflowStatus>
+	    <workflowData/>
+	</workflowtemplate>
+	<workflowtemplate>
+	    <name>Indonesia Final</name>
+	    <description>Indonesia Final Workflow Report</description>
+	    <workflowId>e538d970-ae6d-11de-9329-cc37035d2e12</workflowId>
+	    <workflowStatus>On Edit</workflowStatus>
+	    <workflowData>Test Workflow Data</workflowData>
+	</workflowtemplate>
+</workflowtemplates>

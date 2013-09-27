@@ -1,0 +1,7 @@
+<ReleaseNotes>
+	<Changeset component="org.gcube.common.home-library.1-0-0" date="2013-09-27">
+		<Change>moved to common subsystem</Change>
+		<Change>porting to featherweight stack</Change>
+		<Change>removed the ASL dependency</Change>				
+	</Changeset>
+</ReleaseNotes>

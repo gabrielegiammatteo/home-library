@@ -1,0 +1,74 @@
+<MD_Metadata>
+<fileIdentifier>D4SCIENCE_ml3_chl1_2002_metadata.xml</fileIdentifier>
+<dateStamp>20090120T145123Z</dateStamp>
+<identificationInfo>
+<MD_DataIdentification>
+<citation>
+<CI_Citation>
+<title>MERIS level 3 chlorophyll distribution. Features year 2002</title>
+<date></date>
+</CI_Citation>
+</citation>
+<abstract>MERIS level 3 monthly chlorophyll distribution for year 2002. Referenced on a 9 km global sinusoidal grid. Provider ESA</abstract>
+<descriptiveKeywords>
+<MD_Keywords>
+<keyword>ENVISAT</keyword>
+<keyword>MERIS</keyword>
+<keyword>level 3</keyword>
+<keyword>global coverage</keyword>
+<keyword>chlorophyll</keyword>
+<keyword>ESA</keyword>
+<keyword>year</keyword>
+<keyword>2002</keyword>
+<keyword>monthly product</keyword>
+<keyword>monthly</keyword>
+<keyword>monthly distribution</keyword>
+<keyword>earth observation</keyword>
+</MD_Keywords>
+</descriptiveKeywords>
+<extent>
+<EX_Extent>
+<temporalElement>
+<EX_TemporalExtent>20020101T000000Z</EX_TemporalExtent>
+</temporalElement>
+<geographicElement>
+<EX_GeographicBoundingBox>
+<southBoundlatitude>-90.000</southBoundlatitude>
+</EX_GeographicBoundingBox>
+</geographicElement>
+<geographicElement>
+<EX_GeographicBoundingBox>
+<northBoundlatitude>90.000</northBoundlatitude>
+</EX_GeographicBoundingBox>
+</geographicElement>
+<geographicElement>
+<EX_GeographicBoundingBox>
+<westBoundlongitude>-180.000</westBoundlongitude>
+</EX_GeographicBoundingBox>
+</geographicElement>
+<geographicElement>
+<EX_GeographicBoundingBox>
+<eastBoundlongitude>180.000</eastBoundlongitude>
+</EX_GeographicBoundingBox>
+</geographicElement>
+</EX_Extent>
+</extent>
+</MD_DataIdentification>
+</identificationInfo>
+<distributionInfo>
+<MD_Distribution>
+<transferOptions>
+<MD_DigitalTransferOption>
+<onLine>
+<CI_OnlineResource>
+<protocol>Http Server</protocol>
+<applicationProfile>Http Server</applicationProfile>
+<linkage>http://envisat.esa.int/ml3/chl1/2002/</linkage>
+<description>Access to global MERIS level 3 chlorophyll-1. Features monthly products for year 2002</description>
+</CI_OnlineResource>
+</onLine>
+</MD_DigitalTransferOption>
+</transferOptions>
+</MD_Distribution>
+</distributionInfo>
+</MD_Metadata>

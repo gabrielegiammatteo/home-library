@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urls>
+	<url>
+		<name>MERIS level 3 chlorophyll distribution. Features year 2002</name>
+		<description>MERIS level 3 chlorophyll distribution. Features year 2002</description>
+		<collectionName>EM MERIS Level-3 Chlorophyll in water</collectionName>
+		<mimeType>text/url</mimeType>
+		<file>urls/url1.url</file>
+		<metadatas>
+			<metadata>
+				<schema>es</schema>
+				<language>en</language>
+				<file>urls/url1_es_en.xml</file>	
+			</metadata>
+			<metadata>
+				<schema>ISO19115</schema>
+				<language>en</language>
+				<file>urls/url1_ISO19115_en.xml</file>	
+			</metadata>
+		</metadatas>
+	</url>
+</urls>

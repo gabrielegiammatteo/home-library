@@ -1,0 +1,30 @@
+
+<RECORD>
+    <image_id>496</image_id>
+    <title>Global Winds</title>
+    <caption>One of the most important objectives of the ERS-1 mission is to provide daily measurements of the global wind fields over the surface of the oceans. I
+
+n the global wind field sample image, the coloured bands indicate the areas along which ERS-1 carries out wind measurements. Dark blue indicates areas having a wind speed of less than 4 metres per second (15 km per hour) and therefore not recorded, or for which no data was available. Yellow indicates areas having wind speeds greater than 24 metres per second (100 km per hour). A storm, with winds gusting up to 70 km per hour, is vlearly visible in the north Pacific. 
+Wind speeds elsewhere in the northern hemisphere are below 45 km per hour. Near the equator, the very calm 'Inter-Tropical Convergence Zone' is apparent as a blue band. It starts north of Madagascar and goes south of India, crossing the Philippines and the Pacific Ocean. It is also seen off French Guyana in the Atlantic Ocean. In the sourthern hemisphere, there are a series of strong wind centres (bright yellow), with speeds exceeding 100 km per hour. Very strong storms are visible off South Africa and south of Australia.</caption>
+    <width/>
+    <image_type_id>2</image_type_id>
+    <orbit/>
+    <sensed>0000-00-00</sensed>
+    <center_latitude>0.00</center_latitude>
+    <center_longitude>0.00</center_longitude>
+    <file_reference>EOB64.tif</file_reference>
+    <credits>European Space Agency. All rights reserved.</credits>
+    <satellite>ERS-1</satellite>
+    <instrument>SCATTEROMETER</instrument>
+    <resolution/>
+    <extra>
+        <group>Other</group>
+        <category>Special Features</category>
+        <keyword>Global</keyword>
+    </extra>
+    <extra>
+        <group>Other</group>
+        <category>Global Images</category>
+        <keyword>Meteo images</keyword>
+    </extra>
+</RECORD>

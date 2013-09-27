@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<images>
+	<image>
+		<name>Oil spill near Gothenburg, Sweden</name>
+		<description>An oil spill is visible in this ERS-1 SAR image near Gothenburg, Sweden.</description>
+		<mimeType>image/tiff</mimeType>
+		<collectionName>EM ESA Earth Images</collectionName>
+		<file>images/image1.tiff</file>
+		<metadatas>
+			<metadata>
+				<schema>es</schema>
+				<language>en</language>
+				<file>images/image1_es_en.xml</file>	
+			</metadata>
+			<metadata>
+				<schema>eiDB</schema>
+				<language>en</language>
+				<file>images/image1_eiDB_en.xml</file>	
+			</metadata>
+		</metadatas>
+	</image>
+	<image>
+		<name>Ship Detection, Italy</name>
+		<description>ERS-1 SAR is capable of imaging ships day and night under all weather conditions.</description>
+		<mimeType>image/tiff</mimeType>
+		<collectionName>EM ESA Earth Images</collectionName>
+		<file>images/image2.tiff</file>
+		<metadatas>
+			<metadata>
+				<schema>es</schema>
+				<language>en</language>
+				<file>images/image2_es_en.xml</file>	
+			</metadata>
+			<metadata>
+				<schema>eiDB</schema>
+				<language>en</language>
+				<file>images/image2_eiDB_en.xml</file>	
+			</metadata>
+		</metadatas>
+	</image>
+	<image>
+		<name>Albania Aquaculture Time Series</name>
+		<description>Albania Aquaculture Time Series</description>
+		<mimeType>image/gif</mimeType>
+		<collectionName>FARM Aquaculture Time Series Graphs</collectionName>
+		<file>images/image3.gif</file>
+		<metadatas>
+			<metadata>
+				<schema>dc</schema>
+				<language>en</language>
+				<file>images/image3_dc_en.xml</file>	
+			</metadata>
+		</metadatas>
+	</image>
+	<image>
+		<name>Shimizu Port, Japan</name>
+		<description>Shimizu Port, Japan</description>
+		<mimeType>image/png</mimeType>
+		<collectionName>EM ESA Earth Images</collectionName>
+		<file>images/image4.png</file>
+		<metadatas/>
+	</image>
+	<image>
+		<name>Global Winds</name>
+		<description>One of the most important objectives of the ERS-1 mission is to provide daily measurements of the global wind fields over the surface of the oceans.</description>
+		<mimeType>image/tiff</mimeType>
+		<collectionName>EM ESA Earth Images</collectionName>
+		<file>images/image5.tiff</file>
+		<metadatas>
+			<metadata>
+				<schema>es</schema>
+				<language>en</language>
+				<file>images/image2_es_en.xml</file>	
+			</metadata>
+			<metadata>
+				<schema>eiDB</schema>
+				<language>en</language>
+				<file>images/image5_eiDB_en.xml</file>	
+			</metadata>
+		</metadatas>
+	</image>
+</images>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reports>
+	<report>
+	    <name>Aquaculture SO With Time Series</name>
+	    <description>Aquaculture SO With Time Series</description>
+	    <created>
+	          <time>1268753601247</time>
+              <timezone>Europe/Rome</timezone>
+	    </created>
+	    <lastEdit>
+	    	  <time>1268853601247</time>
+              <timezone>Europe/Rome</timezone>
+	    </lastEdit>
+	    <author>Mario.Rossi</author>
+	    <lastEditBy>Giuseppe.Verdi</lastEditBy>
+	    <templateName>TSReport</templateName>
+	    <numberOfSections>5</numberOfSections>
+	    <status>n/a</status>
+	    <file>reports/report1.gr</file>
+	</report>
+	<report>
+	    <name>Aquaculture Sector Overview</name>
+	    <description>Aquaculture Sector Overview</description>
+	    <created>
+	          <time>1268753601247</time>
+              <timezone>Europe/Rome</timezone>
+	    </created>
+	    <lastEdit>
+	    	  <time>1268853601247</time>
+              <timezone>Europe/Rome</timezone>
+	    </lastEdit>
+	    <author>Mario.Bianchi</author>
+	    <lastEditBy>Mario.Verdi</lastEditBy>
+	    <templateName>TSSector</templateName>
+	    <numberOfSections>4</numberOfSections>
+	    <status>n/a</status>	    
+	    <file>reports/report2.gr</file>
+	</report>
+	<report>
+	    <name>Indonesia Final</name>
+	    <description>Indonesia Final</description>
+	    <created>
+	          <time>1218753601247</time>
+              <timezone>Europe/Rome</timezone>
+	    </created>
+	    <lastEdit>
+	    	  <time>1268823601247</time>
+              <timezone>Europe/Rome</timezone>
+	    </lastEdit>
+	    <author>Marco.Rossi</author>
+	    <lastEditBy>Giuseppe.Ferrini</lastEditBy>
+	    <templateName>Indonesia</templateName>
+	    <numberOfSections>2</numberOfSections>
+	    <status>n/a</status>	    
+	    <file>reports/report3.gr</file>
+	</report>
+</reports>

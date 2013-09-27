@@ -1,0 +1,12 @@
+
+<qualifieddc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://purl.org/dc/terms/ http://193.43.36.238:8282/fi/figis/devcon/schema/dc/qualifieddc.xsd">
+<dcterms:language xmlns:dcterms="http://purl.org/dc/terms/" xsi:type="dcterms:ISO639-2">en</dcterms:language>
+<dcterms:publisher xmlns:dcterms="http://purl.org/dc/terms/">FAO</dcterms:publisher>
+<dcterms:spatial xmlns:dcterms="http://purl.org/dc/terms/" xsi:type="dcterms:ISO3166">AL</dcterms:spatial>
+<dcterms:rightsHolder xmlns:dcterms="http://purl.org/dc/terms/">FAO Fisheries and Aquaculture Department (FAO-FI)</dcterms:rightsHolder>
+<dcterms:isPartOf xmlns:dcterms="http://purl.org/dc/terms/">Aquaculture Time Series</dcterms:isPartOf>
+<dcterms:title xmlns:dcterms="http://purl.org/dc/terms/">Albania Aquaculture Time Series</dcterms:title>
+<dcterms:creator xmlns:dcterms="http://purl.org/dc/terms/">FAO Fisheries and Aquaculture Department (FAO-FI)</dcterms:creator>
+<dcterms:created xmlns:dcterms="http://purl.org/dc/terms/" xsi:type="dcterms:W3CDTF">2008-01-01</dcterms:created>
+<dcterms:type xmlns:dcterms="http://purl.org/dc/terms/">fi:CountrySector</dcterms:type>
+</qualifieddc>

@@ -26,7 +26,7 @@ public class HomeLibraryConfiguration {
 	protected static final String PERSISTENCE_FOLDER = "persistence-folder";
 	private static final String HOME_MANAGER_FACTORY_IMPLEMENTATION = "home-manager-factory-implementation";
 //	protected static final String DEFAULT_PROPERTY_FILES = "/org/gcube/portlets/user/homelibrary/home/homelibrary.properties";
-	protected static final String DEFAULT_PROPERTY_FILES = "homelibrary.properties";
+	protected static final String DEFAULT_PROPERTY_FILES = "/homelibrary.properties";
 
 	protected static HomeLibraryConfiguration configuration;
 

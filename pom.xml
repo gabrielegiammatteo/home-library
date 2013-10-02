@@ -21,6 +21,11 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.jfile</groupId>
+			<artifactId>jfile</artifactId>
+			<version>0.0.1</version>
+		</dependency>
 
 		<dependency>
 			<groupId>eu.medsea.mimeutil</groupId>
@@ -62,6 +67,12 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.6.4</version>
+		</dependency>
+		<dependency>
+			<groupId>asm</groupId>
+			<artifactId>asm-all</artifactId>
+			<version>3.0_RC1</version>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>

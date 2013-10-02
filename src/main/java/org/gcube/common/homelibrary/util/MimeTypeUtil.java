@@ -54,9 +54,9 @@ public class MimeTypeUtil {
 		
 //		InputStream mapFile = MimeTypeUtil.class.getResourceAsStream("/org/gcube/portlets/user/homelibrary/util/resources/MimeTypeToExtensionMap.properties");
 		InputStream extensionToMimetype = MimeTypeUtil.class.getResourceAsStream(
-				"ExtensionToMimeTypeMap.properties");
+				"/ExtensionToMimeTypeMap.properties");
 		InputStream mimetypeToExtension = MimeTypeUtil.class.getResourceAsStream(
-				"MimeTypeToExtensionMap.properties");
+				"/MimeTypeToExtensionMap.properties");
 		try {
 			loadExtensions(extensionToMimetype);
 			loadMimeTypes(mimetypeToExtension);

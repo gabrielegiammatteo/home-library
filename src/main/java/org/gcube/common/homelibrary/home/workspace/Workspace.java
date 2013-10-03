@@ -28,6 +28,7 @@ import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalImage;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalPDFFile;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalResourceLink;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalUrl;
+import org.gcube.common.homelibrary.home.workspace.folder.items.GCubeItem;
 import org.gcube.common.homelibrary.home.workspace.folder.items.Query;
 import org.gcube.common.homelibrary.home.workspace.folder.items.QueryType;
 import org.gcube.common.homelibrary.home.workspace.folder.items.Report;
@@ -862,6 +863,7 @@ public interface Workspace extends WorkspaceEventSource {
 			ItemAlreadyExistException, WrongDestinationException,
 			ItemNotFoundException, WorkspaceFolderNotFoundException;
 
+	
 	/**
 	 * @param name
 	 * @param description
@@ -907,6 +909,21 @@ public interface Workspace extends WorkspaceEventSource {
 	 */
 	void updateItem(String itemId, InputStream fileData)
 			throws InsufficientPrivilegesException,
+			WorkspaceFolderNotFoundException, InternalErrorException,
+			ItemAlreadyExistException, WrongDestinationException, ItemNotFoundException;
+
+	/**
+	 * @param name
+	 * @param description
+	 * @param scopes
+	 * @param creator
+	 * @param itemType
+	 * @param destinationFolderId
+	 * @return
+	 */
+	public WorkspaceItem createGcubeItem(String name, String description,
+			List<String> scopes, String creator, String itemType,
+			String destinationFolderId) throws InsufficientPrivilegesException,
 			WorkspaceFolderNotFoundException, InternalErrorException,
 			ItemAlreadyExistException, WrongDestinationException, ItemNotFoundException;
 

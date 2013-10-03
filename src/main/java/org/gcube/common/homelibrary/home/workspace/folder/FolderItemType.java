@@ -127,6 +127,8 @@ public enum FolderItemType {
 	/**
 	 * Tabular Data Link
 	 */
-	TABULAR_DATA_LINK;
+	TABULAR_DATA_LINK,
+	
+	GCUBE_ITEM;
 	
 }

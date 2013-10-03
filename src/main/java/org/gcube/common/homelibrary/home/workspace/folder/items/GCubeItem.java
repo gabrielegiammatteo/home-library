@@ -4,6 +4,7 @@
 package org.gcube.common.homelibrary.home.workspace.folder.items;
 
 import java.util.List;
+import java.util.Map;
 
 import org.gcube.common.homelibrary.home.workspace.WorkspaceItem;
 
@@ -19,4 +20,6 @@ public interface GCubeItem extends WorkspaceItem {
 	
 	String getCreator();
 
+	Map<String, String> properties();
+	
 }

@@ -922,7 +922,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @return
 	 */
 	public WorkspaceItem createGcubeItem(String name, String description,
-			List<String> scopes, String creator, String itemType,
+			List<String> scopes, String creator, String itemType, Map<String, String> properties, 
 			String destinationFolderId) throws InsufficientPrivilegesException,
 			WorkspaceFolderNotFoundException, InternalErrorException,
 			ItemAlreadyExistException, WrongDestinationException, ItemNotFoundException;

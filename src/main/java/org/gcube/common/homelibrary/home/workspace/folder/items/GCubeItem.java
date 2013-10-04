@@ -20,6 +20,6 @@ public interface GCubeItem extends WorkspaceItem {
 	
 	String getCreator();
 
-	Map<String, String> properties();
+	Map<String, String> getItemProperties();
 	
 }

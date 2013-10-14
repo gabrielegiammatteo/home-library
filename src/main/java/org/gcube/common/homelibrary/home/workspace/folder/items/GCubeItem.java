@@ -20,5 +20,5 @@ public interface GCubeItem extends FolderItem {
 	String getCreator();
 
 	Map<String, String> getItemProperties();
-	
+
 }

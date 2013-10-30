@@ -929,11 +929,11 @@ public interface Workspace extends WorkspaceEventSource {
 	
 	/**
 	 * Unshare a shared item
-	 * @param srcPath
+	 * @param itemId
 	 * @throws InternalErrorException
 	 * @throws ItemNotFoundException
 	 */
-	public WorkspaceItem unshare(String srcPath) throws InternalErrorException, ItemNotFoundException;
+	public WorkspaceItem unshare(String itemId) throws InternalErrorException, ItemNotFoundException;
 
 
 }

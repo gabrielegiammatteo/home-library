@@ -32,10 +32,12 @@ public class WorkspaceUtil {
 	 */
 	public static String getUniqueName(String initialName, WorkspaceFolder folder) throws InternalErrorException
 	{
+	
 		List<? extends WorkspaceItem> children = folder.getChildren();
 		
 		List<String> names = new LinkedList<String>();
 		for (WorkspaceItem item:children) {
+
 			names.add(item.getName());
 		}
 		

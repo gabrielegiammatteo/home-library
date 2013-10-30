@@ -926,5 +926,14 @@ public interface Workspace extends WorkspaceEventSource {
 			String destinationFolderId) throws InsufficientPrivilegesException,
 			WorkspaceFolderNotFoundException, InternalErrorException,
 			ItemAlreadyExistException, WrongDestinationException, ItemNotFoundException;
+	
+	/**
+	 * Unshare a shared item
+	 * @param srcPath
+	 * @throws InternalErrorException
+	 * @throws ItemNotFoundException
+	 */
+	public WorkspaceItem unshare(String srcPath) throws InternalErrorException, ItemNotFoundException;
+
 
 }

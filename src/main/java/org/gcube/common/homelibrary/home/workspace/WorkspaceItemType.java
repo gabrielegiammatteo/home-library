@@ -28,6 +28,11 @@ public enum WorkspaceItemType {
 	/**
 	 * A folder item.
 	 */
-	FOLDER_ITEM;
+	FOLDER_ITEM,
+	
+	/**
+	 * A gCube item.
+	 */	
+	GCUBE_ITEM;
 	
 }

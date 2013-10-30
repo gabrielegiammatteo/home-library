@@ -26,6 +26,11 @@ public enum WorkspaceItemAction {
 	/**
 	 * The item has been cloned. 
 	 */
-	CLONED;
+	CLONED,
+	
+	/**
+	 * The item has been updates. 
+	 */
+	UPDATED;
 
 }

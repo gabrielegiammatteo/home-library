@@ -11,9 +11,9 @@ import java.io.InputStreamReader;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 
 import eu.medsea.mimeutil.MimeUtil;
 
@@ -23,16 +23,9 @@ import eu.medsea.mimeutil.MimeUtil;
  */
 public class MimeTypeUtil {
 	
-	protected static final Logger logger = Logger.getLogger(MimeTypeUtil.class);
+	protected static final Logger logger = LoggerFactory.getLogger(MimeTypeUtil.class);
 
-	static{
-		/*ConsoleAppender ca = new ConsoleAppender(new SimpleLayout());
-		ca.setThreshold(Level.ALL);
-		ca.activateOptions();
-		logger.addAppender(ca);*/
-		logger.setLevel(Level.ALL);
-	}
-	
+
 	/**
 	 * 
 	 */

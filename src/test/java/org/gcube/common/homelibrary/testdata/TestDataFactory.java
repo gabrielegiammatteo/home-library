@@ -8,8 +8,6 @@ import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
-
-import org.apache.log4j.Logger;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
 import org.gcube.common.homelibrary.home.workspace.folder.FolderItem;
@@ -41,6 +39,8 @@ import org.gcube.common.homelibrary.testdata.manager.TimeSeriesDataManager;
 import org.gcube.common.homelibrary.testdata.manager.UrlDataManager;
 import org.gcube.common.homelibrary.testdata.manager.WorkflowReportDataManager;
 import org.gcube.common.homelibrary.testdata.manager.WorkflowTemplateDataManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -52,7 +52,7 @@ public class TestDataFactory {
 
 	public static final String resourceRoot = "/org/gcube/portlets/user/homelibrary/testdata/resources/";
 
-	protected Logger logger = Logger.getLogger(TestDataFactory.class);
+	protected Logger logger = LoggerFactory.getLogger(TestDataFactory.class);
 
 	protected static TestDataFactory instance;
 

@@ -11,7 +11,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceItem;
@@ -19,14 +18,16 @@ import org.gcube.common.homelibrary.home.workspace.folder.items.AquaMapsItem;
 import org.gcube.common.homelibrary.home.workspace.folder.items.gcube.Document;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ts.TimeSeries;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipItem;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Federico De Faveri defaveri@isti.cnr.it
  *
  */
 public class ZipUtil {
-	
-	protected static final Logger logger = Logger.getLogger(ZipUtil.class);
+	 
+	protected static final Logger logger = LoggerFactory.getLogger(ZipUtil.class);
 
 	/**
 	 * Zip the folder content into a tmp zip file.
@@ -82,7 +83,7 @@ public class ZipUtil {
 		WorkspaceToZipModelConverter zipConverter = new WorkspaceToZipModelConverter();
 		ZipItem item = zipConverter.convert(workspaceItem);
 		
-		ZipModelVisitor zipModelVisitor = new ZipModelVisitor(logger);
+		ZipModelVisitor zipModelVisitor = new ZipModelVisitor();
 		zipModelVisitor.visitItem(item);
 		
 		logger.trace("writing model");

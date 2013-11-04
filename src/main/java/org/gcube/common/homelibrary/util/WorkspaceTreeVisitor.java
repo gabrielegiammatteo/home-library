@@ -6,7 +6,6 @@ package org.gcube.common.homelibrary.util;
 import java.io.PrintStream;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.gcube.common.homelibrary.home.User;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
@@ -55,8 +54,8 @@ public class WorkspaceTreeVisitor extends IndentedVisitor {
 	 * @param os the output stream.
 	 * @param logger the visitor logger.
 	 */
-	public WorkspaceTreeVisitor(String indentationLevel, String indentationChar, PrintStream os, Logger logger) {
-		super(indentationLevel, indentationChar, os, logger);
+	public WorkspaceTreeVisitor(String indentationLevel, String indentationChar, PrintStream os) {
+		super(indentationLevel, indentationChar, os);
 	}
 
 	/**

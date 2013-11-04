@@ -7,8 +7,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.List;
-
-import org.apache.log4j.Logger;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
 import org.gcube.common.homelibrary.home.workspace.exceptions.InsufficientPrivilegesException;
@@ -19,6 +17,8 @@ import org.gcube.common.homelibrary.util.WorkspaceUtil;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipFile;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipFolder;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipItem;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This utility class read the zip model and create the corresponding element on the specified WorkspaceFolder.
@@ -27,7 +27,7 @@ import org.gcube.common.homelibrary.util.zip.zipmodel.ZipItem;
  */
 public class ZipModelToWorkspaceCreator {
 
-	protected Logger logger = Logger.getLogger(ZipModelToWorkspaceCreator.class);
+	protected Logger logger = LoggerFactory.getLogger(ZipModelToWorkspaceCreator.class);
 
 
 	/**

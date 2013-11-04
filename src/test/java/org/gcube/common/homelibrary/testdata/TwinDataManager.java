@@ -14,13 +14,14 @@ import java.util.Map;
 import java.util.Random;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
 import org.gcube.common.homelibrary.home.workspace.exceptions.InsufficientPrivilegesException;
 import org.gcube.common.homelibrary.home.workspace.exceptions.ItemAlreadyExistException;
 import org.gcube.common.homelibrary.testdata.data.TestData;
 import org.gcube.common.homelibrary.util.WorkspaceUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -32,7 +33,7 @@ import com.thoughtworks.xstream.XStream;
  */
 public abstract class TwinDataManager<T extends TestData, E, D> {
 	
-	protected Logger logger = Logger.getLogger(TwinDataManager.class);
+	protected Logger logger = LoggerFactory.getLogger(TwinDataManager.class);
 
 	protected XStream xstream;
 	protected Random random;

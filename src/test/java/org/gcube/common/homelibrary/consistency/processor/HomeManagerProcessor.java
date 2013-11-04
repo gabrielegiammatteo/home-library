@@ -5,11 +5,12 @@ package org.gcube.common.homelibrary.consistency.processor;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.gcube.common.homelibrary.home.Home;
 import org.gcube.common.homelibrary.home.HomeManager;
 import org.gcube.common.homelibrary.home.User;
 import org.gcube.common.homelibrary.home.exceptions.HomeNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Federico De Faveri defaveri@isti.cnr.it
@@ -17,14 +18,9 @@ import org.gcube.common.homelibrary.home.exceptions.HomeNotFoundException;
  */
 public class HomeManagerProcessor extends AbstractProcessor<HomeManager, Home>{
 	
-	protected Logger logger;
+	protected Logger logger = LoggerFactory.getLogger(HomeManagerProcessor.class);
 
-	/**
-	 * @param logger
-	 */
-	public HomeManagerProcessor(Logger logger) {
-		this.logger = logger;
-	}
+	
 
 	@Override
 	public void process(HomeManager manager) throws Exception {

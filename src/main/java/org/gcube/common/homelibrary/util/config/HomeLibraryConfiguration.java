@@ -5,12 +5,12 @@ package org.gcube.common.homelibrary.util.config;
 
 import java.io.File;
 import java.net.URL;
-
-import org.apache.log4j.Logger;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.util.config.easyconf.ComponentConfiguration;
 import org.gcube.common.homelibrary.util.config.easyconf.ComponentProperties;
 import org.gcube.common.homelibrary.util.config.easyconf.EasyConf;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Federico De Faveri defaveri@isti.cnr.it
@@ -42,7 +42,7 @@ public class HomeLibraryConfiguration {
 
 	protected ComponentConfiguration componentConfiguration;
 	protected ComponentProperties properties;
-	protected Logger logger = Logger.getLogger(HomeLibraryConfiguration.class);
+	protected Logger logger = LoggerFactory.getLogger(HomeLibraryConfiguration.class);
 
 	protected HomeLibraryConfiguration()
 	{

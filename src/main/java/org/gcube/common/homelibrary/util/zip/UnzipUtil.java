@@ -15,10 +15,11 @@ import java.util.zip.ZipInputStream;
 
 import org.apache.commons.io.FileCleaner;
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
 import org.gcube.common.homelibrary.home.HomeLibrary;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipItem;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -27,7 +28,7 @@ import org.gcube.common.homelibrary.util.zip.zipmodel.ZipItem;
  */
 public class UnzipUtil {
 	
-	protected static final Logger logger = Logger.getLogger(HomeLibrary.class.getPackage().getName());
+	protected static final Logger logger = LoggerFactory.getLogger(HomeLibrary.class.getPackage().getName());
 	
 	/**
 	 * Unzip the specified file into the specified workspace.
@@ -45,7 +46,7 @@ public class UnzipUtil {
 		List<ZipItem> items = zme.getModel();
 		
 		logger.trace("Zip Model:");
-		ZipModelVisitor visitor = new ZipModelVisitor(logger);
+		ZipModelVisitor visitor = new ZipModelVisitor();
 		visitor.visit(items);
 		
 		logger.trace("Creating the items");

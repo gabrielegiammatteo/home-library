@@ -5,9 +5,10 @@ package org.gcube.common.homelibrary.consistency.processor;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.gcube.common.homelibrary.home.HomeManager;
 import org.gcube.common.homelibrary.home.HomeManagerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Federico De Faveri defaveri@isti.cnr.it
@@ -15,14 +16,9 @@ import org.gcube.common.homelibrary.home.HomeManagerFactory;
  */
 public class HomeManagerFactoryProcessor extends AbstractProcessor<HomeManagerFactory, HomeManager>{
 	
-	protected Logger logger;
+	protected Logger  logger = LoggerFactory.getLogger(HomeManagerFactoryProcessor.class);
 
-	/**
-	 * @param logger
-	 */
-	public HomeManagerFactoryProcessor(Logger logger) {
-		this.logger = logger;
-	}
+
 
 	@Override
 	public void process(HomeManagerFactory input) throws Exception {

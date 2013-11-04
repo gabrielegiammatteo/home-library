@@ -13,13 +13,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
-
-import org.apache.log4j.Logger;
 import org.gcube.common.homelibrary.home.HomeLibrary;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipFile;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipFolder;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipItem;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipItemType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Utility class for ZipModel extractions.
@@ -28,7 +28,7 @@ import org.gcube.common.homelibrary.util.zip.zipmodel.ZipItemType;
  */
 public class ZipFileModelExtractor {
 
-	protected Logger logger = Logger.getLogger(HomeLibrary.class.getPackage().getName());
+	protected Logger logger = LoggerFactory.getLogger(HomeLibrary.class.getPackage().getName());
 
 	protected Map<String, ZipItem> pathItemMap;
 

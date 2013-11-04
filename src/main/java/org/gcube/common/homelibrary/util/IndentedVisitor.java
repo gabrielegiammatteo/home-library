@@ -3,7 +3,9 @@ package org.gcube.common.homelibrary.util;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**
  * @author Federico De Faveri defaveri@isti.cnr.it
@@ -24,20 +26,14 @@ public class IndentedVisitor {
 	protected String indentationLevel = "";
 	protected String indentationChar;
 	protected PrintStream os;
-	protected Logger logger;
+	protected Logger logger = LoggerFactory.getLogger(IndentedVisitor.class);
 
-	/**
-	 * Create a default visitor with output to console.
-	 */
-	public IndentedVisitor() {
-		this("", DEFAULT_INDENTATION_STRING, System.out, null);
-	}
 
 	/**
 	 * @param logger the visitor logger.
 	 */
-	public IndentedVisitor(Logger logger) {
-		this("", DEFAULT_INDENTATION_STRING, null, logger);
+	public IndentedVisitor() {
+		this("", DEFAULT_INDENTATION_STRING, null);
 	}
 
 	/**
@@ -46,11 +42,10 @@ public class IndentedVisitor {
 	 * @param os the output stream.
 	 * @param logger the visitor logger.
 	 */
-	public IndentedVisitor(String indentationLevel, String indentationChar,	PrintStream os, Logger logger) {
+	public IndentedVisitor(String indentationLevel, String indentationChar,	PrintStream os) {
 		this.indentationLevel = indentationLevel;
 		this.indentationChar = indentationChar;
 		this.os = os;
-		this.logger = logger;
 		sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
 	}
 

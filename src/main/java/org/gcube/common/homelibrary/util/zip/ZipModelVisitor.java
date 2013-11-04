@@ -5,11 +5,11 @@ package org.gcube.common.homelibrary.util.zip;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.gcube.common.homelibrary.util.IndentedVisitor;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipFolder;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipItem;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipItemType;
+
 
 /**
  * A zip model visitor.
@@ -25,12 +25,6 @@ public class ZipModelVisitor extends IndentedVisitor {
 	public ZipModelVisitor() {
 	}
 
-	/**
-	 * @param logger the visitor logger.
-	 */
-	public ZipModelVisitor(Logger logger) {
-		super(logger);
-	}
 
 	/**
 	 * @param items the items to visit.

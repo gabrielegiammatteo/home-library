@@ -11,11 +11,12 @@ import java.util.zip.ZipOutputStream;
 
 
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
 
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipFile;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipFolder;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipItem;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Federico De Faveri defaveri@isti.cnr.it
@@ -23,7 +24,7 @@ import org.gcube.common.homelibrary.util.zip.zipmodel.ZipItem;
  */
 public class ZipModelWriter {
 
-	protected Logger logger = Logger.getLogger(ZipModelWriter.class);
+	protected Logger logger = LoggerFactory.getLogger(ZipModelWriter.class);
 
 	public File writeItem(ZipItem item) throws IOException
 	{

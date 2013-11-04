@@ -8,11 +8,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
-import org.apache.log4j.Logger;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.testdata.data.DocMetadata;
 import org.gcube.common.homelibrary.testdata.data.TestData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Federico De Faveri defaveri@isti.cnr.it
@@ -20,7 +20,7 @@ import org.gcube.common.homelibrary.testdata.data.TestData;
  */
 public class TestDataManagerUtil {
 	
-	protected static final Logger logger = Logger.getLogger(TestDataManagerUtil.class);
+	protected static final Logger logger = LoggerFactory.getLogger(TestDataManagerUtil.class);
 
 	
 	/**

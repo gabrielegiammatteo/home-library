@@ -8,7 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import org.apache.log4j.Logger;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
 import org.gcube.common.homelibrary.home.workspace.exceptions.InsufficientPrivilegesException;
@@ -22,6 +21,8 @@ import org.gcube.common.homelibrary.testdata.data.PDFDocumentData;
 import org.gcube.common.homelibrary.testdata.data.TestData;
 import org.gcube.common.homelibrary.testdata.data.UrlDocumentData;
 import org.gcube.common.homelibrary.util.WorkspaceUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -31,7 +32,7 @@ import com.thoughtworks.xstream.XStream;
  */
 public class MetadataDataManager {
 
-	protected Logger logger = Logger.getLogger(MetadataDataManager.class);
+	protected Logger logger = LoggerFactory.getLogger(MetadataDataManager.class);
 
 	protected XStream xstream;
 	protected Random random;

@@ -68,7 +68,7 @@ public class HomeLibraryVisitor extends IndentedVisitor {
 
 	protected void visitUser(Home home) throws InternalErrorException, WorkspaceFolderNotFoundException {
 		indent();
-		WorkspaceTreeVisitor wtv = new WorkspaceTreeVisitor(indentationLevel, indentationChar, os, logger);
+		WorkspaceTreeVisitor wtv = new WorkspaceTreeVisitor(indentationLevel, indentationChar, os);
 		wtv.visitItem(home.getWorkspace().getRoot());
 		outdent();
 	}

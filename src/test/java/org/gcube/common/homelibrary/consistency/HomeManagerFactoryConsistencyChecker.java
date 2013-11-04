@@ -5,7 +5,6 @@ package org.gcube.common.homelibrary.consistency;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.gcube.common.homelibrary.consistency.statistics.CheckStatistics;
 import org.gcube.common.homelibrary.consistency.statistics.HomeCheckStatistics;
 import org.gcube.common.homelibrary.home.Home;
@@ -16,6 +15,8 @@ import org.gcube.common.homelibrary.home.exceptions.HomeNotFoundException;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.exceptions.UserNotFoundException;
 import org.gcube.common.homelibrary.home.workspace.Workspace;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Federico De Faveri defaveri@isti.cnr.it
@@ -23,7 +24,8 @@ import org.gcube.common.homelibrary.home.workspace.Workspace;
  */
 public class HomeManagerFactoryConsistencyChecker {
 
-	protected Logger logger;
+	private static Logger logger = LoggerFactory.getLogger(HomeManagerFactoryConsistencyChecker.class); 
+	
 	protected HomeManagerFactory factory;
 	protected boolean testEntireStream;
 	protected CheckStatistics statistics;
@@ -35,8 +37,7 @@ public class HomeManagerFactoryConsistencyChecker {
 	 * @param testEntireStream <code>true</code> to check the folder items streams, <code>false</code> otherwise.
 	 * @param acceptAllSentRequests <code>true</code> to accept all sent requests and process the received elements. This will make the check destructive.
 	 */
-	public HomeManagerFactoryConsistencyChecker(Logger logger, HomeManagerFactory factory, boolean testEntireStream, boolean acceptAllSentRequests) {
-		this.logger = logger;
+	public HomeManagerFactoryConsistencyChecker( HomeManagerFactory factory, boolean testEntireStream, boolean acceptAllSentRequests) {
 		this.factory = factory;
 		this.testEntireStream = testEntireStream;
 		this.acceptAllSentRequests = acceptAllSentRequests;
@@ -105,7 +106,7 @@ public class HomeManagerFactoryConsistencyChecker {
 	{
 		try{
 			Workspace wa = home.getWorkspace();
-			WorkspaceConsistencyChecker waChecker = new WorkspaceConsistencyChecker(logger, wa, testEntireStream, acceptAllSentRequests);
+			WorkspaceConsistencyChecker waChecker = new WorkspaceConsistencyChecker(wa, testEntireStream, acceptAllSentRequests);
 			boolean result = waChecker.checkWorkspace();
 			homeStatistics.addWorkspaceStatistics(home.getOwner().getPortalLogin(), waChecker.getStatistics());
 			return result;

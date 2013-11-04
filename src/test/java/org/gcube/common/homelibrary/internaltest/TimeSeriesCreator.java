@@ -16,7 +16,6 @@ import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ts.TimeSeries;
 import org.gcube.common.homelibrary.util.WorkspaceTreeVisitor;
 import org.gcube.common.homelibrary.util.WorkspaceUtil;
-import org.gcube.common.homelibrary.util.logging.LoggingUtil;
 import org.gcube.common.scope.api.ScopeProvider;
 
 /**
@@ -33,8 +32,7 @@ public class TimeSeriesCreator {
 	 */
 	public static void main(String[] args) throws Exception {
 
-		LoggingUtil.reconfigureLogging();
-
+		
 		System.out.println("Welcome to TimeSeries Creator 1.0");
 
 		HomeManagerFactory factory = HomeLibrary.getHomeManagerFactory();

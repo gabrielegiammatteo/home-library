@@ -9,17 +9,14 @@ import java.io.IOException;
 import java.io.LineNumberReader;
 import java.util.Map.Entry;
 
-import org.apache.log4j.ConsoleAppender;
-import org.apache.log4j.FileAppender;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-import org.apache.log4j.SimpleLayout;
+
 import org.gcube.common.homelibrary.consistency.statistics.CheckStatistics;
 import org.gcube.common.homelibrary.home.HomeLibrary;
 import org.gcube.common.homelibrary.home.HomeManagerFactory;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.folder.FolderItemType;
-import org.gcube.common.homelibrary.util.logging.LoggingUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Federico De Faveri defaveri@isti.cnr.it
@@ -27,6 +24,8 @@ import org.gcube.common.homelibrary.util.logging.LoggingUtil;
  */
 public class HomeLibraryConsistencyChecker {
 
+	private static Logger logger = LoggerFactory.getLogger(HomeLibraryConsistencyChecker.class);
+	
 	/**
 	 * @param args use help to get more information.
 	 * @throws InternalErrorException if an error occurs.
@@ -76,7 +75,6 @@ public class HomeLibraryConsistencyChecker {
 			loadScopeList = true;
 		}
 		
-		LoggingUtil.reconfigureLogging();
 		
 		HomeManagerFactory factory;
 		
@@ -86,20 +84,8 @@ public class HomeLibraryConsistencyChecker {
 			factory = HomeLibrary.getHomeManagerFactory(rootDir);
 		}
 		
-		Logger logger = Logger.getLogger("checker");
-		logger.setLevel(Level.ALL);
-		ConsoleAppender ca = new ConsoleAppender(new SimpleLayout());
-		ca.setThreshold(Level.INFO);
-		logger.addAppender(ca);
-		FileAppender faTrace = new FileAppender(new SimpleLayout(), "hlcheck.trace.log", false);
-		faTrace.setThreshold(Level.ALL);
-		logger.addAppender(faTrace);
 		
-		FileAppender faInfo = new FileAppender(new SimpleLayout(), "hlcheck.info.log", false);
-		faInfo.setThreshold(Level.INFO);
-		logger.addAppender(faInfo);
-		
-		HomeManagerFactoryConsistencyChecker checker = new HomeManagerFactoryConsistencyChecker(logger, factory, testEntireStream, acceptAllRequests);
+		HomeManagerFactoryConsistencyChecker checker = new HomeManagerFactoryConsistencyChecker(factory, testEntireStream, acceptAllRequests);
 
 		boolean check = false;
 		if (!loadScopeList) check = checker.checkAllScopes();

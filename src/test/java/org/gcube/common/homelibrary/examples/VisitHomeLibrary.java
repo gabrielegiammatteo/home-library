@@ -8,7 +8,6 @@ import org.gcube.common.homelibrary.home.exceptions.HomeNotFoundException;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.exceptions.WorkspaceFolderNotFoundException;
 import org.gcube.common.homelibrary.util.HomeLibraryVisitor;
-import org.gcube.common.homelibrary.util.logging.LoggingUtil;
 
 
 /**
@@ -26,7 +25,6 @@ public class VisitHomeLibrary {
 	 */
 	public static void main(String[] args) throws InternalErrorException, HomeNotFoundException, WorkspaceFolderNotFoundException {
 
-		LoggingUtil.reconfigureLogging();
 		
 		HomeManagerFactory factory = ExamplesUtil.getHomeManagerFactory();
 		

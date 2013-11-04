@@ -6,8 +6,6 @@ package org.gcube.common.homelibrary.consistency;
 import java.util.List;
 import java.util.Map.Entry;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.gcube.common.homelibrary.consistency.statistics.WorkspaceCheckStatistics;
 import org.gcube.common.homelibrary.examples.ExamplesUtil;
 import org.gcube.common.homelibrary.home.exceptions.HomeNotFoundException;
@@ -40,6 +38,8 @@ import org.gcube.common.homelibrary.home.workspace.folder.items.gcube.link.Docum
 import org.gcube.common.homelibrary.home.workspace.folder.items.ts.TimeSeries;
 import org.gcube.common.homelibrary.home.workspace.sharing.WorkspaceMessageManager;
 import org.gcube.common.homelibrary.testdata.TestDataFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.gcube.common.homelibrary.consistency.CheckerUtil.*;
 
@@ -49,7 +49,8 @@ import static org.gcube.common.homelibrary.consistency.CheckerUtil.*;
  */
 public class WorkspaceConsistencyChecker {
 
-	protected Logger logger;
+	private static Logger logger = LoggerFactory.getLogger(WorkspaceConsistencyChecker.class); 
+	
 	protected Workspace workspace;
 	protected boolean testEntireStream;
 	protected WorkspaceCheckStatistics statistics;
@@ -61,8 +62,7 @@ public class WorkspaceConsistencyChecker {
 	 * @param testEntireStream <code>true</code> to check the folder items streams, <code>false</code> otherwise.
 	 * @param acceptAllSentRequests <code>true</code> to accept all sent requests and process the received elements. This will make the check destructive.
 	 */
-	public WorkspaceConsistencyChecker(Logger logger, Workspace workspace, boolean testEntireStream, boolean acceptAllSentRequests) {
-		this.logger = logger;
+	public WorkspaceConsistencyChecker(Workspace workspace, boolean testEntireStream, boolean acceptAllSentRequests) {
 		this.workspace = workspace;
 		this.testEntireStream = testEntireStream;
 		this.acceptAllSentRequests = acceptAllSentRequests;
@@ -402,9 +402,7 @@ public class WorkspaceConsistencyChecker {
 		Workspace wa = ExamplesUtil.createWorkspace();
 		TestDataFactory.getInstance().fillAllFolderItem(wa.getRoot());
 		System.out.println("WA ready");
-		Logger logger = Logger.getLogger("test");
-		logger.setLevel(Level.ALL);
-		WorkspaceConsistencyChecker checker = new WorkspaceConsistencyChecker(logger, wa, true, false);
+		WorkspaceConsistencyChecker checker = new WorkspaceConsistencyChecker(wa, true, false);
 		boolean check = checker.checkWorkspace();
 		System.out.println("is ok? "+check);
 	}

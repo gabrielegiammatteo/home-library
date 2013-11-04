@@ -7,7 +7,6 @@ import org.gcube.common.homelibrary.examples.ExamplesUtil;
 import org.gcube.common.homelibrary.home.HomeManagerFactory;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.util.HomeLibraryVisitor;
-import org.gcube.common.homelibrary.util.logging.LoggingUtil;
 
 /**
  * 
@@ -22,7 +21,6 @@ public class TestVisitHomeLibrary {
 	 */
 	public static void main(String[] args) throws Exception {
 		//loadScopes();
-		LoggingUtil.reconfigureLogging();
 		
 		HomeManagerFactory factory = ExamplesUtil.getHomeManagerFactory("/home/fedy2/Desktop/tmp/home_library_persistence");
 		

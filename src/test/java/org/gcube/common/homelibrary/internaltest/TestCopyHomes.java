@@ -14,7 +14,6 @@ import org.gcube.common.homelibrary.home.workspace.Workspace;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
 import org.gcube.common.homelibrary.util.HomeLibraryVisitor;
 import org.gcube.common.homelibrary.util.WorkspaceTreeVisitor;
-import org.gcube.common.homelibrary.util.logging.LoggingUtil;
 import org.gcube.common.scope.api.ScopeProvider;
 
 /**
@@ -30,7 +29,6 @@ public class TestCopyHomes {
 	 */
 	public static void main(String[] args) throws Exception {
 		
-		LoggingUtil.reconfigureLogging();
 		
 		HomeManagerFactory factory = ExamplesUtil.getHomeManagerFactory("/home/fedy2/Desktop/tmp/home_library_persistence");
 

@@ -12,7 +12,6 @@ import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.Workspace;
 import org.gcube.common.homelibrary.util.ScopeHomesComparator;
 import org.gcube.common.homelibrary.util.WorkspaceTreeVisitor;
-import org.gcube.common.homelibrary.util.logging.LoggingUtil;
 import org.gcube.common.scope.api.ScopeProvider;
 
 /**
@@ -28,7 +27,6 @@ public class TestCompareHomes {
 	 */
 	public static void main(String[] args) throws Exception {
 		
-		LoggingUtil.reconfigureLogging();
 		
 		HomeManagerFactory factory = HomeLibrary.getHomeManagerFactory("/home/fedy2/Desktop/tmp/home_library_persistence");
 		loadScopes(factory);

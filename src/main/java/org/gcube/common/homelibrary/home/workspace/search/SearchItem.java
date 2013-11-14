@@ -21,5 +21,7 @@ public interface SearchItem {
 	
 	public Calendar getLastModified();
 	
+	public String getOwner();
+	
 	public WorkspaceItemType getType();
 }

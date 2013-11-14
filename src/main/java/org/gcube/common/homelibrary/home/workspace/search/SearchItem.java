@@ -19,5 +19,7 @@ public interface SearchItem {
 	
 	public Calendar getCreationDate();
 	
+	public Calendar getLastModified();
+	
 	public WorkspaceItemType getType();
 }

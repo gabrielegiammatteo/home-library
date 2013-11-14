@@ -44,6 +44,8 @@ public class MimeTypeUtil {
 
 	static{
 		MimeUtil.registerMimeDetector("eu.medsea.mimeutil.detector.MagicMimeMimeDetector");
+		MimeUtil.registerMimeDetector("eu.medsea.mimeutil.detector.ExtensionMimeDetector"); 
+		MimeUtil.registerMimeDetector("eu.medsea.mimeutil.detector.OpendesktopMimeDetector");
 		
 //		InputStream mapFile = MimeTypeUtil.class.getResourceAsStream("/org/gcube/portlets/user/homelibrary/util/resources/MimeTypeToExtensionMap.properties");
 		InputStream extensionToMimetype = MimeTypeUtil.class.getResourceAsStream(
@@ -150,6 +152,7 @@ public class MimeTypeUtil {
 	 */
 	public static String getNameWithExtension(String name, String mimeType)
 	{
+		
 		logger.trace("getNameWithExtension name: "+name+" mimeType: "+mimeType);
 
 		if (mimeType == null) return name;
@@ -203,6 +206,30 @@ public class MimeTypeUtil {
 	{
 		for (String zip_mimetype:ZIP_MIMETYPES) if (zip_mimetype.equals(contentType)) return true;
 		return false;
+	}
+
+	/**
+	 * @param mimeType
+	 * @return
+	 */
+	public static String getMime(String name) {
+		String mimetypeCandidate = null;
+		if (name.contains(".")){
+			logger.trace("contains an extension");
+
+			if (name.lastIndexOf(".") < name.length()-1) {
+
+				String ext = name.substring(name.lastIndexOf(".")+1);
+				logger.trace("ext: "+ext);
+
+				//we check if there is a mimetype associated with the extension
+				mimetypeCandidate = MimeTypeUtil.getMimeType(ext);
+				logger.trace("mimetypeCandidate: "+mimetypeCandidate);
+
+				
+			}
+		}
+		return mimetypeCandidate;
 	}
 
 

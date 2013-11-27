@@ -615,7 +615,14 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws ItemNotFoundException if the item has not been found.
 	 */
 	public WorkspaceItem getItem(String itemId) throws ItemNotFoundException;
-	
+		
+	/**
+	 * Return the item with the specified path.
+	 * @param path the item path.
+	 * @return the item.
+	 * @throws ItemNotFoundException if the item has not been found.
+	 */
+	public WorkspaceItem getItemByPath(String path) throws ItemNotFoundException;
 	/**
 	 * Return all capabilities associated with the item.
 	 * @param itemId the item to retrieve.
@@ -932,6 +939,8 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws ItemNotFoundException
 	 */
 	public WorkspaceItem unshare(String itemId) throws InternalErrorException, ItemNotFoundException;
+
+
 
 
 }

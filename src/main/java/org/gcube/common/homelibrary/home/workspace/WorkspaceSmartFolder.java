@@ -110,7 +110,7 @@ public interface WorkspaceSmartFolder {
 	 */
 	public List<? extends WorkspaceItem> getChildren() throws InternalErrorException;
 	
-	public List<? extends WorkspaceItem> getSearchItems() throws InternalErrorException;
+	public List<? extends SearchItem> getSearchItems() throws InternalErrorException;
 	/**
 	 * Remove this item from the workspace.
 	 * @throws InternalErrorException if an internal error occurs. 

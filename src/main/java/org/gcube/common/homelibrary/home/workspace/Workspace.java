@@ -47,6 +47,8 @@ import org.gcube.common.homelibrary.home.workspace.folder.items.gcube.link.Docum
 import org.gcube.common.homelibrary.home.workspace.folder.items.gcube.link.ImageDocumentLink;
 import org.gcube.common.homelibrary.home.workspace.folder.items.gcube.link.PDFDocumentLink;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ts.TimeSeries;
+import org.gcube.common.homelibrary.home.workspace.search.SearchFolderItem;
+import org.gcube.common.homelibrary.home.workspace.search.SearchItem;
 import org.gcube.common.homelibrary.home.workspace.sharing.WorkspaceMessageManager;
 
 /**
@@ -737,17 +739,17 @@ public interface Workspace extends WorkspaceEventSource {
 	 */
 	public WorkspaceItem find(String path) throws InternalErrorException;
 	
-	public List<WorkspaceItem> searchByName(String name) throws InternalErrorException;
+	public List<SearchItem> searchByName(String name) throws InternalErrorException;
 	
 	/**
 	 * @param mimeType
 	 * @return
 	 * @throws InternalErrorException
 	 */
-	public List<WorkspaceItem> searchByMimeType(String mimeType)
+	public List<SearchFolderItem> searchByMimeType(String mimeType)
 			throws InternalErrorException;
 
-	public List<WorkspaceItem> getFolderItems(FolderItemType type) throws InternalErrorException;
+	public List<SearchItem> getFolderItems(FolderItemType type) throws InternalErrorException;
 
 	/**
 	 * Check if the specified name is a valid name.
@@ -799,7 +801,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @return
 	 * @throws InternalErrorException
 	 */
-	public List<WorkspaceItem> getFolderItems(FolderItemType... types)
+	public List<SearchItem> getFolderItems(FolderItemType... types)
 			throws InternalErrorException;
 
 

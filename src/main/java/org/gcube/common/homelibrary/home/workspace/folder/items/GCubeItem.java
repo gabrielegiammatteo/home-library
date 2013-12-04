@@ -5,6 +5,8 @@ package org.gcube.common.homelibrary.home.workspace.folder.items;
 
 import java.util.List;
 import java.util.Map;
+
+import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.folder.FolderItem;
 
 /**
@@ -20,5 +22,7 @@ public interface GCubeItem extends FolderItem {
 	String getCreator();
 
 	Map<String, String> getItemProperties();
+	
+	void setItemProperties(Map<String, String> properties) throws InternalErrorException;
 
 }

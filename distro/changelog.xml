@@ -4,4 +4,7 @@
 		<Change>porting to featherweight stack</Change>
 		<Change>removed the ASL dependency</Change>				
 	</Changeset>
+		<Changeset component="org.gcube.common.home-library.1-0-1" date="2013-12-13">
+		<Change>added gCubeItems and application folder</Change>		
+	</Changeset>
 </ReleaseNotes>

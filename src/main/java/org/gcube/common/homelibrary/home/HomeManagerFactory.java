@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.manager.HomeLibraryManager;
+import org.gcube.common.homelibrary.home.workspace.groups.GroupsManager;
 
 
 /**
@@ -92,5 +93,7 @@ public interface HomeManagerFactory {
 	 * @throws InternalErrorException if an error occurs.
 	 */
 	public void shutdown() throws InternalErrorException;
+	
+	public GroupsManager getGroupsManager() throws InternalErrorException;
 
 }

@@ -222,6 +222,12 @@ public interface WorkspaceItem {
 	 */
 	void setRemotePath(String nodeFolderPath) throws InternalErrorException;
 
+	/**
+	 * @param nodeFolderPath
+	 * @throws InternalErrorException
+	 */
+	void setPrivileges(Boolean read, Boolean write, Boolean delete, List<String> users) throws InternalErrorException;
+
 
 
 

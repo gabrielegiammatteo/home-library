@@ -8,7 +8,7 @@ import java.util.List;
 import org.gcube.common.homelibrary.home.exceptions.HomeNotFoundException;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.exceptions.UserNotFoundException;
-import org.gcube.common.homelibrary.home.workspace.groups.GroupsManager;
+import org.gcube.common.homelibrary.home.workspace.usermanager.UserManager;
 
 /**
  * Homes manager for a single scope. Manage users and user's home presents in a scope.

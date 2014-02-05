@@ -11,6 +11,7 @@ import java.util.Map;
 import org.gcube.common.homelibrary.home.Home;
 import org.gcube.common.homelibrary.home.User;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
+import org.gcube.common.homelibrary.home.workspace.accessmanager.ACLType;
 import org.gcube.common.homelibrary.home.workspace.acl.Capabilities;
 import org.gcube.common.homelibrary.home.workspace.events.WorkspaceEventSource;
 import org.gcube.common.homelibrary.home.workspace.exceptions.InsufficientPrivilegesException;
@@ -598,8 +599,9 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws ItemNotFoundException if the item has not been found.
 	 * @throws InternalErrorException if an internal error occurs.
 	 * @throws ItemAlreadyExistException if the user don't have sufficient privileges to perform this operation.
+	 * @throws InsufficientPrivilegesException 
 	 */
-	public void renameItem(String itemId, String newName) throws ItemNotFoundException, InternalErrorException, ItemAlreadyExistException;
+	public void renameItem(String itemId, String newName) throws ItemNotFoundException, InternalErrorException, ItemAlreadyExistException, InsufficientPrivilegesException;
 
 	/**
 	 * Change an item description.
@@ -941,6 +943,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws ItemNotFoundException
 	 */
 	public WorkspaceItem unshare(String itemId) throws InternalErrorException, ItemNotFoundException;
+
 
 
 

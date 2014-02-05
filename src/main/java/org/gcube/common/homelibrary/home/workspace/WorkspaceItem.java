@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.gcube.common.homelibrary.home.User;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
+import org.gcube.common.homelibrary.home.workspace.accessmanager.ACLType;
 import org.gcube.common.homelibrary.home.workspace.accounting.AccountingEntry;
 import org.gcube.common.homelibrary.home.workspace.accounting.AccountingEntryRead;
 import org.gcube.common.homelibrary.home.workspace.acl.Capabilities;
@@ -221,18 +222,6 @@ public interface WorkspaceItem {
 	 * @throws InternalErrorException
 	 */
 	void setRemotePath(String nodeFolderPath) throws InternalErrorException;
-
-	/**
-	 * @param nodeFolderPath
-	 * @throws InternalErrorException
-	 */
-	void setPrivileges(Boolean read, Boolean write, Boolean delete, List<String> users) throws InternalErrorException;
-
-
-
-
-
-
 	
 
 }

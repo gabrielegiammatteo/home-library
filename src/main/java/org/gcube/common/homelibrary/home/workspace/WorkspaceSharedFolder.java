@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.gcube.common.homelibrary.home.User;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
+import org.gcube.common.homelibrary.home.workspace.accessmanager.ACLType;
 import org.gcube.common.homelibrary.home.workspace.exceptions.InsufficientPrivilegesException;
 
 
@@ -43,5 +44,13 @@ public interface WorkspaceSharedFolder extends WorkspaceFolder {
 	 */
 	String getName(String user) throws InternalErrorException;
 
-	
+	/**
+	 * Set ACLs on shared folder
+	 * @param users
+	 * @param privilege
+	 * @throws InternalErrorException
+	 */
+	void setACL(List<String> users, ACLType privilege)
+			throws InternalErrorException;
+
 }

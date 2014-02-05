@@ -8,6 +8,7 @@ import java.util.List;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.manager.HomeLibraryManager;
 import org.gcube.common.homelibrary.home.workspace.accessmanager.AccessManager;
+import org.gcube.common.homelibrary.home.workspace.privilegemanager.PrivilegeManager;
 import org.gcube.common.homelibrary.home.workspace.usermanager.UserManager;
 
 
@@ -98,5 +99,7 @@ public interface HomeManagerFactory {
 	public UserManager getUserManager() throws InternalErrorException;
 	
 	public AccessManager getAccessManager() throws InternalErrorException;
+	
+	public PrivilegeManager getPrivilegeManager() throws InternalErrorException;
 
 }

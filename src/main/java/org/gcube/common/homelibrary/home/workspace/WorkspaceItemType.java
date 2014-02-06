@@ -33,6 +33,14 @@ public enum WorkspaceItemType {
 	/**
 	 * A gCube item.
 	 */	
-	GCUBE_ITEM;
+	GCUBE_ITEM,
+	/**
+	 * A trash folder.
+	 */	
+	TRASH_FOLDER,
+	/**
+	 * A trash item.
+	 */	
+	TRASH_ITEM;
 	
 }

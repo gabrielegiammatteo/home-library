@@ -51,6 +51,7 @@ import org.gcube.common.homelibrary.home.workspace.folder.items.ts.TimeSeries;
 import org.gcube.common.homelibrary.home.workspace.search.SearchFolderItem;
 import org.gcube.common.homelibrary.home.workspace.search.SearchItem;
 import org.gcube.common.homelibrary.home.workspace.sharing.WorkspaceMessageManager;
+import org.gcube.common.homelibrary.home.workspace.trash.WorkspaceTrashFolder;
 
 /**
  * Represents a user workspace.
@@ -943,6 +944,13 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws ItemNotFoundException
 	 */
 	public WorkspaceItem unshare(String itemId) throws InternalErrorException, ItemNotFoundException;
+
+	/**
+	 * @return
+	 * @throws ItemNotFoundException 
+	 * @throws RepositoryException 
+	 */
+	public WorkspaceTrashFolder getTrash() throws InternalErrorException, ItemNotFoundException;
 
 
 

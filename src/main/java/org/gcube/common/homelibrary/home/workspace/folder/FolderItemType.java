@@ -128,6 +128,11 @@ public enum FolderItemType {
 	 * Tabular Data Link
 	 */
 	TABULAR_DATA_LINK,
+	
+	/**
+	 * Trash item
+	 */
+	TRASH_ITEM,
 
 	/**
 	 * A gCube item.

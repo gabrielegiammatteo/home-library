@@ -19,15 +19,17 @@ public interface GCubeGroup{
      *
      * @return true if the member was successfully added,
      * false if the user was already a member.
+     * 
+     * @throws InternalErrorException 
      */
-    public boolean addMember(String member);
+    public boolean addMember(String user) throws InternalErrorException;
 
 	/**
 	 * Add a list of users
 	 * @param users
 	 * @throws InternalErrorException
 	 */
-	public boolean addMembers(List<String> members) throws InternalErrorException;
+	public boolean addMembers(List<String> users) throws InternalErrorException;
 	
     /**
      * Removes the specified member from the group.
@@ -36,8 +38,9 @@ public interface GCubeGroup{
      *
      * @return true if the user was removed, or
      * false if the user was not a member.
+     * @throws InternalErrorException 
      */
-    public boolean removeMember(String member);
+    public boolean removeMember(String user) throws InternalErrorException;
 
     
 	/**
@@ -45,7 +48,7 @@ public interface GCubeGroup{
 	 * @param users
 	 * @throws InternalErrorException
 	 */
-	public boolean removeMembers(List<String> members) throws InternalErrorException;
+	public boolean removeMembers(List<String> users) throws InternalErrorException;
 	
 	
     /**
@@ -53,12 +56,12 @@ public interface GCubeGroup{
      * This method does a recursive search, so if a user belongs to a
      * group which is a member of this group, true is returned.
      *
-     * @param member the user whose membership is to be checked.
+     * @param user the user whose membership is to be checked.
      *
      * @return true if the user is a member of this group,
      * false otherwise.
      */
-    public boolean isMember(String member);
+    public boolean isMember(String user);
 
 
     /**

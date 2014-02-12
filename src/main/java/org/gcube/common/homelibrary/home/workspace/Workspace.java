@@ -857,6 +857,27 @@ public interface Workspace extends WorkspaceEventSource {
 			ItemNotFoundException, WorkspaceFolderNotFoundException;
 	
 	/**
+	 * Create a shared folder associated with a VRE 
+	 * @param name: the VRE name
+	 * @param description
+	 * @param groupId: an existing groupId to associate with the folder
+	 * @param destinationFolderId
+	 * @param diplayName: a friendly name for the folder
+	 * @return the shared folder
+	 * @throws InternalErrorException
+	 * @throws InsufficientPrivilegesException
+	 * @throws ItemAlreadyExistException
+	 * @throws WrongDestinationException
+	 * @throws ItemNotFoundException
+	 * @throws WorkspaceFolderNotFoundException
+	 */
+	public WorkspaceSharedFolder createVRESharedFolder(String name, String description,
+			String groupId, String destinationFolderId, String displayName)
+			throws InternalErrorException, InsufficientPrivilegesException,
+			ItemAlreadyExistException, WrongDestinationException,
+			ItemNotFoundException, WorkspaceFolderNotFoundException;
+	
+	/**
 	 * Shared an exist {@link WorkspaceFolder} with a list of users
 	 * @param users. A list of portal logins. 
 	 * @param destinationFolderId
@@ -951,6 +972,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws RepositoryException 
 	 */
 	public WorkspaceTrashFolder getTrash() throws InternalErrorException, ItemNotFoundException;
+
 
 
 

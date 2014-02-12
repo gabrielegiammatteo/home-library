@@ -7,7 +7,7 @@
 		<Changeset component="org.gcube.common.home-library.1-0-1" date="2013-12-13">
 		<Change>added gCubeItems and application folder</Change>		
 	</Changeset>
-		<Changeset component="org.gcube.common.home-library.2-0-0"
+		<Changeset component="org.gcube.common.home-library.1-1-0"
 		date="2014-02-07">
 		<Change>moved to java 7; ACLs; groups and users manager; trash
 		</Change>

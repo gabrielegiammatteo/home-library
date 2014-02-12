@@ -52,4 +52,19 @@ public interface WorkspaceSharedFolder extends WorkspaceFolder {
 	void setACL(List<String> users, ACLType privilege)
 			throws InternalErrorException;
 
+	/**
+	 * @return the displayName for the VRE folder
+	 */
+	String getDisplayName();
+
+	/**
+	 * @return true if the shared folder is a VRE folder
+	 */
+	boolean isVreFolder();
+
+	/**
+	 * @return
+	 */
+	List<String> getGroupIds();
+
 }

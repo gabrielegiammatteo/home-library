@@ -4,7 +4,6 @@
 package org.gcube.common.homelibrary.home.workspace.usermanager;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 
@@ -15,19 +14,20 @@ import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 public interface UserManager {
 	
 	/**
-	 * Add a user 
-	 * @param name of the new user.
+	 * Create a new user 
+	 * @param name of the new user
+     * @param vre to which the user belongs
 	 * @return true if it has been created
 	 * @throws InternalErrorException
 	 */
-	public boolean createUser(String name, String pass) throws InternalErrorException;
+	public boolean createUser(String name) throws InternalErrorException;
 	
 	/**
 	 * Get users
 	 * @return a list of users
 	 * @throws InternalErrorException
 	 */
-	public List<String> getUsers() throws InternalErrorException;;
+	public List<String> getUsers() throws InternalErrorException;
 	
 	
 	/**
@@ -35,7 +35,7 @@ public interface UserManager {
 	 * @return a list of groups
 	 * @throws InternalErrorException
 	 */
-	public List<GCubeGroup> getGroups() throws InternalErrorException;;
+	public List<GCubeGroup> getGroups() throws InternalErrorException;
 
 	/**
 	 * Return a group by the name
@@ -43,7 +43,7 @@ public interface UserManager {
 	 * @return a group.
 	 * @throws InternalErrorException
 	 */
-	public GCubeGroup getGroup(String group) throws InternalErrorException;;
+	public GCubeGroup getGroup(String groupname) throws InternalErrorException;
 
 	/**
 	 * create a new group 
@@ -51,7 +51,7 @@ public interface UserManager {
 	 * @return true if it has been created
 	 * @throws InternalErrorException
 	 */
-	public boolean createGroup(String groupName) throws InternalErrorException;
+	public GCubeGroup createGroup(String groupName) throws InternalErrorException;
 
 	/**
 	 * Delete a group

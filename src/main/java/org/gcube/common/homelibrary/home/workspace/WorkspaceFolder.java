@@ -3,6 +3,7 @@
  */
 package org.gcube.common.homelibrary.home.workspace;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Calendar;
 import java.util.List;
@@ -127,6 +128,7 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
 	 * @throws InternalErrorException if an internal error occurs.
 	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
+	 * @throws IOException 
 	 */
 	public ExternalUrl createExternalUrlItem(String name, String description, String url) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
 	
@@ -139,6 +141,7 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
 	 * @throws InternalErrorException if an internal error occurs.
 	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
+	 * @throws IOException 
 	 */
 	public ExternalUrl createExternalUrlItem(String name, String description, InputStream url) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
 	

@@ -77,6 +77,7 @@ public abstract class TwinDataManager<T extends TestData, E, D> {
 	 * @param testData the image to create.
 	 * @return the created external image.
 	 * @throws InternalErrorException if an error occurs.
+	 * @throws IOException 
 	 */
 	protected E fillExternal(WorkspaceFolder destinationFolder, T testData) throws InternalErrorException
 	{
@@ -102,6 +103,7 @@ public abstract class TwinDataManager<T extends TestData, E, D> {
 	 * @param numberOfData the number of data to create.
 	 * @return the created external images.
 	 * @throws InternalErrorException if an error occurs.
+	 * @throws IOException 
 	 */
 	public List<E> fillExternals(WorkspaceFolder destinationFolder, int numberOfData) throws InternalErrorException
 	{
@@ -124,6 +126,7 @@ public abstract class TwinDataManager<T extends TestData, E, D> {
 	 * @param destinationFolder the destination folder.
 	 * @return the created external images.
 	 * @throws InternalErrorException if an error occurs.
+	 * @throws IOException 
 	 */
 	public List<E> fillAllExternals(WorkspaceFolder destinationFolder) throws InternalErrorException
 	{

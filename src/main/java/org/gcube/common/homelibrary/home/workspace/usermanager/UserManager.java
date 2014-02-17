@@ -60,8 +60,26 @@ public interface UserManager {
 	 * @throws InternalErrorException
 	 */
 	public boolean deleteAuthorizable(String groupName) throws InternalErrorException;
+
+	/**
+	 * Associate a user with a scope group 
+	 * @param scope
+	 * @param username
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	public boolean associateUserToGroup(String scope, String username) throws InternalErrorException;
 	
+	/**
+	 * Remove a user from a scope group 
+	 * @param scope
+	 * @param username
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	public boolean removeUserFromGroup(String scope, String username) throws InternalErrorException;
 	
+
 
 
 }

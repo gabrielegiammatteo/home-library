@@ -3,6 +3,7 @@
  */
 package org.gcube.common.homelibrary.testdata.manager;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.Map;
@@ -54,7 +55,7 @@ public class UrlDataManager extends TwinDataManager<UrlDocumentData, ExternalUrl
 
 	@Override
 	protected ExternalUrl createExternal(WorkspaceFolder destinationFolder, String name, String description, String mimeType, InputStream data)
-			throws InternalErrorException, InsufficientPrivilegesException,	ItemAlreadyExistException {
+			throws InternalErrorException, InsufficientPrivilegesException,	ItemAlreadyExistException{
 		return destinationFolder.createExternalUrlItem(name, description, data);
 	}
 

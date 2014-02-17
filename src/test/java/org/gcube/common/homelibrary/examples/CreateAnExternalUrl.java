@@ -3,6 +3,8 @@
  */
 package org.gcube.common.homelibrary.examples;
 
+import java.io.IOException;
+
 import org.gcube.common.homelibrary.home.exceptions.HomeNotFoundException;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.Workspace;
@@ -27,8 +29,9 @@ public class CreateAnExternalUrl {
 	 * @throws WorkspaceFolderNotFoundException if an error occurs.
 	 * @throws InsufficientPrivilegesException if an error occurs.
 	 * @throws ItemAlreadyExistException if an error occurs.
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) throws InternalErrorException, HomeNotFoundException, WorkspaceFolderNotFoundException, InsufficientPrivilegesException, ItemAlreadyExistException {
+	public static void main(String[] args) throws InternalErrorException, HomeNotFoundException, WorkspaceFolderNotFoundException, InsufficientPrivilegesException, ItemAlreadyExistException{
 		Workspace workspace = ExamplesUtil.createWorkspace();
 		
 		WorkspaceFolder root = workspace.getRoot();

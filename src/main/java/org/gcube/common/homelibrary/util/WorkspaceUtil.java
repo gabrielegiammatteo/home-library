@@ -4,6 +4,8 @@
 package org.gcube.common.homelibrary.util;
 
 import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -75,8 +77,9 @@ public class WorkspaceUtil {
 	 * @throws InsufficientPrivilegesException if an error occurs.
 	 * @throws InternalErrorException if an error occurs.
 	 * @throws ItemAlreadyExistException if an error occurs.
+	 * @throws IOException 
 	 */
-	public static FolderItem createExternalFile(WorkspaceFolder destinationFolder, String name, String description, String mimeType, InputStream is) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException
+	public static FolderItem createExternalFile(WorkspaceFolder destinationFolder, String name, String description, String mimeType, InputStream is) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, IOException
 	{
 		String mimeTypeChecked = mimeType;
 			
@@ -90,7 +93,8 @@ public class WorkspaceUtil {
 		if ((mimeTypeChecked.equals(MimeTypeUtil.BINARY_MIMETYPE) 
 				|| zipMimeTypes.contains(mimeTypeChecked) 
 				|| mimeTypeChecked.startsWith("application")) && (extension!= null)) {
-			mimeTypeChecked = MimeTypeUtil.getMimeType(extension);			
+//			mimeTypeChecked = MimeTypeUtil.getMimeType(extension);		
+			mimeTypeChecked = MimeTypeUtil.getMimeType(name, is);			
 		} 
 		
 		if (mimeTypeChecked!= null) {
@@ -108,5 +112,7 @@ public class WorkspaceUtil {
 		return destinationFolder.createExternalFileItem(name, description, mimeType, is);
 		
 	}
+
+
 
 }

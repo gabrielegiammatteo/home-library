@@ -4,6 +4,7 @@
 package org.gcube.common.homelibrary.util.zip;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
@@ -50,7 +51,7 @@ public class WorkspaceToZipModelConverter {
 		return xstream;
 	}
 	
-	public ZipItem convert(WorkspaceItem workspaceItem) throws InternalErrorException
+	public ZipItem convert(WorkspaceItem workspaceItem) throws InternalErrorException, IOException
 	{
 		switch (workspaceItem.getType()) {
 		case SHARED_FOLDER: 	
@@ -60,7 +61,7 @@ public class WorkspaceToZipModelConverter {
 		return null;
 	}
 	
-	protected ZipFolder convertFolder(WorkspaceFolder workspaceFolder) throws InternalErrorException
+	protected ZipFolder convertFolder(WorkspaceFolder workspaceFolder) throws InternalErrorException, IOException
 	{
 		String name = FileSystemNameUtil.cleanFileName(workspaceFolder.getName());
 		String comment = workspaceFolder.getDescription();
@@ -85,7 +86,7 @@ public class WorkspaceToZipModelConverter {
 		return zipFolder;
 	}
 	
-	protected ZipItem convertFolderItem(FolderItem folderItem) throws InternalErrorException
+	protected ZipItem convertFolderItem(FolderItem folderItem) throws InternalErrorException, IOException
 	{
 		String cleanedItemName = FileSystemNameUtil.cleanFileName(folderItem.getName());
 		String comment = folderItem.getDescription();
@@ -167,7 +168,7 @@ public class WorkspaceToZipModelConverter {
 		return timeseriesFolder;
 	}
 	
-	protected ZipItem convertAquaMapsItem(String cleanedItemName, AquaMapsItem aquaMapsItem) throws InternalErrorException
+	protected ZipItem convertAquaMapsItem(String cleanedItemName, AquaMapsItem aquaMapsItem) throws InternalErrorException, IOException
 	{
 		String comment = aquaMapsItem.getDescription();
 		ZipFolder aquamapsFolder = new ZipFolder(cleanedItemName, comment);
@@ -194,16 +195,18 @@ public class WorkspaceToZipModelConverter {
 		return aquamapsFolder;
 	}
 
-	protected ZipFile convertImage(ZipFolder parent, Image image) throws InternalErrorException
+	protected ZipFile convertImage(ZipFolder parent, Image image) throws InternalErrorException, IOException
 	{
 		String name = FileSystemNameUtil.cleanFileName(image.getName());
 		name = MimeTypeUtil.getNameWithExtension(name, image.getMimeType());
+		
+	
 		return new ZipFile(parent, image.getData(), name, "");
 	}
 	
 	
 	
-	protected ZipItem convertDocument(String cleanedItemName, Document document) throws InternalErrorException
+	protected ZipItem convertDocument(String cleanedItemName, Document document) throws InternalErrorException, IOException
 	{
 		if (document.getMetadata().size() == 0){
 			//there are not Metadata then we return a simple file
@@ -238,7 +241,7 @@ public class WorkspaceToZipModelConverter {
 		return documentFolder;
 	}
 	
-	protected ZipFile convertDocumentFile(Document document) throws InternalErrorException
+	protected ZipFile convertDocumentFile(Document document) throws InternalErrorException, IOException
 	{
 		String mimeType = document.getMimeType();
 		String cleanedItemName = FileSystemNameUtil.cleanFileName(document.getName());

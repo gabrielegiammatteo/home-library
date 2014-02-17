@@ -3,6 +3,7 @@
  */
 package org.gcube.common.homelibrary.home.workspace;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Calendar;
 import java.util.List;
@@ -11,7 +12,6 @@ import java.util.Map;
 import org.gcube.common.homelibrary.home.Home;
 import org.gcube.common.homelibrary.home.User;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
-import org.gcube.common.homelibrary.home.workspace.accessmanager.ACLType;
 import org.gcube.common.homelibrary.home.workspace.acl.Capabilities;
 import org.gcube.common.homelibrary.home.workspace.events.WorkspaceEventSource;
 import org.gcube.common.homelibrary.home.workspace.exceptions.InsufficientPrivilegesException;
@@ -29,7 +29,6 @@ import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalImage;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalPDFFile;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalResourceLink;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalUrl;
-import org.gcube.common.homelibrary.home.workspace.folder.items.GCubeItem;
 import org.gcube.common.homelibrary.home.workspace.folder.items.Query;
 import org.gcube.common.homelibrary.home.workspace.folder.items.QueryType;
 import org.gcube.common.homelibrary.home.workspace.folder.items.Report;
@@ -208,8 +207,9 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws InternalErrorException if an internal error occurs.
 	 * @throws ItemAlreadyExistException if a folder item with same name already exist.
 	 * @throws WrongDestinationException if the destination type is not a folder.
+	 * @throws IOException 
 	 */
-	public ExternalUrl createExternalUrl(String name, String description, String url, String destinationFolderId) throws InsufficientPrivilegesException, WorkspaceFolderNotFoundException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException;
+	public ExternalUrl createExternalUrl(String name, String description, String url, String destinationFolderId) throws InsufficientPrivilegesException, WorkspaceFolderNotFoundException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException, IOException;
 	
 	/**
 	 * Create a new External URL into a folder.
@@ -223,8 +223,9 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws InternalErrorException if an internal error occurs.
 	 * @throws ItemAlreadyExistException if a folder item with same name already exist.
 	 * @throws WrongDestinationException if the destination type is not a folder.
+	 * @throws IOException 
 	 */
-	public ExternalUrl createExternalUrl(String name, String description, InputStream url, String destinationfolderId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException, WorkspaceFolderNotFoundException;
+	public ExternalUrl createExternalUrl(String name, String description, InputStream url, String destinationfolderId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException, WorkspaceFolderNotFoundException, IOException;
 
 	
 	/**
@@ -857,12 +858,13 @@ public interface Workspace extends WorkspaceEventSource {
 			ItemNotFoundException, WorkspaceFolderNotFoundException;
 	
 	/**
-	 * Create a shared folder associated with a VRE 
-	 * @param name: the VRE name
+	 * Create a shared folder associated with a groupId 
+	 * @param name the name of the folder
 	 * @param description
 	 * @param groupId: an existing groupId to associate with the folder
-	 * @param destinationFolderId
-	 * @param diplayName: a friendly name for the folder
+	 * @param destinationFolderId 
+	 * @param diplayName a friendly name for the folder
+	 * @param isVREFolder a flag to indicate the folder is a VRE Folder
 	 * @return the shared folder
 	 * @throws InternalErrorException
 	 * @throws InsufficientPrivilegesException
@@ -871,8 +873,8 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws ItemNotFoundException
 	 * @throws WorkspaceFolderNotFoundException
 	 */
-	public WorkspaceSharedFolder createVRESharedFolder(String name, String description,
-			String groupId, String destinationFolderId, String displayName)
+	public WorkspaceSharedFolder createSharedFolder(String name, String description,
+			String groupId, String destinationFolderId, String displayName, boolean isVREFolder)
 			throws InternalErrorException, InsufficientPrivilegesException,
 			ItemAlreadyExistException, WrongDestinationException,
 			ItemNotFoundException, WorkspaceFolderNotFoundException;
@@ -972,6 +974,8 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws RepositoryException 
 	 */
 	public WorkspaceTrashFolder getTrash() throws InternalErrorException, ItemNotFoundException;
+
+
 
 
 

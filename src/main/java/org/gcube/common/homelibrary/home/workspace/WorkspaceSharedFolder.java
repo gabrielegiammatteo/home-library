@@ -4,6 +4,7 @@
 package org.gcube.common.homelibrary.home.workspace;
 
 import java.util.List;
+import java.util.Map;
 
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.accessmanager.ACLType;
@@ -66,5 +67,12 @@ public interface WorkspaceSharedFolder extends WorkspaceFolder {
 	 * @return
 	 */
 	List<String> getGroupIds();
+
+	/**
+	 * Get the ACL of a WorkspaceSharedFolder
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	Map<String, ACLType> getACL() throws InternalErrorException;
 
 }

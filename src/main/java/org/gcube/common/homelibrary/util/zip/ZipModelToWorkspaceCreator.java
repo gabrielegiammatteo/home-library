@@ -5,6 +5,7 @@ package org.gcube.common.homelibrary.util.zip;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
@@ -46,7 +47,7 @@ public class ZipModelToWorkspaceCreator {
 		}
 	}
 
-	protected void createWorkspaceItem(WorkspaceFolder parentFolder, ZipItem item) throws InternalErrorException, InsufficientPrivilegesException, ItemAlreadyExistException, FileNotFoundException
+	protected void createWorkspaceItem(WorkspaceFolder parentFolder, ZipItem item) throws InternalErrorException, InsufficientPrivilegesException, ItemAlreadyExistException, IOException
 	{
 		switch (item.getType()) {
 			case FOLDER: createWorkspace(parentFolder, (ZipFolder)item);break;
@@ -72,7 +73,7 @@ public class ZipModelToWorkspaceCreator {
 
 	}
 
-	protected void createItem(WorkspaceFolder folder, ZipFile zipFile) throws FileNotFoundException, InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException
+	protected void createItem(WorkspaceFolder folder, ZipFile zipFile) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, IOException
 	{
 		logger.trace("Creating item "+zipFile);
 
@@ -82,7 +83,7 @@ public class ZipModelToWorkspaceCreator {
 		String description = (zipFile.getComment()!=null)?zipFile.getComment():"";
 		InputStream is = new FileInputStream(zipFile.getContentFile());
 
-		String mimeType = MimeTypeUtil.getMimeType(zipFile.getContentFile());
+		String mimeType = MimeTypeUtil.getMimeType(zipFile.getName(), is);
 		
 //		//we don't have an extension, we create a generic external file
 //		FolderItem item = folder.createExternalFileItem(name, description, mimeType, is);

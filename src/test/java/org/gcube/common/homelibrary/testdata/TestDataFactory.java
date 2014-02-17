@@ -102,6 +102,7 @@ public class TestDataFactory {
 	 * @param destinationFolder the destination folder.
 	 * @return the generated items
 	 * @throws InternalErrorException if an internal error occurs.
+	 * @throws IOException 
 	 */
 	public List<FolderItem> fillAllFolderItem(WorkspaceFolder destinationFolder) throws InternalErrorException
 	{
@@ -133,6 +134,7 @@ public class TestDataFactory {
 	 * @param numberOfItems the number of items to generate.
 	 * @return the generated items.
 	 * @throws InternalErrorException if an internal error occurs.
+	 * @throws IOException 
 	 */
 	public List<FolderItem> fillWorkspaceFolderItem(WorkspaceFolder destinationFolder, int numberOfItems) throws InternalErrorException
 	{
@@ -174,9 +176,10 @@ public class TestDataFactory {
 	 * @param numberOfImages the number of images to generate.
 	 * @return the generated ExternalImage.
 	 * @throws InternalErrorException if an error occurs.
+	 * @throws IOException 
 	 * @see org.gcube.common.homelibrary.testdata.manager.ImageDataManager#fillExternalImages(org.gcube.portlets.user.homelibrary.home.workspace.folder.WorkspaceFolder, int)
 	 */
-	public List<ExternalImage> fillExternalImages(WorkspaceFolder destinationFolder, int numberOfImages) throws InternalErrorException {
+	public List<ExternalImage> fillExternalImages(WorkspaceFolder destinationFolder, int numberOfImages) throws InternalErrorException{
 		return imageDataManager.fillExternals(destinationFolder,
 				numberOfImages);
 	}
@@ -185,9 +188,10 @@ public class TestDataFactory {
 	 * @param destinationFolder the destination folder.
 	 * @return the generated ExternalImage.
 	 * @throws InternalErrorException if an error occurs.
+	 * @throws IOException 
 	 * @see org.gcube.common.homelibrary.testdata.manager.ImageDataManager#fillAllExternalImages(org.gcube.portlets.user.homelibrary.home.workspace.folder.WorkspaceFolder)
 	 */
-	public List<ExternalImage> fillAllExternalImages(WorkspaceFolder destinationFolder)	throws InternalErrorException {
+	public List<ExternalImage> fillAllExternalImages(WorkspaceFolder destinationFolder)	throws InternalErrorException{
 		return imageDataManager.fillAllExternals(destinationFolder);
 	}
 
@@ -226,6 +230,7 @@ public class TestDataFactory {
 	 * @param numberOfPDFs the number of pdf files to create.
 	 * @return the created external pdf files.
 	 * @throws InternalErrorException if an error occurs.
+	 * @throws IOException 
 	 */
 	public List<ExternalPDFFile> fillExternalPDFFiles(WorkspaceFolder destinationFolder, int numberOfPDFs) throws InternalErrorException
 	{
@@ -237,6 +242,7 @@ public class TestDataFactory {
 	 * @param destinationFolder the destination folder.
 	 * @return the created external pdf files.
 	 * @throws InternalErrorException if an error occurs.
+	 * @throws IOException 
 	 */
 	public List<ExternalPDFFile> fillAllExternalPDFFiles(WorkspaceFolder destinationFolder) throws InternalErrorException
 	{
@@ -281,6 +287,7 @@ public class TestDataFactory {
 	 * @param numberOfExternalFiles number of files to generate.
 	 * @return the generated data.
 	 * @throws InternalErrorException if an error occurs.
+	 * @throws IOException 
 	 */
 	public List<ExternalFile> fillExternalFiles(WorkspaceFolder destinationFolder, int numberOfExternalFiles) throws InternalErrorException
 	{
@@ -291,6 +298,7 @@ public class TestDataFactory {
 	 * @param destinationFolder the destination folder.
 	 * @return the generated data.
 	 * @throws InternalErrorException if an error occurs.
+	 * @throws IOException 
 	 */
 	public List<ExternalFile> fillAllExternalFiles(WorkspaceFolder destinationFolder) throws InternalErrorException
 	{
@@ -322,6 +330,7 @@ public class TestDataFactory {
 	 * @param destinationFolder the destination folder.
 	 * @return the generated data.
 	 * @throws InternalErrorException if an error occurs.
+	 * @throws IOException 
 	 */
 	public List<ExternalUrl> fillAllExternalUrls(WorkspaceFolder destinationFolder) throws InternalErrorException
 	{
@@ -333,6 +342,7 @@ public class TestDataFactory {
 	 * @param numberOfExternalUrls number of urls to generate.
 	 * @return the generated data.
 	 * @throws InternalErrorException if an error occurs.
+	 * @throws IOException 
 	 */
 	public List<ExternalUrl> fillExternalUrls(WorkspaceFolder destinationFolder, int numberOfExternalUrls) throws InternalErrorException
 	{

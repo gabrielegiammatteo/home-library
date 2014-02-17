@@ -69,10 +69,17 @@ public interface WorkspaceSharedFolder extends WorkspaceFolder {
 	List<String> getGroupIds();
 
 	/**
+	 * Get a map of ACL of a WorkspaceSharedFolder
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	Map<ACLType, List<String>> getACLOwner() throws InternalErrorException;
+	
+	/**
 	 * Get the ACL of a WorkspaceSharedFolder
 	 * @return
 	 * @throws InternalErrorException
 	 */
-	Map<String, ACLType> getACL() throws InternalErrorException;
+	ACLType getACLUser() throws InternalErrorException;
 
 }

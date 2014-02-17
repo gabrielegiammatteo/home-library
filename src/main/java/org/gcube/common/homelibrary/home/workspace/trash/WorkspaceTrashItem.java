@@ -33,6 +33,11 @@ public interface WorkspaceTrashItem extends FolderItem{
 	 * @return
 	 */
 	String getOriginalParentId();
+	
+	/**
+	 * @return
+	 */
+	String getOriginalPath();
 
 	/**
 	 * @return

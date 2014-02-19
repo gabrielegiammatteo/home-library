@@ -160,7 +160,7 @@ public class MimeTypeUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("*********************************** " + mediaType.getBaseType().toString());
+//		System.out.println("*********************************** " + mediaType.getBaseType().toString());
 		return mediaType.getBaseType().toString();
 		//		String mimeType = MimeUtil.getMostSpecificMimeType(MimeUtil.getMimeTypes(file)).toString();
 		//		return mimeType;

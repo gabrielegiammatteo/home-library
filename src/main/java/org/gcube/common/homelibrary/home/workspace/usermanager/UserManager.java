@@ -6,6 +6,7 @@ package org.gcube.common.homelibrary.home.workspace.usermanager;
 import java.util.List;
 
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
+import org.gcube.common.homelibrary.home.workspace.exceptions.ItemNotFoundException;
 
 /**
  * @author valentina
@@ -67,8 +68,9 @@ public interface UserManager {
 	 * @param username
 	 * @return
 	 * @throws InternalErrorException
+	 * @throws ItemNotFoundException 
 	 */
-	public boolean associateUserToGroup(String scope, String username) throws InternalErrorException;
+	public boolean associateUserToGroup(String scope, String username, String administrator) throws InternalErrorException, ItemNotFoundException;
 	
 	/**
 	 * Remove a user from a scope group 
@@ -77,7 +79,7 @@ public interface UserManager {
 	 * @return
 	 * @throws InternalErrorException
 	 */
-	public boolean removeUserFromGroup(String scope, String username) throws InternalErrorException;
+	public boolean removeUserFromGroup(String scope, String username, String administrator) throws InternalErrorException , ItemNotFoundException;
 	
 
 

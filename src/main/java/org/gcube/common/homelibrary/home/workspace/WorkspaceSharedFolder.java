@@ -37,6 +37,16 @@ public interface WorkspaceSharedFolder extends WorkspaceFolder {
 	 */
 	WorkspaceFolder unShare() throws InternalErrorException;
 	
+	
+	/**
+	 * Unshare a single user
+	 * 
+	 * @param user
+	 * @return a new {@link WorkspaceFolder}
+	 * @throws InternalErrorException
+	 */
+	WorkspaceFolder unShare(String user) throws InternalErrorException;
+	
 	/**
 	 * @param user
 	 * @return the shared folder name set by the user, null if the user doen't exist.

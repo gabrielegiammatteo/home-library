@@ -39,7 +39,7 @@ public class MimeTypeUtil {
 		"application/x-winzip",
 		"application/x-zip",
 		"application/zip",
-	"multipart/x-zip"};
+		"multipart/x-zip"};
 
 	protected static final Map<String, String> mimetype_extension_map = new LinkedHashMap<String, String>();
 	protected static final Map<String, String> extension_mimetype_map = new LinkedHashMap<String, String>();
@@ -159,7 +159,7 @@ public class MimeTypeUtil {
 		} catch (IOException e) {
 			logger.error("Error detecting mime type for file " + filenameWithExtension);
 		}
-//		System.out.println("*********************************** " + mediaType.getBaseType().toString());
+		//		System.out.println("*********************************** " + mediaType.getBaseType().toString());
 		return mediaType.getBaseType().toString();
 		//		String mimeType = MimeUtil.getMostSpecificMimeType(MimeUtil.getMimeTypes(file)).toString();
 		//		return mimeType;

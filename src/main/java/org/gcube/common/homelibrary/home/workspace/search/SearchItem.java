@@ -24,4 +24,6 @@ public interface SearchItem {
 	public String getOwner();
 	
 	public WorkspaceItemType getType();
+	
+	public boolean isVreFolder();
 }

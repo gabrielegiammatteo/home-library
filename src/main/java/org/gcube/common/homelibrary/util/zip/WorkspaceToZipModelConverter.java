@@ -105,8 +105,6 @@ public class WorkspaceToZipModelConverter {
 				return new ZipFile(data, name, comment);
 		}
 		case REPORT_TEMPLATE: {
-			System.out.println("folderItem: " + folderItem.getPath());
-			System.out.println("folderItem: " + folderItem.getRemotePath());
 			ReportTemplate reportTemplate = (ReportTemplate)folderItem;
 			String name = cleanedItemName+"."+Extensions.REPORT_TEMPLATE.getValue();
 			InputStream data = reportTemplate.getData();

@@ -3,14 +3,10 @@
  */
 package org.gcube.common.homelibrary.util;
 
-import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Vector;
 
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
@@ -83,19 +79,19 @@ public class WorkspaceUtil {
 	{
 		String mimeTypeChecked = mimeType;
 			
-		String extension = null;
-		
-		String[] values = name.split("\\.");
-		if (values.length > 1)
-		 extension = values[values.length - 1];
-		
-		List<String> zipMimeTypes = Arrays.asList(MimeTypeUtil.ZIP_MIMETYPES);
-		if ((mimeTypeChecked.equals(MimeTypeUtil.BINARY_MIMETYPE) 
-				|| zipMimeTypes.contains(mimeTypeChecked) 
-				|| mimeTypeChecked.startsWith("application")) && (extension!= null)) {
-//			mimeTypeChecked = MimeTypeUtil.getMimeType(extension);		
-			mimeTypeChecked = MimeTypeUtil.getMimeType(name, is);			
-		} 
+//		String extension = null;
+//		
+//		String[] values = name.split("\\.");
+//		if (values.length > 1)
+//		 extension = values[values.length - 1];
+//		
+//		List<String> zipMimeTypes = Arrays.asList(MimeTypeUtil.ZIP_MIMETYPES);
+//		if ((mimeTypeChecked.equals(MimeTypeUtil.BINARY_MIMETYPE) 
+//				|| zipMimeTypes.contains(mimeTypeChecked) 
+//				|| mimeTypeChecked.startsWith("application")) && (extension!= null)) {
+////			mimeTypeChecked = MimeTypeUtil.getMimeType(extension);		
+//			mimeTypeChecked = MimeTypeUtil.getMimeType(name, is);			
+//		} 
 		
 		if (mimeTypeChecked!= null) {
 			if (mimeTypeChecked.startsWith("image")){

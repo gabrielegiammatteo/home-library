@@ -16,4 +16,6 @@ public interface SearchFolderItem extends SearchItem {
 	public String getMimeType();
 	
 	public long getSize();
+
+	
 }

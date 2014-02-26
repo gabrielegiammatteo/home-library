@@ -222,6 +222,8 @@ public interface WorkspaceItem {
 	 * @throws InternalErrorException
 	 */
 	void setRemotePath(String nodeFolderPath) throws InternalErrorException;
+
+
 	
 
 }

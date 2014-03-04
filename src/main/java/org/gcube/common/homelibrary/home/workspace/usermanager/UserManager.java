@@ -15,14 +15,21 @@ import org.gcube.common.homelibrary.home.workspace.exceptions.ItemNotFoundExcept
 public interface UserManager {
 	
 	/**
-	 * Create a new user 
+	 * Create a new user (the password will be automatically generated)
 	 * @param name of the new user
-     * @param vre to which the user belongs
 	 * @return true if it has been successfully created
 	 * @throws InternalErrorException
 	 */
 	public boolean createUser(String name) throws InternalErrorException;
 	
+	/**
+	 * Create a new user with password
+	 * @param name of the new user
+	 * @param pass of the new user
+	 * @return true if it has been successfully created
+	 * @throws InternalErrorException
+	 */
+	public boolean createUser(String name, String pass) throws InternalErrorException;
 	/**
 	 * Get users
 	 * @return a list of users

@@ -862,7 +862,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @param name the name of the folder
 	 * @param description
 	 * @param groupId: an existing groupId to associate with the folder
-	 * @param destinationFolderId 
+	 * @param destinationFolderId (not used)
 	 * @param diplayName a friendly name for the folder
 	 * @param isVREFolder a flag to indicate the folder is a VRE Folder
 	 * @return the shared folder
@@ -975,11 +975,20 @@ public interface Workspace extends WorkspaceEventSource {
 	 */
 	public WorkspaceTrashFolder getTrash() throws InternalErrorException, ItemNotFoundException;
 
+	/**
+	 * Get the MySpecialFolders Id
+	 * @return the MySpecialFolders Id
+	 */
+	public String getMySpecialFoldersId();
 
-
-
-
-
+	/**
+	 * Get MySpecialFolders
+	 * @return
+	 * @throws InternalErrorException
+	 * @throws ItemNotFoundException
+	 */
+	public WorkspaceFolder getMySpecialFolders() throws InternalErrorException,
+			ItemNotFoundException;
 
 
 

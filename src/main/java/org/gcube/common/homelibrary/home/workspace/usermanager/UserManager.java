@@ -93,6 +93,27 @@ public interface UserManager {
 	 */
 	public boolean removeUserFromGroup(String scope, String username, String administrator) throws InternalErrorException , ItemNotFoundException;
 	
+	/**
+	 * Set Administrator to a folder
+	 * 
+	 * @param scope: VRE name
+	 * @param username: an existing user
+	 * @return
+	 * @throws InternalErrorException
+	 * @throws ItemNotFoundException
+	 */
+	public boolean setAdministrator(String scope, String username) throws InternalErrorException , ItemNotFoundException;
+	
+	/**
+	 * Remove Administrator from a folder
+	 * 
+	 * @param scope: VRE name
+	 * @param username: an existing user
+	 * @return
+	 * @throws InternalErrorException
+	 * @throws ItemNotFoundException
+	 */
+	public boolean removeAdministrator(String scope, String username) throws InternalErrorException , ItemNotFoundException;
 
 
 

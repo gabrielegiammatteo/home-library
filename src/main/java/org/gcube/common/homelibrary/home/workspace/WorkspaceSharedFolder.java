@@ -73,10 +73,10 @@ public interface WorkspaceSharedFolder extends WorkspaceFolder {
 	 */
 	boolean isVreFolder();
 
-	/**
-	 * @return
-	 */
-	List<String> getGroupIds();
+//	/**
+//	 * @return
+//	 */
+//	List<String> getGroupIds();
 
 	/**
 	 * Get a map of ACL of a WorkspaceSharedFolder

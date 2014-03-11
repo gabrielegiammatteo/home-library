@@ -27,6 +27,12 @@ public enum AccountingEntryType {
 	
 	SHARE, 
 	
-	UNSHARE;
+	UNSHARE,
+	
+	ADD_ACL,
+
+	MODIFY_ACL,
+
+	DELETE_ACL;
 	
 }

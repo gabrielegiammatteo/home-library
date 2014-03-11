@@ -68,15 +68,15 @@ public interface AccessManager {
 //	void modifyAce(List<String> users, String resourcePath,
 //			List<String> privilegesList, String order)
 //			throws InternalErrorException;
-//	/**
-//	 * Delete old Aces
-//	 * @param resourcePath
-//	 * @param principalNamesToDelete
-//	 * @return
-//	 * @throws InternalErrorException
-//	 * @throws PathNotFoundException 
-//	 */
-//	void deleteAces(String resourcePath, List<String> users)
-//			throws InternalErrorException;
+	/**
+	 * Delete old Aces
+	 * @param resourcePath
+	 * @param principalNamesToDelete
+	 * @return
+	 * @throws InternalErrorException
+	 * @throws PathNotFoundException 
+	 */
+	void deleteAces(String resourcePath, List<String> users)
+			throws InternalErrorException;
 
 }

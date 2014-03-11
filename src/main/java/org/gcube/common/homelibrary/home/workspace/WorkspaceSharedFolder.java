@@ -73,11 +73,6 @@ public interface WorkspaceSharedFolder extends WorkspaceFolder {
 	 */
 	boolean isVreFolder();
 
-//	/**
-//	 * @return
-//	 */
-//	List<String> getGroupIds();
-
 	/**
 	 * Get a map of ACL of a WorkspaceSharedFolder
 	 * @return
@@ -91,5 +86,11 @@ public interface WorkspaceSharedFolder extends WorkspaceFolder {
 	 * @throws InternalErrorException
 	 */
 	ACLType getACLUser() throws InternalErrorException;
+
+	/**
+	 * @param users
+	 * @throws InternalErrorException
+	 */
+	void deleteACL(List<String> users) throws InternalErrorException;
 
 }

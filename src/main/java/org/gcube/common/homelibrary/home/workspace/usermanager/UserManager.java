@@ -74,46 +74,48 @@ public interface UserManager {
 	 * 
 	 * @param scope: VRE name
 	 * @param username: an existing user
-	 * @param administrator: the admin of the VRE/scope
+	 * @param portalLogin
 	 * @return true if the uses has been successfully associated to the VRE group
 	 * @throws InternalErrorException
 	 * @throws ItemNotFoundException
 	 */
-	public boolean associateUserToGroup(String scope, String username, String administrator) throws InternalErrorException, ItemNotFoundException;
+	public boolean associateUserToGroup(String scope, String username, String portalLogin) throws InternalErrorException, ItemNotFoundException;
 	
 	/**
 	 * Remove a user from a scope group 
 	 * 
 	 * @param scope: VRE name
 	 * @param username: an existing user
-	 * @param administrator: the admin of the VRE/scope
+	 * @param portalLogin
 	 * @return true if the uses has been successfully removed to the VRE group
 	 * @throws InternalErrorException
 	 * @throws ItemNotFoundException
 	 */
-	public boolean removeUserFromGroup(String scope, String username, String administrator) throws InternalErrorException , ItemNotFoundException;
+	public boolean removeUserFromGroup(String scope, String username, String portalLogin) throws InternalErrorException , ItemNotFoundException;
 	
 	/**
 	 * Set Administrator to a folder
 	 * 
 	 * @param scope: VRE name
 	 * @param username: an existing user
+	 * @param portalLogin
 	 * @return
 	 * @throws InternalErrorException
 	 * @throws ItemNotFoundException
 	 */
-	public boolean setAdministrator(String scope, String username) throws InternalErrorException , ItemNotFoundException;
+	public boolean setAdministrator(String scope, String username, String portalLogin) throws InternalErrorException , ItemNotFoundException;
 	
 	/**
 	 * Remove Administrator from a folder
 	 * 
 	 * @param scope: VRE name
 	 * @param username: an existing user
+	 * @param portalLogin
 	 * @return
 	 * @throws InternalErrorException
 	 * @throws ItemNotFoundException
 	 */
-	public boolean removeAdministrator(String scope, String username) throws InternalErrorException , ItemNotFoundException;
+	public boolean removeAdministrator(String scope, String username, String portalLogin) throws InternalErrorException , ItemNotFoundException;
 
 
 

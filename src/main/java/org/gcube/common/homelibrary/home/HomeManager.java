@@ -8,6 +8,7 @@ import java.util.List;
 import org.gcube.common.homelibrary.home.exceptions.HomeNotFoundException;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.exceptions.UserNotFoundException;
+import org.gcube.common.homelibrary.home.workspace.Workspace;
 import org.gcube.common.homelibrary.home.workspace.usermanager.UserManager;
 
 /**
@@ -80,6 +81,6 @@ public interface HomeManager {
 	 * @throws InternalErrorException if an internal error occurs.
 	 */
 	public void removeUser(User user) throws InternalErrorException;
-	
+
 	
 }

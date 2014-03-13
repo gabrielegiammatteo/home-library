@@ -93,4 +93,10 @@ public interface WorkspaceSharedFolder extends WorkspaceFolder {
 	 */
 	void deleteACL(List<String> users) throws InternalErrorException;
 
+	/**
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	List<String> getMembers() throws InternalErrorException;
+
 }

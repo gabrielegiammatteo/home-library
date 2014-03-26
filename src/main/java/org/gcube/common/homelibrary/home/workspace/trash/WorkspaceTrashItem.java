@@ -6,8 +6,6 @@ package org.gcube.common.homelibrary.home.workspace.trash;
 import java.util.Calendar;
 
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
-import org.gcube.common.homelibrary.home.workspace.folder.FolderItem;
-import org.gcube.common.homelibrary.home.workspace.folder.FolderItemType;
 
 /**
  * @author valentina
@@ -15,7 +13,7 @@ import org.gcube.common.homelibrary.home.workspace.folder.FolderItemType;
  */
 
 
-public interface WorkspaceTrashItem extends FolderItem{
+public interface WorkspaceTrashItem {
 	
 	/**
 	 * Delete Permanently an item in the trash folder
@@ -39,25 +37,37 @@ public interface WorkspaceTrashItem extends FolderItem{
 	 * Get original path
 	 * @return
 	 */
-	String getOriginalPath();
+	String getDeletedFrom();
 
 	/**
 	 * Get the name of the user who deleted the item
 	 * @return
 	 */
-	String getDeleteUser();
+	String getDeletedBy();
 
 	/**
 	 * Get the date when the item was deleted
 	 * @return
 	 */
-	Calendar getDeleteDate();
+	Calendar getDeletedTime();
 
 	/**
 	 * Return true if the trash item was a folder
 	 * @return
 	 */
 	boolean isFolder();
+
+	/**
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	String getMimeType() throws InternalErrorException;
+	
+	/**
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	String getName() throws InternalErrorException;
 
 
 }

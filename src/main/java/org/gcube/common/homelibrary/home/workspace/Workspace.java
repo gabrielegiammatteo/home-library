@@ -87,6 +87,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 */
 	public WorkspaceFolder getRoot();
 	
+	
 	public List<WorkspaceItem> getWorkspaceTree(WorkspaceItem item) throws InternalErrorException;
 
 	/**

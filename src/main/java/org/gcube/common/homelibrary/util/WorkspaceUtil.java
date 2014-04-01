@@ -3,12 +3,13 @@
  */
 package org.gcube.common.homelibrary.util;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-
+import org.apache.commons.io.IOUtils;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceItem;
@@ -113,6 +114,23 @@ public class WorkspaceUtil {
 
 	}
 
+	
+	public static File getTmpFile(InputStream in){
 
+		File tempFile = null;
+		try{
+			tempFile = File.createTempFile("tempfile", ".tmp"); 
+			try (FileOutputStream out = new FileOutputStream(tempFile)) {			
+				IOUtils.copy(in, out);
+			}
+//			System.out.println("*************** tempfile " + tempFile.getAbsolutePath());
+//			in.reset();
+
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+
+		return tempFile;
+	}
 
 }

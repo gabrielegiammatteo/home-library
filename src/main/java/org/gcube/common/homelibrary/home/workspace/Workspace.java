@@ -6,6 +6,7 @@ package org.gcube.common.homelibrary.home.workspace;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -47,6 +48,7 @@ import org.gcube.common.homelibrary.home.workspace.folder.items.gcube.link.Docum
 import org.gcube.common.homelibrary.home.workspace.folder.items.gcube.link.ImageDocumentLink;
 import org.gcube.common.homelibrary.home.workspace.folder.items.gcube.link.PDFDocumentLink;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ts.TimeSeries;
+import org.gcube.common.homelibrary.home.workspace.search.AdvancedSearchItem;
 import org.gcube.common.homelibrary.home.workspace.search.SearchFolderItem;
 import org.gcube.common.homelibrary.home.workspace.search.SearchItem;
 import org.gcube.common.homelibrary.home.workspace.sharing.WorkspaceMessageManager;
@@ -990,6 +992,16 @@ public interface Workspace extends WorkspaceEventSource {
 	 */
 	public WorkspaceFolder getMySpecialFolders() throws InternalErrorException,
 			ItemNotFoundException;
+
+	/**
+	 * @param name
+	 * @param date
+	 * @param size
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	List<SearchItem> advancedSearch(String name, AdvancedSearchItem date,
+			AdvancedSearchItem size) throws InternalErrorException;
 
 
 

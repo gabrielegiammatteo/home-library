@@ -1,15 +1,22 @@
 <ReleaseNotes>
-	<Changeset component="org.gcube.common.home-library.1-0-0" date="2013-09-27">
+	<Changeset component="org.gcube.common.home-library.1-0-0"
+		date="2013-09-27">
 		<Change>moved to common subsystem</Change>
 		<Change>porting to featherweight stack</Change>
-		<Change>removed the ASL dependency</Change>				
+		<Change>removed the ASL dependency</Change>
 	</Changeset>
-		<Changeset component="org.gcube.common.home-library.1-0-1" date="2013-12-13">
-		<Change>added gCubeItems and application folder</Change>		
+	<Changeset component="org.gcube.common.home-library.1-0-1"
+		date="2013-12-13">
+		<Change>added gCubeItems and application folder</Change>
 	</Changeset>
-		<Changeset component="org.gcube.common.home-library.1-1-0"
+	<Changeset component="org.gcube.common.home-library.1-1-0"
 		date="2014-02-07">
 		<Change>moved to java 7; ACLs; groups and users manager; trash
+		</Change>
+	</Changeset>
+		<Changeset component="org.gcube.common.home-library.1-2-0"
+		date="2014-04-04">
+		<Change>Added locks; removed clones during unshare and remove operations
 		</Change>
 	</Changeset>
 </ReleaseNotes>

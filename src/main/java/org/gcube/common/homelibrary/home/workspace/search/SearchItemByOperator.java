@@ -7,7 +7,7 @@ package org.gcube.common.homelibrary.home.workspace.search;
  * @author valentina
  *
  */
-public interface AdvancedSearchItem {
+public interface SearchItemByOperator {
 	
 	/**
 	 * Get operator
@@ -22,6 +22,15 @@ public interface AdvancedSearchItem {
 	 */
 	public Object getValue();
 
+	/**
+	 * @return
+	 */
+	public String getMin();
+
+	/**
+	 * @return
+	 */
+	public String getMax();
 
 	
 }

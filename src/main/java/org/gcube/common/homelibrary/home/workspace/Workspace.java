@@ -48,7 +48,7 @@ import org.gcube.common.homelibrary.home.workspace.folder.items.gcube.link.Docum
 import org.gcube.common.homelibrary.home.workspace.folder.items.gcube.link.ImageDocumentLink;
 import org.gcube.common.homelibrary.home.workspace.folder.items.gcube.link.PDFDocumentLink;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ts.TimeSeries;
-import org.gcube.common.homelibrary.home.workspace.search.AdvancedSearchItem;
+import org.gcube.common.homelibrary.home.workspace.search.SearchItemByOperator;
 import org.gcube.common.homelibrary.home.workspace.search.SearchFolderItem;
 import org.gcube.common.homelibrary.home.workspace.search.SearchItem;
 import org.gcube.common.homelibrary.home.workspace.sharing.WorkspaceMessageManager;
@@ -1000,8 +1000,8 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @return
 	 * @throws InternalErrorException
 	 */
-	List<SearchItem> advancedSearch(String name, AdvancedSearchItem date,
-			AdvancedSearchItem size) throws InternalErrorException;
+	List<SearchItem> advancedSearch(String name, SearchItemByOperator date,
+			SearchItemByOperator size) throws InternalErrorException;
 
 
 

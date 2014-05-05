@@ -45,7 +45,7 @@ public interface WorkspaceItem {
 	 */
 	public String getDescription() throws InternalErrorException;
 
-	
+
 	/**
 	 * Set a new item description.
 	 * @param description the new description.
@@ -102,7 +102,7 @@ public interface WorkspaceItem {
 	 * @throws InternalErrorException if an internal error occurs. 
 	 */
 	public Properties getProperties() throws InternalErrorException;
-	
+
 	/**
 	 * @return the list of {link
 	 */
@@ -120,14 +120,14 @@ public interface WorkspaceItem {
 	 * @throws InternalErrorException if an internal error occurs.  
 	 */
 	public WorkspaceFolder getParent() throws InternalErrorException;
-	
+
 	/**
 	 * Return the current item path.
 	 * @return the path.
 	 * @throws InternalErrorException if an internal error occurs.  
 	 */
 	public String getPath() throws InternalErrorException; 
-	
+
 	/**
 	 * Says if this item is a root element.
 	 * @return <code>true</code> if this element is a root, <code>false</code> otherwise.
@@ -187,13 +187,13 @@ public interface WorkspaceItem {
 	 * @throws InternalErrorException
 	 */
 	public boolean isMarkedAsRead() throws InternalErrorException;
-	
+
 	/**
 	 * @return the list of item readers.
 	 * @throws InternalErrorException 
 	 */
 	public List<AccountingEntryRead> getReaders() throws InternalErrorException;
-	
+
 	/**
 	 * Mark as read a shared item 
 	 * @throws InternalErrorException
@@ -217,8 +217,11 @@ public interface WorkspaceItem {
 	public String getRemotePath() throws InternalErrorException;
 
 
-
-
-	
+	/**
+	 * Check if the item is a folder
+	 * @return true if the item is a folder
+	 * @throws InternalErrorException
+	 */
+	public boolean isFolder() throws InternalErrorException;
 
 }

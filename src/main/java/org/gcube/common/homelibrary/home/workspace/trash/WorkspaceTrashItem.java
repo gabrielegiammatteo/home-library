@@ -6,6 +6,7 @@ package org.gcube.common.homelibrary.home.workspace.trash;
 import java.util.Calendar;
 
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
+import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
 
 /**
  * @author valentina
@@ -13,7 +14,7 @@ import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
  */
 
 
-public interface WorkspaceTrashItem {
+public interface WorkspaceTrashItem extends WorkspaceFolder {
 	
 	/**
 	 * Delete Permanently an item in the trash folder
@@ -68,6 +69,7 @@ public interface WorkspaceTrashItem {
 	 * @throws InternalErrorException
 	 */
 	String getName() throws InternalErrorException;
+	
 
 
 }

@@ -15,13 +15,13 @@ import org.gcube.common.homelibrary.home.workspace.folder.FolderItem;
  */
 public interface GCubeItem extends FolderItem {
 	
-	List<String> getScopes();
+	List<String> getScopes() throws InternalErrorException;
 	
 	String getItemType();
 	
 	String getCreator();
 
-	Map<String, String> getItemProperties();
+	Map<String, String> getItemProperties() throws InternalErrorException;
 	
 	void setItemProperties(Map<String, String> properties) throws InternalErrorException;
 

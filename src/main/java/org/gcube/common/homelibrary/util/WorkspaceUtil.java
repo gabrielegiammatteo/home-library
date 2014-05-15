@@ -50,7 +50,7 @@ public class WorkspaceUtil {
 
 		while(names.contains(name)){
 
-			name = initialName+"("+i+")";
+			name = initialName.trim()+"("+i+")";
 			i++;
 		}
 

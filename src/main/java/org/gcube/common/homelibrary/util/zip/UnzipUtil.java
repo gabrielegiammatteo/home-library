@@ -53,6 +53,25 @@ public class UnzipUtil {
 		ZipModelToWorkspaceCreator creator = new ZipModelToWorkspaceCreator();
 		creator.create(destinationFolder, items);
 	}
+
+	
+	public static void unzip(WorkspaceFolder destinationFolder, String zipPath) throws IOException
+	{
+		logger.trace("unzip destinationWorkspace: "+destinationFolder+", zipPath: "+ zipPath);
+		
+		logger.trace("Extracting zip model from zip file.");
+		ExtractAllFiles zme = new ExtractAllFiles(zipPath);
+		List<ZipItem> items = zme.getModel();
+		
+		logger.trace("Zip Model:");
+		ZipModelVisitor visitor = new ZipModelVisitor();
+		visitor.visit(items);
+		
+		logger.trace("Creating the items");
+		ZipModelToWorkspaceCreator creator = new ZipModelToWorkspaceCreator();
+		creator.create(destinationFolder, items);
+	}
+	
 	
 	/**
 	 * Unzip the specified stream.
@@ -105,6 +124,7 @@ public class UnzipUtil {
 		
 		throw new Exception("No file entry found");
 	}
-	
+
+
 
 }

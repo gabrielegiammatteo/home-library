@@ -60,8 +60,9 @@ public interface GCubeGroup{
      *
      * @return true if the user is a member of this group,
      * false otherwise.
+     * @throws InternalErrorException 
      */
-    public boolean isMember(String user);
+    public boolean isMember(String user) throws InternalErrorException;
 
 
     /**
@@ -71,6 +72,13 @@ public interface GCubeGroup{
      * @throws InternalErrorException 
      */
     public List<String> getMembers() throws InternalErrorException;   
+    
+    /**
+     * Return a diplayName for VRE group
+     * @return a diplayName for VRE group
+     * @throws InternalErrorException 
+     */
+    public String getDisplayName() throws InternalErrorException;
 
 	
 }

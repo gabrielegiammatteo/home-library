@@ -80,5 +80,12 @@ public interface GCubeGroup{
      */
     public String getDisplayName() throws InternalErrorException;
 
+	/**
+	 * Set a new diplayName for VRE group
+	 * @param displayName
+	 * @return true if the diplayName has been updated
+	 * @throws InternalErrorException
+	 */
+	boolean setDisplayName(String displayName) throws InternalErrorException;
 	
 }

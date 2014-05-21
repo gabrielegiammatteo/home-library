@@ -1004,5 +1004,4 @@ public interface Workspace extends WorkspaceEventSource {
 			SearchItemByOperator size) throws InternalErrorException;
 
 
-
 }

@@ -52,7 +52,6 @@ public class ExtractAllFiles {
 	 */
 	public List<ZipItem> getModel() throws IOException {
 
-		System.out.println("getModel");
 		ZipInputStream is = null;
 		OutputStream os = null;
 		try {
@@ -62,14 +61,12 @@ public class ExtractAllFiles {
 			List<FileHeader> fileHeaderList = zipFile.getFileHeaders();
 			// Loop through all the fileHeaders
 
-			System.out.println("fileHeaderList.size() " + fileHeaderList.size());
 			for (int i = 0; i < fileHeaderList.size(); i++) {
 				FileHeader fileHeader = fileHeaderList.get(i);
 
 
 				String zipName = fileHeader.getFileName();
 				logger.trace("ZipName: "+zipName);
-				System.out.println("ZipName: "+zipName);
 
 				String comment = fileHeader.getFileComment();
 				logger.trace("Comment: "+comment);
@@ -110,8 +107,6 @@ public class ExtractAllFiles {
 
 				logger.trace("Inserted "+path+" -> "+item+"\n");
 
-				System.out.println("Inserted "+path+" -> "+item+"\n");
-
 			}
 			return assignParents();
 		} catch (ZipException e) {
@@ -143,13 +138,12 @@ public class ExtractAllFiles {
 			ZipItem item = entry.getValue();
 
 			logger.trace("Elaborating "+item.getName());
-			System.out.println("Elaborating "+item.getName());
 			File f = new File(entry.getKey());
 			String parentPath = f.getParent();
 			logger.trace("ParentPath: "+parentPath);
 
 			if (parentPath!=null){
-				System.out.println("parentPath!=null");
+
 				if (pathItemMap.containsKey(parentPath)){
 					ZipItem parent = pathItemMap.get(parentPath);
 
@@ -159,12 +153,10 @@ public class ExtractAllFiles {
 						folderParent.addChild(item);
 
 						logger.trace("Added "+item.getName()+" to "+folderParent.getName());
-						System.out.println("Added "+item.getName()+" to "+folderParent.getName());
 					}
 
 				}else{
 					logger.error("Parent not in map!!!");
-					System.out.println("Parent not in map!!!");
 				}
 
 			}else{
@@ -190,7 +182,6 @@ public class ExtractAllFiles {
 			if (parent.getType()==ZipItemType.FOLDER){
 				return (ZipFolder)parent;
 			}else{
-				System.out.println("The parent is not a folder!!!");
 				logger.error("The parent is not a folder!!!");
 			}
 		}

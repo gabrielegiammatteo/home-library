@@ -55,7 +55,6 @@ public class ZipFileModelExtractor {
 		{
 			String zipName = entry.getName();
 			logger.trace("ZipName: "+zipName);
-			System.out.println("ZipName: "+zipName);
 
 			String comment = entry.getComment();
 			logger.trace("Comment: "+comment);
@@ -94,7 +93,6 @@ public class ZipFileModelExtractor {
 			pathItemMap.put(path, item);
 
 			logger.trace("Inserted "+path+" -> "+item+"\n");
-			System.out.println(("Inserted "+path+" -> "+item+"\n"));
 		}
 
 		return assignParents();
@@ -117,7 +115,6 @@ public class ZipFileModelExtractor {
 			ZipItem item = entry.getValue();
 
 			logger.trace("Elaborating "+item.getName());
-			System.out.println("Elaborating "+item.getName());
 			File f = new File(entry.getKey());
 			String parentPath = f.getParent();
 			logger.trace("ParentPath: "+parentPath);
@@ -133,7 +130,6 @@ public class ZipFileModelExtractor {
 						folderParent.addChild(item);
 
 						logger.trace("Added "+item.getName()+" to "+folderParent.getName());
-						System.out.println("Added "+item.getName()+" to "+folderParent.getName());
 					}
 
 				}else{

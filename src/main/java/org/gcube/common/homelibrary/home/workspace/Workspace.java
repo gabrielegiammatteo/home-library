@@ -1003,5 +1003,13 @@ public interface Workspace extends WorkspaceEventSource {
 	List<SearchItem> advancedSearch(String name, SearchItemByOperator date,
 			SearchItemByOperator size) throws InternalErrorException;
 
+	/**
+	 * @param properties
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	List<SearchFolderItem> searchByProperties(List<String> properties)
+			throws InternalErrorException;
+
 
 }

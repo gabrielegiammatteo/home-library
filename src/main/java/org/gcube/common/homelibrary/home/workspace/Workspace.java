@@ -1000,7 +1000,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @return
 	 * @throws InternalErrorException
 	 */
-	List<SearchItem> advancedSearch(String name, SearchItemByOperator date,
+	public List<SearchItem> advancedSearch(String name, SearchItemByOperator date,
 			SearchItemByOperator size) throws InternalErrorException;
 
 	/**
@@ -1008,7 +1008,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @return
 	 * @throws InternalErrorException
 	 */
-	List<SearchFolderItem> searchByProperties(List<String> properties)
+	public List<SearchFolderItem> searchByProperties(List<String> properties)
 			throws InternalErrorException;
 
 

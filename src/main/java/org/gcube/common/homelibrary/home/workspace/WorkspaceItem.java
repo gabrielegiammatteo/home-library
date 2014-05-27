@@ -224,5 +224,4 @@ public interface WorkspaceItem {
 	 */
 	public boolean isFolder() throws InternalErrorException;
 
-
 }

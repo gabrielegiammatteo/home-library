@@ -27,4 +27,10 @@
 		<Change>Removed clones when a shared folder is removed from the workspace</Change>
 		<Change>Added a private copy of an ex-shared folder for owner and administrators</Change>
 	</Changeset>
+	<Changeset component="org.gcube.common.home-library.1-2-1"
+		date="2014-05-22">
+		<Change>Added search by properties for gCube items.</Change>
+		<Change>Added id to trash items</Change>
+		<Change>Fixed bug updating a shared file</Change>
+	</Changeset>
 </ReleaseNotes>

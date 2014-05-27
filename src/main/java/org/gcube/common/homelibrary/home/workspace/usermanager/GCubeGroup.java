@@ -86,6 +86,6 @@ public interface GCubeGroup{
 	 * @return true if the diplayName has been updated
 	 * @throws InternalErrorException
 	 */
-	boolean setDisplayName(String displayName) throws InternalErrorException;
+    public boolean setDisplayName(String displayName) throws InternalErrorException;
 	
 }

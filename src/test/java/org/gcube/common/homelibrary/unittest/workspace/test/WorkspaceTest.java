@@ -457,7 +457,7 @@ public class WorkspaceTest extends AbstractWorkspaceTest {
 	}
 	
 	@Test
-	public final void testCreateWorkspaceSharedFolder() {
+	public final void testCreateWorkspaceSharedFolder() throws InternalErrorException {
 		
 		WorkspaceFolder root = ownerWorkspace.getRoot();
 		

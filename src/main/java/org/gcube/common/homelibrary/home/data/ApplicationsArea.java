@@ -31,14 +31,6 @@ public interface ApplicationsArea {
 	WorkspaceFolder getApplicationShareRoot(String applicationName) throws InternalErrorException;
 	
 	/**
-	 * Retrieve the list of all application data areas.
-	 * @return the application name list.
-	 * @throws InternalErrorException if an error occurs.
-	 */
-	List<String> listApplicationNames() throws InternalErrorException;
-
-
-	/**
 	 * @param applicationName
 	 * @return
 	 * @throws InternalErrorException

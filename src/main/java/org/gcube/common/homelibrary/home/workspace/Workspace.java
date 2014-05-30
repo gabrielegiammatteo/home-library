@@ -86,8 +86,9 @@ public interface Workspace extends WorkspaceEventSource {
 	/**
 	 * Returns the workspace root.
 	 * @return the root.
+	 * @throws InternalErrorException 
 	 */
-	public WorkspaceFolder getRoot();
+	public WorkspaceFolder getRoot() throws InternalErrorException;
 	
 	
 	public List<WorkspaceItem> getWorkspaceTree(WorkspaceItem item) throws InternalErrorException;
@@ -978,11 +979,12 @@ public interface Workspace extends WorkspaceEventSource {
 	 */
 	public WorkspaceTrashFolder getTrash() throws InternalErrorException, ItemNotFoundException;
 
-	/**
-	 * Get the MySpecialFolders Id
-	 * @return the MySpecialFolders Id
-	 */
-	public String getMySpecialFoldersId();
+//	/**
+//	 * Get the MySpecialFolders Id
+//	 * @return the MySpecialFolders Id
+//	 * @throws InternalErrorException 
+//	 */
+//	public String getMySpecialFoldersId() throws InternalErrorException;
 
 	/**
 	 * Get MySpecialFolders
@@ -1008,7 +1010,15 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @return
 	 * @throws InternalErrorException
 	 */
-	public List<SearchFolderItem> searchByProperties(List<String> properties)
+	public List<WorkspaceItem> searchByProperties(List<String> properties)
+			throws InternalErrorException;
+
+	/**
+	 * @param text
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	public List<SearchFolderItem> searchFullText(String text)
 			throws InternalErrorException;
 
 

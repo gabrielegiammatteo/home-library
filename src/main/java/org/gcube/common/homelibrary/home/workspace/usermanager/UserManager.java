@@ -13,31 +13,51 @@ import org.gcube.common.homelibrary.home.workspace.exceptions.ItemNotFoundExcept
  *
  */
 public interface UserManager {
-	
+
 	/**
 	 * Create a new user (the password will be automatically generated)
 	 * @param name of the new user
+	 * @param version HL release version
 	 * @return true if it has been successfully created
 	 * @throws InternalErrorException
 	 */
-	public boolean createUser(String name) throws InternalErrorException;
-	
+	public boolean createUser(String name, String version) throws InternalErrorException;
+
 	/**
 	 * Create a new user with password
 	 * @param name of the new user
 	 * @param pass of the new user
+	 * @param version HL release version
 	 * @return true if it has been successfully created
 	 * @throws InternalErrorException
 	 */
-	public boolean createUser(String name, String pass) throws InternalErrorException;
+	public boolean createUser(String name, String pass, String version) throws InternalErrorException;
 	/**
 	 * Get users
 	 * @return a list of users
 	 * @throws InternalErrorException
 	 */
 	public List<String> getUsers() throws InternalErrorException;
-	
-	
+
+
+	/**
+	 * getVersionByUser
+	 * @param user
+	 * @return HL release version
+	 * @throws InternalErrorException
+	 */
+	public String getVersionByUser(String user) throws InternalErrorException;
+
+	/**
+	 * setVersionByUser
+	 * @param user
+	 * @param version HL release version
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	public boolean setVersionByUser(String user, String version) throws InternalErrorException;
+
+
 	/**
 	 * Get groups
 	 * @return a list of groups
@@ -80,7 +100,7 @@ public interface UserManager {
 	 * @throws ItemNotFoundException
 	 */
 	public boolean associateUserToGroup(String scope, String username, String portalLogin) throws InternalErrorException, ItemNotFoundException;
-	
+
 	/**
 	 * Remove a user from a scope group 
 	 * 
@@ -92,7 +112,7 @@ public interface UserManager {
 	 * @throws ItemNotFoundException
 	 */
 	public boolean removeUserFromGroup(String scope, String username, String portalLogin) throws InternalErrorException , ItemNotFoundException;
-	
+
 	/**
 	 * Set Administrator to a folder
 	 * 
@@ -104,7 +124,7 @@ public interface UserManager {
 	 * @throws ItemNotFoundException
 	 */
 	public boolean setAdministrator(String scope, String username, String portalLogin) throws InternalErrorException , ItemNotFoundException;
-	
+
 	/**
 	 * Remove Administrator from a folder
 	 * 

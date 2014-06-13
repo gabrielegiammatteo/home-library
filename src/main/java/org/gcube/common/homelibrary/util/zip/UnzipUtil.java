@@ -16,6 +16,7 @@ import java.util.zip.ZipInputStream;
 import org.apache.commons.io.FileCleaner;
 import org.apache.commons.io.IOUtils;
 import org.gcube.common.homelibrary.home.HomeLibrary;
+import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipItem;
 import org.slf4j.Logger;
@@ -27,9 +28,9 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class UnzipUtil {
-	
+
 	protected static final Logger logger = LoggerFactory.getLogger(HomeLibrary.class.getPackage().getName());
-	
+
 	/**
 	 * Unzip the specified file into the specified workspace.
 	 * @param destinationFolder the destination workspace.
@@ -40,39 +41,45 @@ public class UnzipUtil {
 	public static void unzip(WorkspaceFolder destinationFolder, InputStream is, String zipName) throws IOException
 	{
 		logger.trace("unzip destinationWorkspace: "+destinationFolder+", zipName: "+zipName);
-		
+
 		logger.trace("Extracting zip model from zip file.");
 		ZipFileModelExtractor zme = new ZipFileModelExtractor(is);
 		List<ZipItem> items = zme.getModel();
-		
+
 		logger.trace("Zip Model:");
 		ZipModelVisitor visitor = new ZipModelVisitor();
 		visitor.visit(items);
-		
+
 		logger.trace("Creating the items");
 		ZipModelToWorkspaceCreator creator = new ZipModelToWorkspaceCreator();
 		creator.create(destinationFolder, items);
 	}
 
-	
-	public static void unzip(WorkspaceFolder destinationFolder, String zipPath) throws IOException
+
+	public static void unzip(WorkspaceFolder destinationFolder, String zipPath) throws IOException, InternalErrorException
 	{
 		logger.trace("unzip destinationWorkspace: "+destinationFolder+", zipPath: "+ zipPath);
-		
+
 		logger.trace("Extracting zip model from zip file.");
 		ExtractAllFiles zme = new ExtractAllFiles(zipPath);
-		List<ZipItem> items = zme.getModel();
-		
-		logger.trace("Zip Model:");
-		ZipModelVisitor visitor = new ZipModelVisitor();
-		visitor.visit(items);
-		
-		logger.trace("Creating the items");
-		ZipModelToWorkspaceCreator creator = new ZipModelToWorkspaceCreator();
-		creator.create(destinationFolder, items);
+		List<ZipItem> items;
+		try {
+			items = zme.getModel();
+			
+			logger.trace("Zip Model:");
+			ZipModelVisitor visitor = new ZipModelVisitor();
+			visitor.visit(items);
+
+			logger.trace("Creating the items");
+			ZipModelToWorkspaceCreator creator = new ZipModelToWorkspaceCreator();
+			creator.create(destinationFolder, items);
+
+		} catch (InternalErrorException e) {
+			throw new InternalErrorException(e);
+		}
 	}
-	
-	
+
+
 	/**
 	 * Unzip the specified stream.
 	 * @param is the input stream.
@@ -83,7 +90,7 @@ public class UnzipUtil {
 	{
 		ZipInputStream zis = new ZipInputStream(is);
 		ZipEntry entry;
-		
+
 		while ((entry = zis.getNextEntry())!=null){
 			if (!entry.isDirectory()){
 				IOUtils.copy(zis, os);
@@ -93,10 +100,10 @@ public class UnzipUtil {
 				return;
 			}
 		}
-		
+
 		throw new Exception("No file entry found");
 	}
-	
+
 	/**
 	 * @param is the zipped input stream.
 	 * @return the resutil output stream.
@@ -104,12 +111,12 @@ public class UnzipUtil {
 	 */
 	public static InputStream unzipToTmp(InputStream is) throws Exception
 	{
-		
+
 		File tmpFile = File.createTempFile("unzippedts", "tmp");
 		OutputStream os = new FileOutputStream(tmpFile);
 		ZipInputStream zis = new ZipInputStream(is);
 		ZipEntry entry;
-		
+
 		while ((entry = zis.getNextEntry())!=null){
 			if (!entry.isDirectory()){
 				IOUtils.copy(zis, os);
@@ -121,7 +128,7 @@ public class UnzipUtil {
 				return tmpis;
 			}
 		}
-		
+
 		throw new Exception("No file entry found");
 	}
 

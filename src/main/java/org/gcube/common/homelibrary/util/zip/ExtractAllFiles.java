@@ -16,6 +16,7 @@ import net.lingala.zip4j.io.ZipInputStream;
 import net.lingala.zip4j.model.FileHeader;
 
 import org.gcube.common.homelibrary.home.HomeLibrary;
+import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipFolder;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipItem;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipItemType;
@@ -32,25 +33,29 @@ public class ExtractAllFiles {
 	protected File destination;
 	private final int BUFF_SIZE = 4096;
 
-	public ExtractAllFiles(String path) {
+	private File zipFileName;
+
+	public ExtractAllFiles(String path) throws InternalErrorException {
 
 		try {
 
 			zipFile = new ZipFile(path);
+			zipFileName = zipFile.getFile();
 			pathItemMap = new LinkedHashMap<String, ZipItem>();
 			
 		} catch (ZipException e) {
-			e.printStackTrace();		
+			throw new InternalErrorException(e);	
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new InternalErrorException(e);
 		}
 	}
 
 
 	/**
 	 * @return
+	 * @throws InternalErrorException 
 	 */
-	public List<ZipItem> getModel() throws IOException {
+	public List<ZipItem> getModel() throws IOException, InternalErrorException {
 
 		ZipInputStream is = null;
 		OutputStream os = null;
@@ -110,15 +115,14 @@ public class ExtractAllFiles {
 			}
 			return assignParents();
 		} catch (ZipException e) {
-			e.printStackTrace();
+			throw new InternalErrorException(e);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			throw new InternalErrorException(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new InternalErrorException(e);
 		} catch (Exception e) {
-			e.printStackTrace();
-		} 
-		return null;
+			throw new InternalErrorException(e);
+		}
 	}
 
 

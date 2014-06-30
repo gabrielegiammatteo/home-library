@@ -81,10 +81,9 @@ public class WorkspaceUtil {
 
 		String name = initialName;
 		int i = 1;
-System.out.println(names.toString());
+
 		while(names.contains(name)){
 			name = initialName + "." + returnThreeDigitNo(i);
-			System.out.println(name+ "");
 			i++;
 		}
 

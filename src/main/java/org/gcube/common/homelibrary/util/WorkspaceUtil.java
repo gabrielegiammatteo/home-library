@@ -57,6 +57,63 @@ public class WorkspaceUtil {
 		return name;
 	}
 
+
+	/**
+	 * Retrieve an unique name copying a item to the specified folder.
+	 * @param initialName the initial name.
+	 * @param folder the item folder.
+	 * @return the unique name.
+	 * @throws InternalErrorException if an error occurs.
+	 */
+	public static String getCopyName(String initialName, WorkspaceFolder folder) throws InternalErrorException
+	{
+
+		List<? extends WorkspaceItem> children = folder.getChildren();
+
+		List<String> names = new LinkedList<String>();
+		for (WorkspaceItem item:children) {
+			try{
+				names.add(item.getName());
+			}catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+
+		String name = initialName;
+		int i = 1;
+System.out.println(names.toString());
+		while(names.contains(name)){
+			name = initialName + "." + returnThreeDigitNo(i);
+			System.out.println(name+ "");
+			i++;
+		}
+
+		return name;
+	}
+
+	/**
+	 * Add prefix to number e.g (1 = 001)
+	 * @param number
+	 * @return
+	 */
+	public static String returnThreeDigitNo(int number)
+	{
+		String threeDigitNo = null;
+		int length = String.valueOf(number).length();
+		
+		if(length == 1)
+			threeDigitNo = "00"+number;
+
+		if(length == 2)
+			threeDigitNo = "0"+number;
+		
+		if(length == 3)
+			threeDigitNo = ""+number;
+		
+		return threeDigitNo;
+	}
+
+
 	/**
 	 * Clean the given name from invalid chars.
 	 * @param name the name to clean.
@@ -115,7 +172,7 @@ public class WorkspaceUtil {
 
 	}
 
-	
+
 	public static File getTmpFile(InputStream in){
 
 		File tempFile = null;
@@ -124,8 +181,8 @@ public class WorkspaceUtil {
 			try (FileOutputStream out = new FileOutputStream(tempFile)) {			
 				IOUtils.copy(in, out);
 			}
-//			System.out.println("*************** tempfile " + tempFile.getAbsolutePath());
-//			in.reset();
+			//			System.out.println("*************** tempfile " + tempFile.getAbsolutePath());
+			//			in.reset();
 
 		}catch(IOException e){
 			e.printStackTrace();
@@ -133,8 +190,8 @@ public class WorkspaceUtil {
 
 		return tempFile;
 	}
-	
-	
+
+
 
 
 }

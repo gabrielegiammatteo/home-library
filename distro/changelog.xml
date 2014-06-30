@@ -23,15 +23,20 @@
 		</Change>
 		<Change>Removed clones in unshare and remove operations.</Change>
 		<Change>Added a default preview used when the original one is not
-			available.</Change>
+			available.
+		</Change>
 		<Change>Moved from the "home-library" user to the real username to
-			call the StorageManager library (for accounting).</Change>
+			call the StorageManager library (for accounting).
+		</Change>
 		<Change>Reduced calls to StorageManager library in upload operation,
-			using tmp files</Change>
+			using tmp files
+		</Change>
 		<Change>Removed clones when a shared folder is removed from the
-			workspace</Change>
+			workspace
+		</Change>
 		<Change>Added a private copy of an ex-shared folder for owner and
-			administrators</Change>
+			administrators
+		</Change>
 	</Changeset>
 	<Changeset component="org.gcube.common.home-library.1-2-1"
 		date="2014-05-22">
@@ -43,5 +48,10 @@
 		date="2014-06-06">
 		<Change>Added searchFullText method to Workspace</Change>
 		<Change>Better performance</Change>
+	</Changeset>
+	<Changeset component="org.gcube.common.home-library.1-4-0"
+		date="2014-06-30">
+		<Change>Added progress number to filename when a file with the same
+			name already exists</Change>
 	</Changeset>
 </ReleaseNotes>

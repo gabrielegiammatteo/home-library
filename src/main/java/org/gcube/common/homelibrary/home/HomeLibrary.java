@@ -201,6 +201,7 @@ public class HomeLibrary {
 
 		HomeManager homeManager = homeManagerFactory.getHomeManager();
 
+		System.out.println("************* " + username);
 		User user = homeManager.getUser(username);
 
 		Home home = homeManager.getHome(user);

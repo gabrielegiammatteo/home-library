@@ -52,6 +52,11 @@
 	<Changeset component="org.gcube.common.home-library.1-4-0"
 		date="2014-06-30">
 		<Change>Added progress number to filename when a file with the same
-			name already exists</Change>
+			name already exists
+		</Change>
+		<Change>Added getAdministratos() in WorkspaceSharedFolder to retrieve administrators of shared folders
+		</Change>
+		<Change>Added setAdmin() in WorkspaceSharedFolder to set administrators
+		</Change>
 	</Changeset>
 </ReleaseNotes>

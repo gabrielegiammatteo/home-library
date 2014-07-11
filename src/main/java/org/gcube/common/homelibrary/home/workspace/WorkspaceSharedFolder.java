@@ -17,6 +17,15 @@ import org.gcube.common.homelibrary.home.workspace.exceptions.InsufficientPrivil
  */
 public interface WorkspaceSharedFolder extends WorkspaceFolder {
 	
+	
+	/**
+	 * Get Administrators
+	 * @return Administrators
+	 * @throws InternalErrorException
+	 */
+	List<String> getAdministrators() throws InternalErrorException;
+	
+	
 	/**
 	 * Add administrators to a shared folder
 	 * @throws InsufficientPrivilegesException
@@ -24,6 +33,7 @@ public interface WorkspaceSharedFolder extends WorkspaceFolder {
 	 */
 	boolean setAdmin(String username) throws InsufficientPrivilegesException,
 	InternalErrorException;
+	
 	
 	/**
 	 * @return the list of users. 

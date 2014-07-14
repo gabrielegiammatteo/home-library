@@ -589,6 +589,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * Move a workspaceItem to a specified destination.
 	 * @param itemId the item to move.
 	 * @param destinationFolderId the destination folder. 
+	 * @return 
 	 * @throws ItemNotFoundException if the specified item has not been found.
 	 * @throws WrongDestinationException if the specified destination has not been found.
 	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
@@ -596,7 +597,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws ItemAlreadyExistException if the destination folder have a children with same name.
 	 * @throws WorkspaceFolderNotFoundException if the destination folder is not found.
 	 */
-	public void moveItem(String itemId, String destinationFolderId) throws ItemNotFoundException, WrongDestinationException, InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, WorkspaceFolderNotFoundException;
+	public WorkspaceItem moveItem(String itemId, String destinationFolderId) throws ItemNotFoundException, WrongDestinationException, InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, WorkspaceFolderNotFoundException;
 	
 	/**
 	 * Rename an item.

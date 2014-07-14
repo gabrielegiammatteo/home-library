@@ -11,7 +11,7 @@
 
 	<groupId>org.gcube.common</groupId>
 	<artifactId>home-library</artifactId>
-	<version>1.4.0-SNAPSHOT</version>
+	<version>1.4.1-SNAPSHOT</version>
 	<name>home-library</name>
 
 	<properties>

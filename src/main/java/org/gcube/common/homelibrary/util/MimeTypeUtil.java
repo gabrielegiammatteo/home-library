@@ -156,6 +156,7 @@ public class MimeTypeUtil {
 
 		try {
 			mediaType = detector.detect(stream, metadata);
+
 		} catch (IOException e) {
 			logger.error("Error detecting mime type for file " + filenameWithExtension);
 		}

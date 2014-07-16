@@ -58,6 +58,6 @@ public interface File {
 	/**
 	 * @throws InternalErrorException
 	 */
-	void updateInfo() throws InternalErrorException;
+	void updateInfo(String mimeType) throws InternalErrorException;
 
 }

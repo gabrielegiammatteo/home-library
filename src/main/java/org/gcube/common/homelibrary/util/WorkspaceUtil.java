@@ -7,9 +7,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
@@ -83,7 +85,11 @@ public class WorkspaceUtil {
 		int i = 1;
 
 		while(names.contains(name)){
-			name = initialName + "." + returnThreeDigitNo(i);
+			//			name = initialName + "." + returnThreeDigitNo(i);
+			if (i==1)
+				name = initialName + "(copy)";
+			else
+				name = initialName + "(copy " + i +")";
 			i++;
 		}
 
@@ -99,16 +105,16 @@ public class WorkspaceUtil {
 	{
 		String threeDigitNo = null;
 		int length = String.valueOf(number).length();
-		
+
 		if(length == 1)
 			threeDigitNo = "00"+number;
 
 		if(length == 2)
 			threeDigitNo = "0"+number;
-		
+
 		if(length == 3)
 			threeDigitNo = ""+number;
-		
+
 		return threeDigitNo;
 	}
 
@@ -177,7 +183,8 @@ public class WorkspaceUtil {
 		File tempFile = null;
 		try{
 			tempFile = File.createTempFile("tempfile", ".tmp"); 
-			try (FileOutputStream out = new FileOutputStream(tempFile)) {			
+
+			try (FileOutputStream out = new FileOutputStream(tempFile)) {		
 				IOUtils.copy(in, out);
 			}
 			//			System.out.println("*************** tempfile " + tempFile.getAbsolutePath());
@@ -185,6 +192,13 @@ public class WorkspaceUtil {
 
 		}catch(IOException e){
 			e.printStackTrace();
+		}finally{
+			try {
+				in.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		return tempFile;

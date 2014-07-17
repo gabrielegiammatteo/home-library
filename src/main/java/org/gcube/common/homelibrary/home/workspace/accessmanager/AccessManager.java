@@ -33,7 +33,7 @@ public interface AccessManager {
 	 * @param absPath
 	 * @throws InternalErrorException
 	 */
-	public void setReadOnlyACL(List<String> users, String absPath) throws InternalErrorException;
+	public boolean setReadOnlyACL(List<String> users, String absPath) throws InternalErrorException;
 	/**
 	 * 
 	 * Allow users to create, edit and delete files of everyone in the share.
@@ -41,21 +41,22 @@ public interface AccessManager {
 	 * @param absPath
 	 * @throws InternalErrorException
 	 */
-	public void setWriteOwnerACL(List<String> users, String absPath) throws InternalErrorException;
+	public boolean setWriteOwnerACL(List<String> users, String absPath) throws InternalErrorException;
 	/**
 	 * Allow users to create, edit and delete files of everyone in the share.
 	 * @param users
 	 * @param absPath
 	 * @throws InternalErrorException
 	 */
-	public void setWriteAllACL(List<String> users, String absPath) throws InternalErrorException;
+	public boolean setWriteAllACL(List<String> users, String absPath) throws InternalErrorException;
 	/**
 	 * All privileges.
 	 * @param users
 	 * @param absPath
+	 * @return 
 	 * @throws InternalErrorException
 	 */
-	public void setAdminACL(List<String> users, String absPath) throws InternalErrorException;
+	public boolean setAdminACL(List<String> users, String absPath) throws InternalErrorException;
 
 //	/**
 //	 * Modify the permissions for a node

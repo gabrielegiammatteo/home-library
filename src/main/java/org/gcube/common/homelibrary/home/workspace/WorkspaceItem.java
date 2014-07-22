@@ -224,4 +224,12 @@ public interface WorkspaceItem {
 	 */
 	public boolean isFolder() throws InternalErrorException;
 
+	/**
+	 * Get a public link for the item
+	 * @param shortenUrl
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	String getPublicLink(boolean shortenUrl) throws InternalErrorException;
+
 }

@@ -33,12 +33,12 @@ public interface File {
 	 */
 	public InputStream getData() throws InternalErrorException;
 	
-	/**
-	 * The public link
-	 * @return public link
-	 * @throws InternalErrorException if an error occurs. 
-	 */
-	public String getPublicLink() throws InternalErrorException;
+//	/**
+//	 * The public link
+//	 * @return public link
+//	 * @throws InternalErrorException if an error occurs. 
+//	 */
+//	public String getPublicLink() throws InternalErrorException;
 		
 	/**
 	 * The file length.

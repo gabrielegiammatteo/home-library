@@ -4,6 +4,7 @@
 package org.gcube.common.homelibrary.util;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -144,34 +145,66 @@ public class WorkspaceUtil {
 	 * @throws IOException 
 	 */
 	public static FolderItem createExternalFile(WorkspaceFolder destinationFolder, String name, String description, String mimeType, InputStream is) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, IOException
-	{
-		String mimeTypeChecked = mimeType;
+	{	
+		String mimeTypeChecked;
+	
+		try{
+			File tmpFile = null;
+			
+			if (mimeType==null){
+				tmpFile = WorkspaceUtil.getTmpFile(is);	
+				FileInputStream tmpIs = null;
+				
+				try{				
+					tmpIs = new FileInputStream(tmpFile);
+					mimeType = MimeTypeUtil.getMimeType(name, tmpIs);
+					is = new FileInputStream(tmpFile);
+				}catch (Exception e) {
 
-		//		String extension = null;
-		//		
-		//		String[] values = name.split("\\.");
-		//		if (values.length > 1)
-		//		 extension = values[values.length - 1];
-		//		
-		//		List<String> zipMimeTypes = Arrays.asList(MimeTypeUtil.ZIP_MIMETYPES);
-		//		if ((mimeTypeChecked.equals(MimeTypeUtil.BINARY_MIMETYPE) 
-		//				|| zipMimeTypes.contains(mimeTypeChecked) 
-		//				|| mimeTypeChecked.startsWith("application")) && (extension!= null)) {
-		////			mimeTypeChecked = MimeTypeUtil.getMimeType(extension);		
-		//			mimeTypeChecked = MimeTypeUtil.getMimeType(name, is);			
-		//		} 
+				}finally{
+					if (tmpIs!=null)
+						tmpIs.close();
 
-		if (mimeTypeChecked!= null) {
-			if (mimeTypeChecked.startsWith("image")){
-				return destinationFolder.createExternalImageItem(name, description, mimeTypeChecked, is);
-			}else if (mimeTypeChecked.equals("application/pdf")){
-				return destinationFolder.createExternalPDFFileItem(name, description, mimeTypeChecked, is);
-			}else if (mimeTypeChecked.equals("text/uri-list")){
-				return destinationFolder.createExternalUrlItem(name, description, is);
+				}
 			}
+			mimeTypeChecked = mimeType;
 
-			return destinationFolder.createExternalFileItem(name, description, mimeTypeChecked, is);
+			System.out.println(mimeTypeChecked);
+
+			//		String extension = null;
+			//		
+			//		String[] values = name.split("\\.");
+			//		if (values.length > 1)
+			//		 extension = values[values.length - 1];
+			//		
+			//		List<String> zipMimeTypes = Arrays.asList(MimeTypeUtil.ZIP_MIMETYPES);
+			//		if ((mimeTypeChecked.equals(MimeTypeUtil.BINARY_MIMETYPE) 
+			//				|| zipMimeTypes.contains(mimeTypeChecked) 
+			//				|| mimeTypeChecked.startsWith("application")) && (extension!= null)) {
+			////			mimeTypeChecked = MimeTypeUtil.getMimeType(extension);		
+			//			mimeTypeChecked = MimeTypeUtil.getMimeType(name, is);			
+			//		} 
+
+
+			if (tmpFile!=null)
+				tmpFile.delete();
+
+			if (mimeTypeChecked!= null) {
+				if (mimeTypeChecked.startsWith("image")){
+					System.out.println("image");
+					return destinationFolder.createExternalImageItem(name, description, mimeTypeChecked, is);
+				}else if (mimeTypeChecked.equals("application/pdf")){
+					return destinationFolder.createExternalPDFFileItem(name, description, mimeTypeChecked, is);
+				}else if (mimeTypeChecked.equals("text/uri-list")){
+					return destinationFolder.createExternalUrlItem(name, description, is);
+				}
+
+				return destinationFolder.createExternalFileItem(name, description, mimeTypeChecked, is);
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
 		}
+
 
 		return destinationFolder.createExternalFileItem(name, description, mimeType, is);
 

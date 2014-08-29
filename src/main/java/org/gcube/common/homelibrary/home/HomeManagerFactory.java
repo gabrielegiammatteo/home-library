@@ -11,7 +11,6 @@ import org.gcube.common.homelibrary.home.workspace.accessmanager.AccessManager;
 import org.gcube.common.homelibrary.home.workspace.privilegemanager.PrivilegeManager;
 import org.gcube.common.homelibrary.home.workspace.usermanager.UserManager;
 
-
 /**
  * Manage the HomeManagers.
  * @author Federico De Faveri defaveri@isti.cnr.it

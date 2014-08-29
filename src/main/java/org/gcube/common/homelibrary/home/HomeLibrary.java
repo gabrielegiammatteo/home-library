@@ -9,6 +9,7 @@ import org.gcube.common.homelibrary.home.data.ApplicationsArea;
 import org.gcube.common.homelibrary.home.exceptions.HomeNotFoundException;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.Workspace;
+import org.gcube.common.homelibrary.home.workspace.WorkspaceItem;
 import org.gcube.common.homelibrary.home.workspace.exceptions.WorkspaceFolderNotFoundException;
 import org.gcube.common.homelibrary.util.config.HomeLibraryConfiguration;
 import org.gcube.common.scope.api.ScopeProvider;
@@ -144,6 +145,9 @@ public class HomeLibrary {
 		return home.getWorkspace();
 
 	}
+
+
+
 
 	/**
 	 * Return the DataArea for the user in session.

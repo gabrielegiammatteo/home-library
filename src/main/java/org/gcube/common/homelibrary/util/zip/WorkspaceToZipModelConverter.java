@@ -14,6 +14,7 @@ import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceItem;
 import org.gcube.common.homelibrary.home.workspace.folder.FolderItem;
+import org.gcube.common.homelibrary.home.workspace.folder.FolderItemType;
 import org.gcube.common.homelibrary.home.workspace.folder.items.AquaMapsItem;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalFile;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalUrl;
@@ -90,8 +91,9 @@ public class WorkspaceToZipModelConverter {
 	{
 		String cleanedItemName = FileSystemNameUtil.cleanFileName(folderItem.getName());
 		String comment = folderItem.getDescription();
+		FolderItemType type = folderItem.getFolderItemType();
 
-		switch (folderItem.getFolderItemType()) {
+		switch (type) {
 
 		case EXTERNAL_IMAGE: //an external image is also an external file
 		case EXTERNAL_PDF_FILE: //an external pdf file is also an external file
@@ -102,7 +104,9 @@ public class WorkspaceToZipModelConverter {
 
 			InputStream data = externalFile.getData();
 			if (data!=null)
-				return new ZipFile(data, name, comment);
+				return new ZipFile(data, name, comment);	
+			else
+				return null;
 		}
 		case REPORT_TEMPLATE: {
 			ReportTemplate reportTemplate = (ReportTemplate)folderItem;
@@ -116,14 +120,14 @@ public class WorkspaceToZipModelConverter {
 			String name = cleanedItemName+"."+Extensions.REPORT.getValue();
 			InputStream data = report.getData();
 			if (data!=null)
-			return new ZipFile(data, name, comment);
+				return new ZipFile(data, name, comment);
 		}
 		case EXTERNAL_URL: {
 			ExternalUrl externalUrl = (ExternalUrl)folderItem;
 			String name = cleanedItemName+".xml";
 			InputStream is = new ByteArrayInputStream(externalUrl.getUrl().getBytes());
 			if (is!=null)
-			return new ZipFile(is, name, comment);
+				return new ZipFile(is, name, comment);
 		}
 		case QUERY: {
 			Query query = (Query)folderItem;
@@ -131,7 +135,7 @@ public class WorkspaceToZipModelConverter {
 			InputStream is = new ByteArrayInputStream(query.getQuery().getBytes());
 			//FIXME there are lost informations
 			if (is!=null)
-			return new ZipFile(is, name, comment);
+				return new ZipFile(is, name, comment);
 		}
 		case TIME_SERIES: {
 			TimeSeries timeSeries = (TimeSeries)folderItem;

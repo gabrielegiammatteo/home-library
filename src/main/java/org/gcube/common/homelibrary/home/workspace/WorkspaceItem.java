@@ -216,7 +216,13 @@ public interface WorkspaceItem {
 	 */
 	public String getRemotePath() throws InternalErrorException;
 
-
+	/**
+	 * Check if the item is in the trash
+	 * @return true if the item has been trashed
+	 * @throws InternalErrorException
+	 */
+	public boolean isTrashed() throws InternalErrorException;
+	
 	/**
 	 * Check if the item is a folder
 	 * @return true if the item is a folder

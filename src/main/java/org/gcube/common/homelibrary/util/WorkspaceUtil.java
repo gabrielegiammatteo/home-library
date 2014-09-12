@@ -169,7 +169,7 @@ public class WorkspaceUtil {
 			}
 			mimeTypeChecked = mimeType;
 
-			System.out.println(mimeTypeChecked);
+//			System.out.println(mimeTypeChecked);
 
 			//		String extension = null;
 			//		
@@ -191,7 +191,7 @@ public class WorkspaceUtil {
 
 			if (mimeTypeChecked!= null) {
 				if (mimeTypeChecked.startsWith("image")){
-					System.out.println("image");
+//					System.out.println("image");
 					return destinationFolder.createExternalImageItem(name, description, mimeTypeChecked, is);
 				}else if (mimeTypeChecked.equals("application/pdf")){
 					return destinationFolder.createExternalPDFFileItem(name, description, mimeTypeChecked, is);

@@ -31,9 +31,16 @@ public interface WorkspaceSharedFolder extends WorkspaceFolder {
 	 * @throws InsufficientPrivilegesException
 	 * @throws InternalErrorException
 	 */
-	boolean setAdmin(String username) throws InsufficientPrivilegesException,
+	boolean addAdmin(String username) throws InsufficientPrivilegesException,
 	InternalErrorException;
 	
+	/**
+	 * Set administrators
+	 * @throws InsufficientPrivilegesException
+	 * @throws InternalErrorException
+	 */
+	boolean setAdmins(List<String> logins) throws InsufficientPrivilegesException,
+	InternalErrorException;
 	
 	/**
 	 * @return the list of users. 
@@ -97,6 +104,13 @@ public interface WorkspaceSharedFolder extends WorkspaceFolder {
 	 * @throws InternalErrorException
 	 */
 	Map<ACLType, List<String>> getACLOwner() throws InternalErrorException;
+	
+	/**
+	 * Get the privilege set on a WorkspaceSharedFolder
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	ACLType getPrivilege() throws InternalErrorException;
 	
 	/**
 	 * Get the ACL of a WorkspaceSharedFolder

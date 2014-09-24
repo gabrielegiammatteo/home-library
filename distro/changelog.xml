@@ -54,15 +54,24 @@
 		<Change>Added progress number to filename when a file with the same
 			name already exists
 		</Change>
-		<Change>Added getAdministratos() in WorkspaceSharedFolder to retrieve administrators of shared folders
+		<Change>Added getAdministratos() in WorkspaceSharedFolder to retrieve
+			administrators of shared folders
 		</Change>
-		<Change>Added setAdmin() in WorkspaceSharedFolder to set administrators
+		<Change>Added setAdmin() in WorkspaceSharedFolder to set
+			administrators
 		</Change>
 	</Changeset>
-		<Changeset component="org.gcube.common.home-library.1-5-0"
+	<Changeset component="org.gcube.common.home-library.1-5-0"
 		date="2014-09-10">
 		<Change>Changed Workspace.moveItem() method to return the new item,
-			instead of null. </Change>
+			instead of null.
+		</Change>
 		<Change>Added method isTrashed() to WorkspaceItem</Change>
-		</Changeset>
+		<Change>Added method getPrivilege() to WorkspaceSharedFolder to
+			retrieve the privilege set on a shared folder.</Change>
+		<Change>Added method setAdmins() to WorkspaceSharedFolder to set new
+			administrators and remove the old ones.</Change>
+		<Change>Renamed setAdmin() in addAdmin() in WorkspaceSharedFolder.
+		</Change>
+	</Changeset>
 </ReleaseNotes>

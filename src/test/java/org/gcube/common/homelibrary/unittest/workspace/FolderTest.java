@@ -151,7 +151,7 @@ public abstract class FolderTest extends WorkspaceItemTest {
 		String expectedDescription = "Test external file description";
 		String expectedMimeType = "testMimeType";
 		
-		folder.createExternalFileItem(expectedName, expectedDescription, expectedMimeType, null);
+//		folder.createExternalFileItem(expectedName, expectedDescription, expectedMimeType, null);
 		
 	}
 	
@@ -283,7 +283,7 @@ public abstract class FolderTest extends WorkspaceItemTest {
 		String expectedDescription = "Test external PDFFile description";
 		String expectedMimeType = "testMimeType";
 		
-		folder.createExternalPDFFileItem(expectedName, expectedDescription, expectedMimeType, null);
+//		folder.createExternalPDFFileItem(expectedName, expectedDescription, expectedMimeType, null);
 		
 	}
 	
@@ -410,7 +410,7 @@ public abstract class FolderTest extends WorkspaceItemTest {
 		String expectedDescription = "Test external image description";
 		String expectedMimeType = "testMimeType";
 		
-		folder.createExternalImageItem(expectedName, expectedDescription, expectedMimeType, null);
+//		folder.createExternalImageItem(expectedName, expectedDescription, expectedMimeType, null);
 	}
 	
 	/**

@@ -31,5 +31,16 @@ public enum QueryType {
 	/**
 	 * Query submitted with a google search. 
 	 */
-	GOOGLE_SEARCH;
+	GOOGLE_SEARCH,
+	
+	/**
+	 * Query submitted with a generic search. 
+	 */
+	GENERIC_SEARCH,
+	
+	/**
+	 * Query submitted with a browse search. 
+	 */
+	BROWSE;
+	
 }

@@ -3,6 +3,7 @@
  */
 package org.gcube.common.homelibrary.home.workspace;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Calendar;
@@ -1022,5 +1023,87 @@ public interface Workspace extends WorkspaceEventSource {
 	public List<SearchFolderItem> searchFullText(String text)
 			throws InternalErrorException;
 
+	/**
+	 * get Vre Folder by scope
+	 * @param scope
+	 * @return
+	 * @throws InternalErrorException 
+	 */
+	public WorkspaceFolder getVREFolderByScope(String scope) throws ItemNotFoundException, InternalErrorException;
+
+	/**
+	 * @param name
+	 * @param description
+	 * @param mimeType
+	 * @param fileData
+	 * @param destinationFolderId
+	 * @return
+	 * @throws InsufficientPrivilegesException
+	 * @throws WorkspaceFolderNotFoundException
+	 * @throws InternalErrorException
+	 * @throws ItemAlreadyExistException
+	 * @throws WrongDestinationException
+	 */
+	ExternalFile createExternalFile(String name, String description,
+			String mimeType, File fileData, String destinationFolderId)
+			throws InsufficientPrivilegesException,
+			WorkspaceFolderNotFoundException, InternalErrorException,
+			ItemAlreadyExistException, WrongDestinationException;
+
+	/**
+	 * @param name
+	 * @param description
+	 * @param mimeType
+	 * @param file
+	 * @param destinationFolderId
+	 * @return
+	 * @throws InsufficientPrivilegesException
+	 * @throws WorkspaceFolderNotFoundException
+	 * @throws InternalErrorException
+	 * @throws ItemAlreadyExistException
+	 * @throws WrongDestinationException
+	 */
+	ExternalImage createExternalImage(String name, String description,
+			String mimeType, File file, String destinationFolderId)
+			throws InsufficientPrivilegesException,
+			WorkspaceFolderNotFoundException, InternalErrorException,
+			ItemAlreadyExistException, WrongDestinationException;
+
+	/**
+	 * @param name
+	 * @param description
+	 * @param mimeType
+	 * @param file
+	 * @param destinationFolderId
+	 * @return
+	 * @throws InsufficientPrivilegesException
+	 * @throws WorkspaceFolderNotFoundException
+	 * @throws InternalErrorException
+	 * @throws ItemAlreadyExistException
+	 * @throws WrongDestinationException
+	 */
+	ExternalPDFFile createExternalPDFFile(String name, String description,
+			String mimeType, File file, String destinationFolderId)
+			throws InsufficientPrivilegesException,
+			WorkspaceFolderNotFoundException, InternalErrorException,
+			ItemAlreadyExistException, WrongDestinationException;
+
+	/**
+	 * @param name
+	 * @param description
+	 * @param file
+	 * @param destinationFolderId
+	 * @return
+	 * @throws InsufficientPrivilegesException
+	 * @throws WorkspaceFolderNotFoundException
+	 * @throws InternalErrorException
+	 * @throws ItemAlreadyExistException
+	 * @throws WrongDestinationException
+	 */
+	ExternalUrl createExternalUrl(String name, String description, File file,
+			String destinationFolderId) throws InsufficientPrivilegesException,
+			WorkspaceFolderNotFoundException, InternalErrorException,
+			ItemAlreadyExistException, WrongDestinationException;
+	
 
 }

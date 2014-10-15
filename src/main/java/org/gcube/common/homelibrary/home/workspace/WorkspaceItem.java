@@ -6,8 +6,10 @@ package org.gcube.common.homelibrary.home.workspace;
 import java.util.Calendar;
 import java.util.List;
 
+
 import org.gcube.common.homelibrary.home.User;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
+import org.gcube.common.homelibrary.home.workspace.accessmanager.ACLType;
 import org.gcube.common.homelibrary.home.workspace.accounting.AccountingEntry;
 import org.gcube.common.homelibrary.home.workspace.accounting.AccountingEntryRead;
 import org.gcube.common.homelibrary.home.workspace.acl.Capabilities;
@@ -236,6 +238,33 @@ public interface WorkspaceItem {
 	 * @return
 	 * @throws InternalErrorException
 	 */
-	String getPublicLink(boolean shortenUrl) throws InternalErrorException;
+	public String getPublicLink(boolean shortenUrl) throws InternalErrorException;
+
+	/**
+	 * Set a privilege to a list of users
+	 * @param users
+	 * @param privilege
+	 * @throws InternalErrorException
+	 */
+	public void setACL(List<String> users, ACLType privilege)
+			throws InternalErrorException;
+
+	/**
+	 * Return true if the user has the right to read the resource at abspath
+	 * @param user
+	 * @param absPath: absolute path of a node
+	 * @return
+	 * @throws RepositoryException
+	 * @throws InternalErrorException
+	 */
+	boolean hasAccessRight(String user, String absPath) throws InternalErrorException;
+
+	/**
+	 * @param users
+	 * @throws InternalErrorException
+	 */
+	void deleteACL(List<String> users) throws InternalErrorException;
+
+
 
 }

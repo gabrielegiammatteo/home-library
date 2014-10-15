@@ -8,27 +8,28 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceItem;
+import org.gcube.common.homelibrary.home.workspace.accessmanager.ACLType;
 import org.gcube.common.homelibrary.home.workspace.exceptions.InsufficientPrivilegesException;
 import org.gcube.common.homelibrary.home.workspace.exceptions.ItemAlreadyExistException;
 import org.gcube.common.homelibrary.home.workspace.folder.FolderItem;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Federico De Faveri defaveri@isti.cnr.it
  *
  */
 public class WorkspaceUtil {
-	protected static Logger logger = LoggerFactory.getLogger(WorkspaceUtil.class);
+	
+	private static final String READ_ONLY 		= "jcr:read";
+	private static final String WRITE_OWNER 	= "jcr:write";
+	private static final String WRITE_ALL 		= "hl:writeAll";
+	private static final String ADMINISTRATOR 	= "jcr:all";
 	/**
 	 * Retrieve an unique name for the specified folder.
 	 * @param initialName the initial name.
@@ -149,43 +150,49 @@ public class WorkspaceUtil {
 	public static FolderItem createExternalFile(WorkspaceFolder destinationFolder, String name, String description, String mimeType, InputStream is) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, IOException
 	{	
 		String mimeTypeChecked;
-		File tmpFile = null;
+	
 		try{
+			File tmpFile = null;
+			
 			if (mimeType==null){
 				tmpFile = WorkspaceUtil.getTmpFile(is);	
-
-				try{						
-					mimeType = MimeTypeUtil.getMimeType(name, tmpFile);
-					System.out.println(mimeType);
-//					is = new FileInputStream(tmpFile);
+				FileInputStream tmpIs = null;
+				
+				try{				
+					tmpIs = new FileInputStream(tmpFile);
+					mimeType = MimeTypeUtil.getMimeType(name, tmpIs);
+					is = new FileInputStream(tmpFile);
 				}catch (Exception e) {
-					logger.error("Error getting mimetype of file " + name);
-				}finally{}
+
+				}finally{
+					if (tmpIs!=null)
+						tmpIs.close();
+
+				}
 			}
 			mimeTypeChecked = mimeType;
 
+			if (tmpFile!=null)
+				tmpFile.delete();
+
 			if (mimeTypeChecked!= null) {
 				if (mimeTypeChecked.startsWith("image")){
-					//					System.out.println("image");
-					return destinationFolder.createExternalImageItem(name, description, mimeTypeChecked, tmpFile);
+//					System.out.println("image");
+					return destinationFolder.createExternalImageItem(name, description, mimeTypeChecked, is);
 				}else if (mimeTypeChecked.equals("application/pdf")){
-					return destinationFolder.createExternalPDFFileItem(name, description, mimeTypeChecked, tmpFile);
+					return destinationFolder.createExternalPDFFileItem(name, description, mimeTypeChecked, is);
 				}else if (mimeTypeChecked.equals("text/uri-list")){
-					System.out.println("*********** external url");
-					String url = Util.readStreamAsString(new FileInputStream(tmpFile));
-					return destinationFolder.createExternalUrlItem(name, description, url);
-					}
+					return destinationFolder.createExternalUrlItem(name, description, is);
+				}
 
-				return destinationFolder.createExternalFileItem(name, description, mimeTypeChecked, tmpFile);
+				return destinationFolder.createExternalFileItem(name, description, mimeTypeChecked, is);
 			}
 		}catch (Exception e) {
 			// TODO: handle exception
-		}finally{
-//			if (tmpFile!=null)
-//				tmpFile.delete();
 		}
 
-		return destinationFolder.createExternalFileItem(name, description, mimeType, tmpFile);
+
+		return destinationFolder.createExternalFileItem(name, description, mimeType, is);
 
 	}
 
@@ -199,18 +206,43 @@ public class WorkspaceUtil {
 			try (FileOutputStream out = new FileOutputStream(tempFile)) {		
 				IOUtils.copy(in, out);
 			}
+			//			System.out.println("*************** tempfile " + tempFile.getAbsolutePath());
+			//			in.reset();
+
 		}catch(IOException e){
-			logger.error("Error creating tmp file");
+			e.printStackTrace();
 		}finally{
 			try {
 				in.close();
-			} catch (IOException e) {logger.error("Error closing tmp file");}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		return tempFile;
 	}
 
 
+	public static ACLType getACLTypeByKey(List<String> list) {
+		switch(list.get(0)){
+		
+		case READ_ONLY:
+			return ACLType.READ_ONLY;	
 
+		case WRITE_OWNER:	
+			return ACLType.WRITE_OWNER;		
+
+		case WRITE_ALL:
+			return ACLType.WRITE_ALL;	
+
+		case ADMINISTRATOR:
+			return ACLType.ADMINISTRATOR;		
+
+		default:
+			return ACLType.READ_ONLY;
+
+		}		
+	}
 
 }

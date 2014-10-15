@@ -80,4 +80,5 @@ public interface AccessManager {
 	void deleteAces(String resourcePath, List<String> users)
 			throws InternalErrorException;
 
+
 }

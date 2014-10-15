@@ -154,7 +154,7 @@ public class WorkspaceTestCreateExternalMethods extends AbstractWorkspaceTest{
 		String expectedDescription = "Test external file description";
 		String expectedMimeType = "testMimeType";
 		
-//		ownerWorkspace.createExternalFile(expectedName, expectedDescription, expectedMimeType, null, folder.getId());
+		ownerWorkspace.createExternalFile(expectedName, expectedDescription, expectedMimeType, null, folder.getId());
 
 	}
 	
@@ -389,7 +389,7 @@ public class WorkspaceTestCreateExternalMethods extends AbstractWorkspaceTest{
 		String expectedDescription = "Test external image description";
 		String expectedMimeType = "testMimeType";
 		
-//		ownerWorkspace.createExternalImage(expectedName, expectedDescription, expectedMimeType, null, folder.getId());
+		ownerWorkspace.createExternalImage(expectedName, expectedDescription, expectedMimeType, null, folder.getId());
 
 	}
 	
@@ -623,7 +623,7 @@ public class WorkspaceTestCreateExternalMethods extends AbstractWorkspaceTest{
 		String expectedDescription = "Test external PDFFile description";
 		String expectedMimeType = "testMimeType";
 		
-//		ownerWorkspace.createExternalPDFFile(expectedName, expectedDescription, expectedMimeType, null, folder.getId());
+		ownerWorkspace.createExternalPDFFile(expectedName, expectedDescription, expectedMimeType, null, folder.getId());
 
 	}
 	

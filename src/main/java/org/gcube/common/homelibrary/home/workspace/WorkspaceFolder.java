@@ -3,7 +3,6 @@
  */
 package org.gcube.common.homelibrary.home.workspace;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Calendar;
@@ -94,21 +93,6 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 */
 	public ExternalImage createExternalImageItem(String name, String description, String mimeType, InputStream imageData) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
 	
-	
-	/**
-	 * Create a new External Image into this folder.
-	 * @param name the external image name.
-	 * @param description the external image description.
-	 * @param mimeType the external image mime type.
-	 * @param imageData the external image data.
-	 * @return the new external image.
-	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
-	 * @throws InternalErrorException if an internal error occurs.
-	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
-	 */
-	public ExternalImage createExternalImageItem(String name, String description, String mimeType, File imageData) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
-	
-	
 	/**
 	 * Create an External File into this folder.
 	 * @param name the external file name.
@@ -121,19 +105,6 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
 	 */
 	public ExternalFile createExternalFileItem(String name, String description, String mimeType, InputStream fileData) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
-	
-	/**
-	 * Create an External File into this folder.
-	 * @param name the external file name.
-	 * @param description the external file description.
-	 * @param mimeType the external file mime type.
-	 * @param fileData the external file data.
-	 * @return the new external file.
-	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
-	 * @throws InternalErrorException if an internal error occurs.
-	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
-	 */
-	public ExternalFile createExternalFileItem(String name, String description, String mimeType, File fileData) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
 	
 	/**
 	 * Create a new External PDF file into this folder.
@@ -149,20 +120,6 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	public ExternalPDFFile createExternalPDFFileItem(String name, String description, String mimeType, InputStream fileData) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
 	
 	/**
-	 * Create a new External PDF file into this folder.
-	 * @param name the external PDF name.
-	 * @param description the external PDF description.
-	 * @param mimeType the external PDF mime type.
-	 * @param fileData the external PDF data.
-	 * @return the new external PDF.
-	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
-	 * @throws InternalErrorException if an internal error occurs.
-	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
-	 */
-	public ExternalPDFFile createExternalPDFFileItem(String name, String description, String mimeType, File fileData) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
-	
-	
-	/**
 	 * Create an External URL into this folder.
 	 * @param name the external URL name.
 	 * @param description the external URL description.
@@ -174,7 +131,6 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws IOException 
 	 */
 	public ExternalUrl createExternalUrlItem(String name, String description, String url) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
-	
 	
 	/**
 	 * Create an External URL into this folder.
@@ -188,7 +144,6 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws IOException 
 	 */
 	public ExternalUrl createExternalUrlItem(String name, String description, InputStream url) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
-	
 	
 	/**
 	 * Create a Report Template into this folder.

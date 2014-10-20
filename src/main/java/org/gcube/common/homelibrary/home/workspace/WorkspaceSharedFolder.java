@@ -120,6 +120,7 @@ public interface WorkspaceSharedFolder extends WorkspaceFolder {
 	ACLType getACLUser() throws InternalErrorException;
 
 	/**
+	 * Delete privileges for a list of users
 	 * @param users
 	 * @throws InternalErrorException
 	 */
@@ -130,5 +131,6 @@ public interface WorkspaceSharedFolder extends WorkspaceFolder {
 	 * @throws InternalErrorException
 	 */
 	List<String> getMembers() throws InternalErrorException;
+
 
 }

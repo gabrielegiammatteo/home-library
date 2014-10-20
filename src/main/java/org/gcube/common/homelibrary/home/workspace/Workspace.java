@@ -1026,7 +1026,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @param scope
 	 * @return
 	 */
-	public WorkspaceFolder getVREFolderByScope(String scope) throws ItemNotFoundException, InternalErrorException;
+	public WorkspaceSharedFolder getVREFolderByScope(String scope) throws ItemNotFoundException, InternalErrorException;
 
 
 }

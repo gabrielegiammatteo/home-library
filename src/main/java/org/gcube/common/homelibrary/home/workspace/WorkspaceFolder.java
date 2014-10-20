@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
+import org.gcube.common.homelibrary.home.workspace.accessmanager.ACLType;
 import org.gcube.common.homelibrary.home.workspace.exceptions.InsufficientPrivilegesException;
 import org.gcube.common.homelibrary.home.workspace.exceptions.ItemAlreadyExistException;
 import org.gcube.common.homelibrary.home.workspace.exceptions.ItemNotFoundException;
@@ -492,5 +493,23 @@ public interface WorkspaceFolder extends WorkspaceItem {
 			String operator, String runtimeResourceName)
 			throws InsufficientPrivilegesException, InternalErrorException,
 			ItemAlreadyExistException;
+	
+	/**
+	 * Set a privilege to a list of users
+	 * @param users
+	 * @param privilege
+	 * @throws InternalErrorException
+	 */
+	public void setACL(List<String> users, ACLType privilege)
+			throws InternalErrorException;
+
+	/**
+	 * @param folder 
+	 * @param initialName 
+	 * @return
+	 * @throws InternalErrorException 
+	 */
+	public String getNames(String initialName, WorkspaceFolder folder) throws InternalErrorException;
+
 
 }

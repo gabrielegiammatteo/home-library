@@ -39,26 +39,29 @@ public class WorkspaceUtil {
 	 */
 	public static String getUniqueName(String initialName, WorkspaceFolder folder) throws InternalErrorException
 	{
-
-		List<? extends WorkspaceItem> children = folder.getChildren();
-
-		List<String> names = new LinkedList<String>();
-		for (WorkspaceItem item:children) {
-			try{
-				names.add(item.getName());
-			}catch (Exception e) {
-				// TODO: handle exception
-			}
-		}
-
-		String name = initialName;
-		int i = 0;
-
-		while(names.contains(name)){
-
-			name = initialName+"("+i+")";
-			i++;
-		}
+		
+		String name = folder.getNames(initialName, folder);
+		
+//		System.out.println("getuniqueName");
+//		List<? extends WorkspaceItem> children = folder.getChildren();
+//		List<String> names = new LinkedList<String>();
+//		for (WorkspaceItem item:children) {
+//			try{
+////				System.out.println("here");
+//				names.add(item.getName());
+//			}catch (Exception e) {
+//				// TODO: handle exception
+//			}
+//		}
+//
+//		String name = initialName;
+//		int i = 0;
+//
+//		while(names.contains(name)){
+//
+//			name = initialName+"("+i+")";
+//			i++;
+//		}
 
 		return name;
 	}

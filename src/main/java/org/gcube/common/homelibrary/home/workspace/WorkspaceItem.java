@@ -240,14 +240,6 @@ public interface WorkspaceItem {
 	 */
 	public String getPublicLink(boolean shortenUrl) throws InternalErrorException;
 
-	/**
-	 * Set a privilege to a list of users
-	 * @param users
-	 * @param privilege
-	 * @throws InternalErrorException
-	 */
-	public void setACL(List<String> users, ACLType privilege)
-			throws InternalErrorException;
 
 	/**
 	 * Return true if the user has the right to read the resource at abspath
@@ -264,6 +256,8 @@ public interface WorkspaceItem {
 	 * @throws InternalErrorException
 	 */
 	void deleteACL(List<String> users) throws InternalErrorException;
+
+
 
 
 

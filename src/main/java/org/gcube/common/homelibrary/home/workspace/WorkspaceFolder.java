@@ -3,6 +3,7 @@
  */
 package org.gcube.common.homelibrary.home.workspace;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Calendar;
@@ -18,6 +19,7 @@ import org.gcube.common.homelibrary.home.workspace.exceptions.WorkspaceFolderNot
 import org.gcube.common.homelibrary.home.workspace.exceptions.WrongDestinationException;
 import org.gcube.common.homelibrary.home.workspace.exceptions.WrongItemTypeException;
 import org.gcube.common.homelibrary.home.workspace.folder.FolderBulkCreator;
+import org.gcube.common.homelibrary.home.workspace.folder.FolderItem;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalFile;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalImage;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalPDFFile;
@@ -53,7 +55,7 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 */
 	@Override
 	public List<WorkspaceItem> getChildren() throws InternalErrorException;
-	
+
 	/**
 	 * Check if an item with the specified name exists.
 	 * @param name the name to check.
@@ -61,7 +63,7 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws InternalErrorException if an error occurs.
 	 */
 	public boolean exists(String name) throws InternalErrorException;
-	
+
 	/**
 	 * Get an item with the specified name.
 	 * @param name the item name to find.
@@ -69,7 +71,7 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws InternalErrorException if an error occurs.
 	 */
 	public WorkspaceItem find(String name) throws InternalErrorException;
-	
+
 	/**
 	 * Create a new folder into this folder.
 	 * @param name the folder name.
@@ -80,7 +82,7 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws ItemAlreadyExistException if an item with the specified name already exists in this folder.
 	 */
 	public WorkspaceFolder createFolder(String name, String description) throws InternalErrorException, InsufficientPrivilegesException, ItemAlreadyExistException;
-	
+
 	/**
 	 * Create a new External Image into this folder.
 	 * @param name the external image name.
@@ -93,7 +95,22 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
 	 */
 	public ExternalImage createExternalImageItem(String name, String description, String mimeType, InputStream imageData) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
-	
+
+
+	/**
+	 * Create a new External Image into this folder.
+	 * @param name the external image name.
+	 * @param description the external image description.
+	 * @param mimeType the external image mime type.
+	 * @param imageData the external image data.
+	 * @return the new external image.
+	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
+	 * @throws InternalErrorException if an internal error occurs.
+	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
+	 */
+	public ExternalImage createExternalImageItem(String name, String description, String mimeType, File tmpFile) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
+
+
 	/**
 	 * Create an External File into this folder.
 	 * @param name the external file name.
@@ -106,7 +123,21 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
 	 */
 	public ExternalFile createExternalFileItem(String name, String description, String mimeType, InputStream fileData) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
+
 	
+	/**
+	 * Create an External File into this folder.
+	 * @param name the external file name.
+	 * @param description the external file description.
+	 * @param mimeType the external file mime type.
+	 * @param fileData the external file data.
+	 * @return the new external file.
+	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
+	 * @throws InternalErrorException if an internal error occurs.
+	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
+	 */
+	public ExternalFile createExternalFileItem(String name, String description, String mimeType, File tmpFile) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
+
 	/**
 	 * Create a new External PDF file into this folder.
 	 * @param name the external PDF name.
@@ -119,6 +150,21 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
 	 */
 	public ExternalPDFFile createExternalPDFFileItem(String name, String description, String mimeType, InputStream fileData) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
+
+	/**
+	 * Create a new External PDF file into this folder.
+	 * @param name the external PDF name.
+	 * @param description the external PDF description.
+	 * @param mimeType the external PDF mime type.
+	 * @param tmpFile the PDF tmpFile
+	 * @return the new external PDF.
+	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
+	 * @throws InternalErrorException if an internal error occurs.
+	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
+	 */
+	public ExternalPDFFile createExternalPDFFileItem(String name, String description, String mimeType, File tmpFile) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
+
+	
 	
 	/**
 	 * Create an External URL into this folder.
@@ -132,7 +178,7 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws IOException 
 	 */
 	public ExternalUrl createExternalUrlItem(String name, String description, String url) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
-	
+
 	/**
 	 * Create an External URL into this folder.
 	 * @param name the external URL name.
@@ -145,6 +191,21 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws IOException 
 	 */
 	public ExternalUrl createExternalUrlItem(String name, String description, InputStream url) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
+
+	
+	/**
+	 * Create an External URL into this folder.
+	 * @param name the external URL name.
+	 * @param description the external URL description.
+	 * @param url the URL.
+	 * @return the new URL file.
+	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
+	 * @throws InternalErrorException if an internal error occurs.
+	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
+	 * @throws IOException 
+	 */
+	public ExternalUrl createExternalUrlItem(String name, String description, File tmpFile) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
+
 	
 	/**
 	 * Create a Report Template into this folder.
@@ -163,7 +224,7 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
 	 */
 	public ReportTemplate createReportTemplateItem(String name, String description, Calendar created, Calendar lastEdit, String author, String lastEditBy, int numberOfSections, String status, InputStream templateData) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
-	
+
 	/**
 	 * Create a Report into this folder.
 	 * @param name the report name.
@@ -183,7 +244,7 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 */
 	public Report createReportItem(String name, String description, Calendar created, Calendar lastEdit, String author, String lastEditBy, String templateName, int numberOfSections, 
 			String status, InputStream reportData) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
-	
+
 	/**
 	 * Create a new Query into this folder.
 	 * @param name the query name.
@@ -232,8 +293,8 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 */
 	public WorkspaceFolder createAquaMapsItem(String name, String description, String mapName, String mapType, String author, int numberOfSpecies, String boundingBox, float psoThreshold,
 			int numberOfGeneratedImages, InputStream metadata, Map<String,InputStream> images) throws InsufficientPrivilegesException, WorkspaceFolderNotFoundException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException;
-	
-	
+
+
 
 	/**
 	 * Create a new annotation into this folder.
@@ -247,7 +308,7 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
 	 */
 	public Annotation createAnnotationItem(String name, String description, String oid, Map<String, String> data) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
-	
+
 	/**
 	 * Create a new Metadata into this folder.
 	 * @param name the metadata name.
@@ -263,7 +324,7 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
 	 */
 	public Metadata createMetadataItem(String name, String description, String oid, String schema, String language, String metadata, String collectionName) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
-	
+
 	/**
 	 * Create a new document into this folder.
 	 * @param name the document name.
@@ -280,7 +341,7 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
 	 */
 	public Document createDocumentItem(String name, String description, String oid,  String mimeType, InputStream documentData, Map<String, String> metadata, Map<String, String> annotations, String collectionName) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
-	
+
 	/**
 	 * Create a new image document into this folder.
 	 * @param name the document image name.
@@ -297,7 +358,7 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
 	 */
 	public ImageDocument createImageDocumentItem(String name, String description, String oid, String mimeType, InputStream imageData, Map<String, String> metadata, Map<String, String> annotations, String collectionName) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
-	
+
 	/**
 	 * Create a new PDF document.
 	 * @param name the PDF document name.
@@ -331,8 +392,8 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
 	 */
 	public UrlDocument createUrlDocumentItem(String name, String description, String oid, String mimeType, InputStream documentData, Map<String, String> metadata, Map<String, String> annotations, String collectionName) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
-	
-	
+
+
 	/**
 	 * Create a new document link into this folder.
 	 * @param name the document name.
@@ -348,7 +409,7 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
 	 */
 	public DocumentLink createDocumentLinkItem(String name, String description, String oid, Map<String, String> metadata, Map<String, String> annotations, String collectionName, String mimeType) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
-	
+
 	/**
 	 * Create a new image document link into this folder.
 	 * @param name the document image name.
@@ -364,7 +425,7 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
 	 */
 	public ImageDocumentLink createImageDocumentLinkItem(String name, String description, String oid, Map<String, String> metadata, Map<String, String> annotations, String collectionName, String mimeType) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
-	
+
 	/**
 	 * Create a new PDF document link.
 	 * @param name the pdf document name.
@@ -381,7 +442,7 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 */
 	public PDFDocumentLink createPDFDocumentLinkItem(String name, String description, String oid, Map<String, String> metadata, Map<String, String> annotations, String collectionName, String mimeType) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
 
-	
+
 	/**
 	 * Create a new Time Series.
 	 * @param name the item name.
@@ -405,7 +466,7 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 */
 	public TimeSeries createTimeSeries(String name, String description, String timeseriesId, String title, String creator, String timeseriesDescription, String timeseriesCreationDate, 
 			String publisher, String sourceId, String sourceName, String rights, long dimension, List<String> headerLabels, InputStream compressedCSV) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
-	
+
 	/**
 	 * Creates a Workflow Report.
 	 * @param name the workflow Report name.
@@ -437,15 +498,15 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws WrongDestinationException if the destination type is not a folder.
 	 */
 	public WorkflowTemplate createWorkflowTemplate(String name, String description, String workflowId, String workflowStatus, String workflowData) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException; 
-	
-	
+
+
 	/**
 	 * Create a new FolderBulkCreator for this folder.
 	 * @return the new FolderBulkCreator.
 	 * @throws InternalErrorException if an internal error occurs.
 	 */
 	public FolderBulkCreator getNewFolderBulkCreator() throws InternalErrorException;
-	
+
 	/**
 	 * @param name
 	 * @param description
@@ -464,7 +525,7 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	public ExternalResourceLink createExternalResourceLink(String name, String description,
 			String mimeType, String resourceIdString, String pluginName)
 					throws InternalErrorException, ItemAlreadyExistException, InsufficientPrivilegesException;
-	
+
 	/**
 	 * @param useers
 	 * @return
@@ -491,9 +552,9 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	public TabularDataLink createTabularDataLink(String name, String description,
 			String tableId, String template, Provenance provenance,
 			String operator, String runtimeResourceName)
-			throws InsufficientPrivilegesException, InternalErrorException,
-			ItemAlreadyExistException;
-	
+					throws InsufficientPrivilegesException, InternalErrorException,
+					ItemAlreadyExistException;
+
 	/**
 	 * Set a privilege to a list of users
 	 * @param users
@@ -504,12 +565,25 @@ public interface WorkspaceFolder extends WorkspaceItem {
 			throws InternalErrorException;
 
 	/**
-	 * @param folder 
-	 * @param initialName 
-	 * @return
-	 * @throws InternalErrorException 
+	 * Get an unique name for an item
+	 * @param initialName
+	 * @return 
+	 * @throws InternalErrorException
 	 */
-	public String getNames(String initialName, WorkspaceFolder folder) throws InternalErrorException;
+	public String getUniqueName(String initialName, boolean b) throws InternalErrorException;
 
+	/**
+	 * Get the size of a folder
+	 * @return folder size in bytes
+	 * @throws InternalErrorException
+	 */
+	public long getSize() throws InternalErrorException;
+	
+	/**
+	 * Get the number of items in a folder
+	 * @return the number of items in a folder
+	 * @throws InternalErrorException
+	 */
+	public int getCount() throws InternalErrorException;
 
 }

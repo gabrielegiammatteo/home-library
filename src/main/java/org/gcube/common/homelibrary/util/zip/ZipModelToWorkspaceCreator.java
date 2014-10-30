@@ -4,10 +4,9 @@
 package org.gcube.common.homelibrary.util.zip;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
+
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
 import org.gcube.common.homelibrary.home.workspace.exceptions.InsufficientPrivilegesException;
@@ -57,7 +56,7 @@ public class ZipModelToWorkspaceCreator {
 
 	protected void createWorkspace(WorkspaceFolder parentFolder, ZipFolder zipFolder) throws InternalErrorException, InsufficientPrivilegesException, ItemAlreadyExistException
 	{
-		String name  = WorkspaceUtil.getUniqueName(zipFolder.getName(), parentFolder);
+		String name  = parentFolder.getUniqueName(zipFolder.getName(), false);
 		String description = (zipFolder.getComment()!=null)?zipFolder.getComment():"";
 
 		WorkspaceFolder folder = parentFolder.createFolder(name, description);
@@ -79,7 +78,7 @@ public class ZipModelToWorkspaceCreator {
 
 		String zipItemName = zipFile.getName();
 
-		String name = WorkspaceUtil.getUniqueName(zipItemName, folder);	
+		String name = folder.getUniqueName(zipItemName,false);	
 		String description = (zipFile.getComment()!=null)?zipFile.getComment():"";
 //		InputStream is = new FileInputStream(zipFile.getContentFile());
 

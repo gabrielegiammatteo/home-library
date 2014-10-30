@@ -3,6 +3,7 @@
  */
 package org.gcube.common.homelibrary.home.workspace;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Calendar;
@@ -197,8 +198,25 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws ItemAlreadyExistException if a folder item with same name already exist.
 	 * @throws WrongDestinationException if the destination type is not a folder.
 	 */
-	public ExternalPDFFile createExternalPDFFile(String name, String description, String mimeType, InputStream fileData, String destinationFolderId) throws InsufficientPrivilegesException, WorkspaceFolderNotFoundException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException;
+	public ExternalPDFFile createExternalPDFFile(String name, String description, String mimeType, File tmpFile, String destinationFolderId) throws InsufficientPrivilegesException, WorkspaceFolderNotFoundException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException;
 	
+	
+	/**
+	 * Create a new External PDF File into a folder.
+	 * @param name the external PDF file name.
+	 * @param description the external PDF file description.
+	 * @param mimeType the external PDF file mime type.
+	 * @param fileData the external PDF file content.
+	 * @param destinationFolderId the destination folder.
+	 * @return the new external PDF file.
+	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
+	 * @throws WorkspaceFolderNotFoundException if the destination folder has not been found.
+	 * @throws InternalErrorException if an internal error occurs.
+	 * @throws ItemAlreadyExistException if a folder item with same name already exist.
+	 * @throws WrongDestinationException if the destination type is not a folder.
+	 */
+	public ExternalPDFFile createExternalPDFFile(String name, String description, String mimeType, InputStream fileData, String destinationFolderId) throws InsufficientPrivilegesException, WorkspaceFolderNotFoundException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException;
+
 	/**
 	 * Create a new External URL into a folder.
 	 * @param name the external URL name.
@@ -1027,6 +1045,64 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @return
 	 */
 	public WorkspaceSharedFolder getVREFolderByScope(String scope) throws ItemNotFoundException, InternalErrorException;
+
+	/**
+	 * @param name
+	 * @param description
+	 * @param mimeType
+	 * @param imageData
+	 * @param destinationFolderId
+	 * @param tmpFile
+	 * @return
+	 * @throws InsufficientPrivilegesException
+	 * @throws WorkspaceFolderNotFoundException
+	 * @throws InternalErrorException
+	 * @throws ItemAlreadyExistException
+	 * @throws WrongDestinationException
+	 */
+	ExternalImage createExternalImage(String name, String description,
+			String mimeType, String destinationFolderId,
+			File tmpFile) throws InsufficientPrivilegesException,
+			WorkspaceFolderNotFoundException, InternalErrorException,
+			ItemAlreadyExistException, WrongDestinationException;
+
+	/**
+	 * @param name
+	 * @param description
+	 * @param tmpFile
+	 * @param destinationFolderId
+	 * @return
+	 * @throws InsufficientPrivilegesException
+	 * @throws WorkspaceFolderNotFoundException
+	 * @throws InternalErrorException
+	 * @throws ItemAlreadyExistException
+	 * @throws WrongDestinationException
+	 */
+	ExternalUrl createExternalUrl(String name, String description,
+			File tmpFile, String destinationFolderId)
+			throws InsufficientPrivilegesException,
+			WorkspaceFolderNotFoundException, InternalErrorException,
+			ItemAlreadyExistException, WrongDestinationException;
+
+	/**
+	 * @param name
+	 * @param description
+	 * @param mimeType
+	 * @param tmpFile
+	 * @param destinationFolderId
+	 * @return
+	 * @throws InsufficientPrivilegesException
+	 * @throws WorkspaceFolderNotFoundException
+	 * @throws InternalErrorException
+	 * @throws ItemAlreadyExistException
+	 * @throws WrongDestinationException
+	 */
+	ExternalFile createExternalFile(String name, String description,
+			String mimeType, File tmpFile, String destinationFolderId)
+			throws InsufficientPrivilegesException,
+			WorkspaceFolderNotFoundException, InternalErrorException,
+			ItemAlreadyExistException, WrongDestinationException;
+
 
 
 }

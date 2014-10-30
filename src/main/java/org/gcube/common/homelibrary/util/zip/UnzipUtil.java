@@ -38,13 +38,18 @@ public class UnzipUtil {
 	 * @param zipName the zip name.
 	 * @throws IOException if an error occurs.
 	 */
-	public static void unzip(WorkspaceFolder destinationFolder, InputStream is, String zipName) throws IOException
+	public static void unzip(WorkspaceFolder destinationFolder, InputStream is, String zipName) throws InternalErrorException
 	{
 		logger.trace("unzip destinationWorkspace: "+destinationFolder+", zipName: "+zipName);
 
 		logger.trace("Extracting zip model from zip file.");
 		ZipFileModelExtractor zme = new ZipFileModelExtractor(is);
-		List<ZipItem> items = zme.getModel();
+		List<ZipItem> items;
+		try {
+			items = zme.getModel();
+		} catch (IOException e) {
+			throw new InternalErrorException(e);
+		}
 
 		logger.trace("Zip Model:");
 		ZipModelVisitor visitor = new ZipModelVisitor();

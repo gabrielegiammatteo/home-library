@@ -74,4 +74,15 @@
 		<Change>Renamed setAdmin() in addAdmin() in WorkspaceSharedFolder.
 		</Change>
 	</Changeset>
+	
+		<Changeset component="org.gcube.common.home-library.1-6-0"
+		date="2014-10-29">
+		<Change>Improved getUniqueName copying ang moving files
+		</Change>
+		<Change>Added WorkspaceItem.isTrashed() method</Change>
+		<Change>Added unescape saving remothePath to storage</Change>
+		<Change>Fixed in getPath() method in trashed items
+		</Change>
+		<Change>Added possibility to change permission in subfolders</Change>
+	</Changeset>
 </ReleaseNotes>

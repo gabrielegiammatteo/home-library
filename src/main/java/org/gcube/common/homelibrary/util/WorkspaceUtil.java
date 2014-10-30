@@ -8,24 +8,23 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
-import org.gcube.common.homelibrary.home.workspace.WorkspaceItem;
 import org.gcube.common.homelibrary.home.workspace.accessmanager.ACLType;
 import org.gcube.common.homelibrary.home.workspace.exceptions.InsufficientPrivilegesException;
 import org.gcube.common.homelibrary.home.workspace.exceptions.ItemAlreadyExistException;
 import org.gcube.common.homelibrary.home.workspace.folder.FolderItem;
+import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalFile;
 
 /**
  * @author Federico De Faveri defaveri@isti.cnr.it
  *
  */
 public class WorkspaceUtil {
-	
+
 	private static final String READ_ONLY 		= "jcr:read";
 	private static final String WRITE_OWNER 	= "jcr:write";
 	private static final String WRITE_ALL 		= "hl:writeAll";
@@ -39,29 +38,36 @@ public class WorkspaceUtil {
 	 */
 	public static String getUniqueName(String initialName, WorkspaceFolder folder) throws InternalErrorException
 	{
-		
-		String name = folder.getNames(initialName, folder);
-		
-//		System.out.println("getuniqueName");
-//		List<? extends WorkspaceItem> children = folder.getChildren();
-//		List<String> names = new LinkedList<String>();
-//		for (WorkspaceItem item:children) {
-//			try{
-////				System.out.println("here");
-//				names.add(item.getName());
-//			}catch (Exception e) {
-//				// TODO: handle exception
-//			}
-//		}
-//
-//		String name = initialName;
-//		int i = 0;
-//
-//		while(names.contains(name)){
-//
-//			name = initialName+"("+i+")";
-//			i++;
-//		}
+
+		String name = null;
+
+		try{
+			name = folder.getUniqueName(initialName, false);
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		if (name==null)
+			name= initialName;
+		//		System.out.println("getuniqueName");
+		//		List<? extends WorkspaceItem> children = folder.getChildren();
+		//		List<String> names = new LinkedList<String>();
+		//		for (WorkspaceItem item:children) {
+		//			try{
+		////				System.out.println("here");
+		//				names.add(item.getName());
+		//			}catch (Exception e) {
+		//				// TODO: handle exception
+		//			}
+		//		}
+		//
+		//		String name = initialName;
+		//		int i = 0;
+		//
+		//		while(names.contains(name)){
+		//
+		//			name = initialName+"("+i+")";
+		//			i++;
+		//		}
 
 		return name;
 	}
@@ -76,31 +82,43 @@ public class WorkspaceUtil {
 	 */
 	public static String getCopyName(String initialName, WorkspaceFolder folder) throws InternalErrorException
 	{
+		String name = null;
 
-		List<? extends WorkspaceItem> children = folder.getChildren();
-
-		List<String> names = new LinkedList<String>();
-		for (WorkspaceItem item:children) {
-			try{
-				names.add(item.getName());
-			}catch (Exception e) {
-				// TODO: handle exception
-			}
+		try{
+			name = folder.getUniqueName(initialName, true);
+		}catch (Exception e) {
+			// TODO: handle exception
 		}
-
-		String name = initialName;
-		int i = 1;
-
-		while(names.contains(name)){
-			//			name = initialName + "." + returnThreeDigitNo(i);
-			if (i==1)
-				name = initialName + "(copy)";
-			else
-				name = initialName + "(copy " + i +")";
-			i++;
-		}
-
+		if (name==null)
+			name= initialName;
 		return name;
+
+
+
+		//		List<? extends WorkspaceItem> children = folder.getChildren();
+		//
+		//		List<String> names = new LinkedList<String>();
+		//		for (WorkspaceItem item:children) {
+		//			try{
+		//				names.add(item.getName());
+		//			}catch (Exception e) {
+		//				// TODO: handle exception
+		//			}
+		//		}
+		//
+		//		String name = initialName;
+		//		int i = 1;
+		//
+		//		while(names.contains(name)){
+		//			//			name = initialName + "." + returnThreeDigitNo(i);
+		//			if (i==1)
+		//				name = initialName + "(copy)";
+		//			else
+		//				name = initialName + "(copy " + i +")";
+		//			i++;
+		//		}
+		//
+		//		return name;
 	}
 
 	/**
@@ -152,15 +170,15 @@ public class WorkspaceUtil {
 	 */
 	public static FolderItem createExternalFile(WorkspaceFolder destinationFolder, String name, String description, String mimeType, InputStream is) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, IOException
 	{	
+
 		String mimeTypeChecked;
-	
+		File tmpFile = null;
 		try{
-			File tmpFile = null;
-			
+
+			tmpFile = WorkspaceUtil.getTmpFile(is);	
+
 			if (mimeType==null){
-				tmpFile = WorkspaceUtil.getTmpFile(is);	
-				FileInputStream tmpIs = null;
-				
+				FileInputStream tmpIs = null;		
 				try{				
 					tmpIs = new FileInputStream(tmpFile);
 					mimeType = MimeTypeUtil.getMimeType(name, tmpIs);
@@ -170,32 +188,28 @@ public class WorkspaceUtil {
 				}finally{
 					if (tmpIs!=null)
 						tmpIs.close();
-
 				}
 			}
 			mimeTypeChecked = mimeType;
 
-			if (tmpFile!=null)
-				tmpFile.delete();
-
 			if (mimeTypeChecked!= null) {
+
 				if (mimeTypeChecked.startsWith("image")){
-//					System.out.println("image");
-					return destinationFolder.createExternalImageItem(name, description, mimeTypeChecked, is);
+					return destinationFolder.createExternalImageItem(name, description, mimeTypeChecked, tmpFile);
 				}else if (mimeTypeChecked.equals("application/pdf")){
-					return destinationFolder.createExternalPDFFileItem(name, description, mimeTypeChecked, is);
+					return destinationFolder.createExternalPDFFileItem(name, description, mimeTypeChecked, tmpFile);
 				}else if (mimeTypeChecked.equals("text/uri-list")){
-					return destinationFolder.createExternalUrlItem(name, description, is);
+					return destinationFolder.createExternalUrlItem(name, description, tmpFile);
 				}
 
-				return destinationFolder.createExternalFileItem(name, description, mimeTypeChecked, is);
+				return destinationFolder.createExternalFileItem(name, description, mimeTypeChecked, tmpFile);
 			}
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
 
 
-		return destinationFolder.createExternalFileItem(name, description, mimeType, is);
+		return destinationFolder.createExternalFileItem(name, description, mimeType, tmpFile);
 
 	}
 
@@ -222,14 +236,14 @@ public class WorkspaceUtil {
 				e.printStackTrace();
 			}
 		}
-
-		return tempFile;
+		System.out.println("tmp: " + tempFile.getAbsolutePath());
+		return tempFile; 
 	}
 
 
 	public static ACLType getACLTypeByKey(List<String> list) {
 		switch(list.get(0)){
-		
+
 		case READ_ONLY:
 			return ACLType.READ_ONLY;	
 

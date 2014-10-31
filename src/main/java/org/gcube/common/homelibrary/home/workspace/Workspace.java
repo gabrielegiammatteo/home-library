@@ -1103,6 +1103,18 @@ public interface Workspace extends WorkspaceEventSource {
 			WorkspaceFolderNotFoundException, InternalErrorException,
 			ItemAlreadyExistException, WrongDestinationException;
 
+	/**
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	long getDiskUsage() throws InternalErrorException;
+
+	/**
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	int getTotalItems() throws InternalErrorException;
+
 
 
 }

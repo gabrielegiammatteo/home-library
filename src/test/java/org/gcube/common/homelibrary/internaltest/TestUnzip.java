@@ -21,7 +21,7 @@ public class TestUnzip {
 	 * @throws Exception if an error occurs. 
 	 */
 	public static void main(String[] args) throws Exception {
-		InputStream is = new FileInputStream("test2.zip");
+		InputStream is = new FileInputStream("/home/valentina/Desktop/PARTE1.zip");
 
 		ZipInputStream zis = new ZipInputStream(is);
 		

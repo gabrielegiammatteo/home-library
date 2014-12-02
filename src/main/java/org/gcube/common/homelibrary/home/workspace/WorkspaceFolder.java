@@ -19,7 +19,6 @@ import org.gcube.common.homelibrary.home.workspace.exceptions.WorkspaceFolderNot
 import org.gcube.common.homelibrary.home.workspace.exceptions.WrongDestinationException;
 import org.gcube.common.homelibrary.home.workspace.exceptions.WrongItemTypeException;
 import org.gcube.common.homelibrary.home.workspace.folder.FolderBulkCreator;
-import org.gcube.common.homelibrary.home.workspace.folder.FolderItem;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalFile;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalImage;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalPDFFile;
@@ -30,9 +29,9 @@ import org.gcube.common.homelibrary.home.workspace.folder.items.QueryType;
 import org.gcube.common.homelibrary.home.workspace.folder.items.Report;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ReportTemplate;
 import org.gcube.common.homelibrary.home.workspace.folder.items.TabularDataLink;
+import org.gcube.common.homelibrary.home.workspace.folder.items.TabularDataLink.Provenance;
 import org.gcube.common.homelibrary.home.workspace.folder.items.WorkflowReport;
 import org.gcube.common.homelibrary.home.workspace.folder.items.WorkflowTemplate;
-import org.gcube.common.homelibrary.home.workspace.folder.items.TabularDataLink.Provenance;
 import org.gcube.common.homelibrary.home.workspace.folder.items.gcube.Annotation;
 import org.gcube.common.homelibrary.home.workspace.folder.items.gcube.Document;
 import org.gcube.common.homelibrary.home.workspace.folder.items.gcube.ImageDocument;

@@ -89,6 +89,8 @@
 	</Changeset>
 	<Changeset component="org.gcube.common.home-library.1-6-1"
 		date="2014-12-02">
-		<Change>Fix in Uri Resolver method</Change>
+		<Change>Fixed Uri Resolver method</Change>
+		<Change>Added feature to move a shared folder in a private folder</Change>
+		<Change>Added @Deprecation to unknown class</Change>
 	</Changeset>
 </ReleaseNotes>

@@ -9,6 +9,7 @@ import java.io.Serializable;
  * @author Federico De Faveri defaveri@isti.cnr.it
  *
  */
+@Deprecated
 public class TimeSeriesInfo implements Serializable, Cloneable {
 
 	private static final long serialVersionUID = -2391248161206397329L;

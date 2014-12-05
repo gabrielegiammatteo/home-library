@@ -11,6 +11,7 @@ import org.gcube.common.homelibrary.home.workspace.folder.items.gcube.DocumentMe
  * @author Federico De Faveri defaveri@isti.cnr.it
  *
  */
+@Deprecated
 public interface DocumentLink extends InfoObjectLink {
 	
 	/**

@@ -11,6 +11,7 @@ import org.gcube.common.homelibrary.home.workspace.folder.FolderItem;
  * @author Antonio Gioia
  *
  */
+@Deprecated
 public interface TabularDataLink extends FolderItem{
 	
 	public enum Provenance {

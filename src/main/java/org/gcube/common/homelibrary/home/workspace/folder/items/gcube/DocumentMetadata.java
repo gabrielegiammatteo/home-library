@@ -9,6 +9,7 @@ import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
  * @author Federico De Faveri defaveri@isti.cnr.it
  *
  */
+@Deprecated
 public interface DocumentMetadata {
 	
 	/**

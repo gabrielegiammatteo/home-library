@@ -14,6 +14,7 @@ import org.gcube.common.homelibrary.home.workspace.folder.FolderItem;
  * @author Antonio Gioia
  *
  */
+@Deprecated
 public interface ExternalResourceLink extends FolderItem {
 	
 	String getResourceId();

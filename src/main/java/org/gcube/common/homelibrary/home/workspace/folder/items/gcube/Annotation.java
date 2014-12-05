@@ -9,6 +9,7 @@ import java.util.Map;
  * @author Federico De Faveri defaveri@isti.cnr.it
  *
  */
+@Deprecated
 public interface Annotation extends InfoObject {
 	
 	/**

@@ -1116,5 +1116,13 @@ public interface Workspace extends WorkspaceEventSource {
 	int getTotalItems() throws InternalErrorException;
 
 
+	/**
+	 * 
+	 * @param number
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	public List<SearchItem> getLastItems(int number)
+			throws InternalErrorException;
 
 }

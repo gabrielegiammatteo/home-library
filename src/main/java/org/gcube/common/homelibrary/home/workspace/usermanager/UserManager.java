@@ -137,6 +137,14 @@ public interface UserManager {
 	 */
 	public boolean removeAdministrator(String scope, String username, String portalLogin) throws InternalErrorException , ItemNotFoundException;
 
+	/**
+	 * Check if a user is a group
+	 * @param groupId
+	 * @return true if the groupId is a group
+	 * @throws InternalErrorException
+	 */
+	Boolean isGroup(String groupId) throws InternalErrorException;
+
 
 
 }

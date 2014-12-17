@@ -1117,12 +1117,12 @@ public interface Workspace extends WorkspaceEventSource {
 
 
 	/**
-	 * 
-	 * @param number
+	 * Get items ordered by jcr:lastModified
+	 * @param limit: The maximum result size
 	 * @return
 	 * @throws InternalErrorException
 	 */
-	public List<SearchItem> getLastItems(int number)
+	public List<WorkspaceItem> getLastItems(int limit)
 			throws InternalErrorException;
 
 }

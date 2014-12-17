@@ -79,6 +79,13 @@ public interface WorkspaceItem {
 	public Calendar getLastModificationTime() throws InternalErrorException;
 
 	/**
+	 * Return last updated by
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	public String getLastUpdatedBy() throws InternalErrorException;
+	
+	/**
 	 * Return the last action on this Item.
 	 * @return the last action.
 	 * @throws InternalErrorException if an internal error occurs. 
@@ -238,7 +245,7 @@ public interface WorkspaceItem {
 	 * @return
 	 * @throws InternalErrorException
 	 */
-	public String getPublicLink(boolean shortenUrl) throws InternalErrorException;
+	public String getPublicLink(boolean shortUrl) throws InternalErrorException;
 
 
 	/**

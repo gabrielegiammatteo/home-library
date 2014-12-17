@@ -60,6 +60,6 @@ public interface File {
 	 * @param size
 	 * @throws InternalErrorException
 	 */
-	void updateInfo(String mimeType, long size) throws InternalErrorException;
+	public void updateInfo(String mimeType, long size) throws InternalErrorException;
 
 }

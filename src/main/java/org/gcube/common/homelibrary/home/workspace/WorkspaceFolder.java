@@ -584,5 +584,14 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws InternalErrorException
 	 */
 	public int getCount() throws InternalErrorException;
+	
+	/**
+	 * Get items ordered by jcr:lastModified
+	 * @param limit: The maximum result size
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	public List<WorkspaceItem> getLastItems(int limit)
+			throws InternalErrorException;
 
 }

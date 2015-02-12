@@ -123,7 +123,7 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 */
 	public ExternalFile createExternalFileItem(String name, String description, String mimeType, InputStream fileData) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
 
-	
+
 	/**
 	 * Create an External File into this folder.
 	 * @param name the external file name.
@@ -163,8 +163,8 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 */
 	public ExternalPDFFile createExternalPDFFileItem(String name, String description, String mimeType, File tmpFile) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
 
-	
-	
+
+
 	/**
 	 * Create an External URL into this folder.
 	 * @param name the external URL name.
@@ -191,7 +191,7 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 */
 	public ExternalUrl createExternalUrlItem(String name, String description, InputStream url) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
 
-	
+
 	/**
 	 * Create an External URL into this folder.
 	 * @param name the external URL name.
@@ -205,7 +205,7 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 */
 	public ExternalUrl createExternalUrlItem(String name, String description, File tmpFile) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
 
-	
+
 	/**
 	 * Create a Report Template into this folder.
 	 * @param name the template name.
@@ -577,14 +577,14 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws InternalErrorException
 	 */
 	public long getSize() throws InternalErrorException;
-	
+
 	/**
 	 * Get the number of items in a folder
 	 * @return the number of items in a folder
 	 * @throws InternalErrorException
 	 */
 	public int getCount() throws InternalErrorException;
-	
+
 	/**
 	 * Get items ordered by jcr:lastModified
 	 * @param limit: The maximum result size
@@ -594,4 +594,17 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	public List<WorkspaceItem> getLastItems(int limit)
 			throws InternalErrorException;
 
+	/**
+	 * Get the ACL of a WorkspaceSharedFolder
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	ACLType getACLUser() throws InternalErrorException;
+
+	/**
+	 * Get a map of ACL of a WorkspaceSharedFolder
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	Map<ACLType, List<String>> getACLOwner() throws InternalErrorException;
 }

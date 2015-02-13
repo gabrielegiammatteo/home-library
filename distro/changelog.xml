@@ -93,4 +93,13 @@
 		<Change>Added feature to move a shared folder in a private folder</Change>
 		<Change>Added @Deprecation to unknown class</Change>
 	</Changeset>
+	<Changeset component="org.gcube.common.home-library.1-7-0"
+		date="2015-02-13">
+		<Change>Fixed bug in WorkspaceItem: title and description were missing
+		</Change>
+		<Change>Fixed bug retrieving last items
+		</Change>
+		<Change>getACL() methods moved to Abstract Folder
+		</Change>
+	</Changeset>
 </ReleaseNotes>

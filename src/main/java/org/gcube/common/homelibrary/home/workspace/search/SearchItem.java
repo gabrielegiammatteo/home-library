@@ -5,7 +5,7 @@ package org.gcube.common.homelibrary.home.workspace.search;
 
 import java.util.Calendar;
 
-import org.gcube.common.homelibrary.home.workspace.WorkspaceItemType;
+import org.gcube.common.homelibary.model.items.type.WorkspaceItemType;
 
 /**
  * @author gioia

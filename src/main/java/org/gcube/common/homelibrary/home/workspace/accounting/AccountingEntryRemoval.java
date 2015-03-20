@@ -3,8 +3,8 @@
  */
 package org.gcube.common.homelibrary.home.workspace.accounting;
 
-import org.gcube.common.homelibrary.home.workspace.WorkspaceItemType;
-import org.gcube.common.homelibrary.home.workspace.folder.FolderItemType;
+import org.gcube.common.homelibary.model.items.type.FolderItemType;
+import org.gcube.common.homelibary.model.items.type.WorkspaceItemType;
 
 /**
  * @author gioia

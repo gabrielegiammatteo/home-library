@@ -3,7 +3,8 @@
  */
 package org.gcube.common.homelibrary.home.workspace.search;
 
-import org.gcube.common.homelibrary.home.workspace.folder.FolderItemType;
+import org.gcube.common.homelibary.model.items.type.FolderItemType;
+
 
 /**
  * @author gioia

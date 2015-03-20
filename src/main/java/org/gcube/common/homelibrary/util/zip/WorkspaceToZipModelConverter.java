@@ -10,11 +10,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.gcube.common.homelibary.model.items.type.FolderItemType;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceItem;
 import org.gcube.common.homelibrary.home.workspace.folder.FolderItem;
-import org.gcube.common.homelibrary.home.workspace.folder.FolderItemType;
 import org.gcube.common.homelibrary.home.workspace.folder.items.AquaMapsItem;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalFile;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalUrl;

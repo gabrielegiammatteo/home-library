@@ -6,6 +6,7 @@ package org.gcube.common.homelibrary.home.workspace;
 import java.util.Calendar;
 import java.util.List;
 
+import org.gcube.common.homelibary.model.items.type.WorkspaceItemType;
 import org.gcube.common.homelibary.model.util.WorkspaceItemAction;
 import org.gcube.common.homelibrary.home.User;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;

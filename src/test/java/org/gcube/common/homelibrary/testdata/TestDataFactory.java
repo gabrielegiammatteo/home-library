@@ -27,18 +27,12 @@ import org.gcube.common.homelibrary.home.workspace.folder.items.gcube.PDFDocumen
 import org.gcube.common.homelibrary.home.workspace.folder.items.gcube.UrlDocument;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ts.TimeSeries;
 import org.gcube.common.homelibrary.testdata.data.TestData;
-import org.gcube.common.homelibrary.testdata.manager.AquaMapItemDataManager;
 import org.gcube.common.homelibrary.testdata.manager.DocumentDataManager;
 import org.gcube.common.homelibrary.testdata.manager.ImageDataManager;
 import org.gcube.common.homelibrary.testdata.manager.MetadataDataManager;
 import org.gcube.common.homelibrary.testdata.manager.PDFDataManager;
 import org.gcube.common.homelibrary.testdata.manager.QueryDataManager;
-import org.gcube.common.homelibrary.testdata.manager.ReportDataManager;
-import org.gcube.common.homelibrary.testdata.manager.TemplateDataManager;
-import org.gcube.common.homelibrary.testdata.manager.TimeSeriesDataManager;
 import org.gcube.common.homelibrary.testdata.manager.UrlDataManager;
-import org.gcube.common.homelibrary.testdata.manager.WorkflowReportDataManager;
-import org.gcube.common.homelibrary.testdata.manager.WorkflowTemplateDataManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -73,13 +67,8 @@ public class TestDataFactory {
 	protected UrlDataManager urlDataManager;
 	protected DocumentDataManager genericDataManager;
 	protected MetadataDataManager metadataDataManager;
-	protected TimeSeriesDataManager timeSeriesDataManager;
 	protected QueryDataManager queryDataManager;
-	protected ReportDataManager reportDataManager;
-	protected TemplateDataManager templateDataManager;
-	protected AquaMapItemDataManager aquaMapItemDataManager;
-	protected WorkflowReportDataManager workflowReportDataManager;
-	protected WorkflowTemplateDataManager workflowTemplateDataManager;
+
 
 	protected TestDataFactory(){
 
@@ -89,13 +78,7 @@ public class TestDataFactory {
 		urlDataManager = new UrlDataManager();
 		genericDataManager = new DocumentDataManager();
 		metadataDataManager = new MetadataDataManager();
-		timeSeriesDataManager = new TimeSeriesDataManager();
 		queryDataManager = new QueryDataManager();
-		reportDataManager = new ReportDataManager();
-		templateDataManager = new TemplateDataManager();
-		aquaMapItemDataManager = new AquaMapItemDataManager();
-		workflowReportDataManager = new WorkflowReportDataManager();
-		workflowTemplateDataManager = new WorkflowTemplateDataManager();
 	}
 	
 	/**
@@ -112,17 +95,11 @@ public class TestDataFactory {
 		items.addAll(fillAllExternalPDFFiles(destinationFolder));
 		items.addAll(fillAllExternalUrls(destinationFolder));
 		items.addAll(fillAllQueries(destinationFolder));
-		items.addAll(fillAllReportTemplates(destinationFolder));
-		items.addAll(fillAllReports(destinationFolder));
-		items.addAll(fillAllTimeSeries(destinationFolder));
-//		items.addAll(fillAllAquaMapsItems(destinationFolder));
 		items.addAll(fillAllDocuments(destinationFolder));
 		items.addAll(fillAllImageDocuments(destinationFolder));
 		items.addAll(fillAllPDFDocuments(destinationFolder));
 		items.addAll(fillAllUrlDocuments(destinationFolder));
 		items.addAll(fillAllMetadata(destinationFolder));
-		items.addAll(fillAllWorkflowReports(destinationFolder));
-		items.addAll(fillAllWorkflowTemplates(destinationFolder));
 
 		//ANNOTATION;
 		//GPOD,
@@ -144,17 +121,12 @@ public class TestDataFactory {
 		items.addAll(fillExternalPDFFiles(destinationFolder, numberOfItems));
 		items.addAll(fillExternalUrls(destinationFolder, numberOfItems));
 		items.addAll(fillQueries(destinationFolder, numberOfItems));
-		items.addAll(fillReportTemplates(destinationFolder, numberOfItems));
-		items.addAll(fillReports(destinationFolder, numberOfItems));
-		items.addAll(fillTimeSeries(destinationFolder, numberOfItems));
 //		items.addAll(fillAquaMapsItems(destinationFolder,1));
 		items.addAll(fillDocuments(destinationFolder, numberOfItems));
 		items.addAll(fillImageDocuments(destinationFolder, numberOfItems));
 		items.addAll(fillPDFDocuments(destinationFolder, numberOfItems));
 		items.addAll(fillUrlDocuments(destinationFolder, numberOfItems));
 		items.addAll(fillMetadata(destinationFolder, numberOfItems));
-		items.addAll(fillWorkflowReports(destinationFolder, numberOfItems));
-		items.addAll(fillWorkflowTemplates(destinationFolder, numberOfItems));
 		
 		//ANNOTATION;
 		//GPOD,
@@ -391,26 +363,6 @@ public class TestDataFactory {
 		return metadataDataManager.fillAllMetadatas(destinationFolder);
 	}
 	
-	/**
-	 * @param destinationFolder the destination folder.
-	 * @param numberOfTimeSeries number of TS to generate.
-	 * @return the generated data.
-	 * @throws InternalErrorException if an error occurs.
-	 */
-	public List<TimeSeries> fillTimeSeries(WorkspaceFolder destinationFolder, int numberOfTimeSeries) throws InternalErrorException
-	{
-		return timeSeriesDataManager.fillDatas(destinationFolder, numberOfTimeSeries);
-	}
-	
-	/**
-	 * @param destinationFolder the destination folder.
-	 * @return the generated data.
-	 * @throws InternalErrorException if an error occurs.
-	 */
-	public List<TimeSeries> fillAllTimeSeries(WorkspaceFolder destinationFolder) throws InternalErrorException
-	{
-		return timeSeriesDataManager.fillAllDatas(destinationFolder);
-	}
 	
 	/**
 	 * @param destinationFolder the destination folder.
@@ -433,111 +385,6 @@ public class TestDataFactory {
 		return queryDataManager.fillAllDatas(destinationFolder);
 	}
 	
-	/**
-	 * @param destinationFolder the destination folder.
-	 * @param numberOfReports number of reports to generate.
-	 * @return the generated data.
-	 * @throws InternalErrorException if an error occurs.
-	 */
-	public List<Report> fillReports(WorkspaceFolder destinationFolder, int numberOfReports) throws InternalErrorException
-	{
-		return reportDataManager.fillDatas(destinationFolder, numberOfReports);
-	}
-	
-	/**
-	 * @param destinationFolder the destination folder.
-	 * @return the generated data.
-	 * @throws InternalErrorException if an error occurs.
-	 */
-	public List<Report> fillAllReports(WorkspaceFolder destinationFolder) throws InternalErrorException
-	{
-		return reportDataManager.fillAllDatas(destinationFolder);
-	}
-	
-	/**
-	 * @param destinationFolder the destination folder.
-	 * @param numberOfTemplates number of templates to generate.
-	 * @return the generated data.
-	 * @throws InternalErrorException if an error occurs.
-	 */
-	public List<ReportTemplate> fillReportTemplates(WorkspaceFolder destinationFolder, int numberOfTemplates) throws InternalErrorException
-	{
-		return templateDataManager.fillDatas(destinationFolder, numberOfTemplates);
-	}
-	
-	/**
-	 * @param destinationFolder the destination folder.
-	 * @return the generated data.
-	 * @throws InternalErrorException if an error occurs.
-	 */
-	public List<ReportTemplate> fillAllReportTemplates(WorkspaceFolder destinationFolder) throws InternalErrorException
-	{
-		return templateDataManager.fillAllDatas(destinationFolder);
-	}
-	
-	/**
-	 * @param destinationFolder the destination folder.
-	 * @param numberOfAquaMapsItems number of items to generate.
-	 * @return the generated data.
-	 * @throws InternalErrorException if an error occurs.
-	 */
-	public List<WorkspaceFolder> fillAquaMapsItems(WorkspaceFolder destinationFolder, int numberOfAquaMapsItems) throws InternalErrorException
-	{
-		return aquaMapItemDataManager.fillDatas(destinationFolder, numberOfAquaMapsItems);
-	}
-	
-	/**
-	 * @param destinationFolder the destination folder.
-	 * @return the generated data.
-	 * @throws InternalErrorException if an error occurs.
-	 */
-	public List<WorkspaceFolder> fillAllAquaMapsItems(WorkspaceFolder destinationFolder) throws InternalErrorException
-	{
-		return aquaMapItemDataManager.fillAllDatas(destinationFolder);
-	}
-	
-	/**
-	 * @param destinationFolder the destination folder.
-	 * @param numberOfWorkflowReports number of workflow reports to generate.
-	 * @return the generated data.
-	 * @throws InternalErrorException if an error occurs.
-	 */
-	public List<WorkflowReport> fillWorkflowReports(WorkspaceFolder destinationFolder, int numberOfWorkflowReports) throws InternalErrorException
-	{
-		return workflowReportDataManager.fillDatas(destinationFolder, numberOfWorkflowReports);
-	}
-	
-	/**
-	 * @param destinationFolder the destination folder.
-	 * @return the generated data.
-	 * @throws InternalErrorException if an error occurs.
-	 */
-	public List<WorkflowReport> fillAllWorkflowReports(WorkspaceFolder destinationFolder) throws InternalErrorException
-	{
-		return workflowReportDataManager.fillAllDatas(destinationFolder);
-	}
-	
-	
-	/**
-	 * @param destinationFolder the destination folder.
-	 * @param numberOfWorkflowTemplates number of workflow templates to generate.
-	 * @return the generated data.
-	 * @throws InternalErrorException if an error occurs.
-	 */
-	public List<WorkflowTemplate> fillWorkflowTemplates(WorkspaceFolder destinationFolder, int numberOfWorkflowTemplates) throws InternalErrorException
-	{
-		return workflowTemplateDataManager.fillDatas(destinationFolder, numberOfWorkflowTemplates);
-	}
-	
-	/**
-	 * @param destinationFolder the destination folder.
-	 * @return the generated data.
-	 * @throws InternalErrorException if an error occurs.
-	 */
-	public List<WorkflowTemplate> fillAllWorkflowTemplates(WorkspaceFolder destinationFolder) throws InternalErrorException
-	{
-		return workflowTemplateDataManager.fillAllDatas(destinationFolder);
-	}
 
 	/**
 	 * Retrieve an input stream from a random pdf.

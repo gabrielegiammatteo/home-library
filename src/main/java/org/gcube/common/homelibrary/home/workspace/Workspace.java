@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.gcube.common.homelibary.model.items.type.FolderItemType;
 import org.gcube.common.homelibrary.home.Home;
 import org.gcube.common.homelibrary.home.User;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
@@ -25,7 +26,6 @@ import org.gcube.common.homelibrary.home.workspace.exceptions.WrongItemTypeExcep
 import org.gcube.common.homelibrary.home.workspace.exceptions.WrongParentTypeException;
 import org.gcube.common.homelibrary.home.workspace.folder.FolderBulkCreator;
 import org.gcube.common.homelibrary.home.workspace.folder.FolderBulkCreatorManager;
-import org.gcube.common.homelibrary.home.workspace.folder.FolderItemType;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalFile;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalImage;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalPDFFile;
@@ -249,52 +249,6 @@ public interface Workspace extends WorkspaceEventSource {
 	 */
 	public ExternalUrl createExternalUrl(String name, String description, InputStream url, String destinationfolderId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException, WorkspaceFolderNotFoundException, IOException;
 
-	
-	/**
-	 * Create a new Report Template into a folder.
-	 * @param name the template name.
-	 * @param description the template description.
-	 * @param created the template creation time.
-	 * @param lastEdit the last edit time.
-	 * @param author the template author.
-	 * @param lastEditBy the last template editor.
-	 * @param numberOfSections the number of sections.
-	 * @param status the template status.
-	 * @param templateData the template content.
-	 * @param destinationfolderId the destination folder.
-	 * @return the new template.
-	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
-	 * @throws WorkspaceFolderNotFoundException if the destination folder has not been found.
-	 * @throws InternalErrorException if an internal error occurs.
-	 * @throws ItemAlreadyExistException if a folder item with same name already exist.
-	 * @throws WrongDestinationException if the destination type is not a folder.
-	 */
-	public ReportTemplate createReportTemplate(String name, String description, Calendar created, Calendar lastEdit, String author, String lastEditBy, int numberOfSections, String status, InputStream templateData, String destinationfolderId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException, WorkspaceFolderNotFoundException;
-	
-	
-	/**
-	 * Create a new Report into a folder.
-	 * @param name the report name.
-	 * @param description the report description.
-	 * @param created the report creation time.
-	 * @param lastEdit the last edit time.
-	 * @param author the report author.
-	 * @param lastEditBy the last report editor.
-	 * @param templateName the source template name.
-	 * @param numberOfSections the number of sections.
-	 * @param status the report status.
-	 * @param reportData the report content.
-	 * @param destinationfolderId the destination folder.
-	 * @return the new report.
-	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
-	 * @throws WorkspaceFolderNotFoundException if the destination folder has not been found.
-	 * @throws InternalErrorException if an internal error occurs.
-	 * @throws ItemAlreadyExistException if a folder item with same name already exist.
-	 * @throws WrongDestinationException if the destination type is not a folder.
-	 */
-	public Report createReport(String name, String description, Calendar created, Calendar lastEdit, String author, String lastEditBy, String templateName, int numberOfSections, 
-			String status, InputStream reportData, String destinationfolderId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException, WorkspaceFolderNotFoundException;
-	
 	
 	/**
 	 * Create a new query into a folder.
@@ -527,71 +481,6 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws WrongDestinationException if the destination type is not a folder.
 	 */
 	public PDFDocumentLink createPDFDocumentLink(String name, String description, String oid, Map<String, String> metadata, Map<String, String> annotations, String collectionName, String mimeType, String destinationfolderId) throws InsufficientPrivilegesException, WorkspaceFolderNotFoundException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException;
-	
-	/**
-	 * Create a new Time Series.
-	 * @param name the item name.
-	 * @param description the item description.
-	 * @param timeseriesId the Time Series id.
-	 * @param title the Time Series title.
-	 * @param creator the Time Series creator.
-	 * @param timeseriesDescription the Time Series description. 
-	 * @param timeseriesCreationDate the Time Series creation date.
-	 * @param publisher the Time Series publisher.
-	 * @param sourceId the Time Series source id.
-	 * @param sourceName the Time Series source name.
-	 * @param rights the Time Series rights.
-	 * @param dimension the Time Series dimension.
-	 * @param headerLabels the Time Series headers label.
-	 * @param compressedCSV the Time Series csv compressed representation (with labels and UTF-8 encoded).
-	 * @param destinationfolderId the time series destination folder.
-	 * @return the created Time Series.
-	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
-	 * @throws InternalErrorException if an internal error occurs.
-	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
-	 * @throws WorkspaceFolderNotFoundException  if the destination folder has not been found.
-	 * @throws WrongDestinationException if the destination type is not a folder.
-	 */
-	public TimeSeries createTimeSeries(String name, String description, String timeseriesId, String title, String creator, String timeseriesDescription,
-			String timeseriesCreationDate, String publisher, String sourceId, String sourceName, String rights, long dimension, 
-			List<String> headerLabels, InputStream compressedCSV,
-			String destinationfolderId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, WorkspaceFolderNotFoundException, WrongDestinationException;
-	
-	/**
-	 * Creates a Workflow Report.
-	 * @param name the workflow Report name.
-	 * @param description the workflow Report description.
-	 * @param workflowId the workflow id.
-	 * @param workflowStatus the workflow status.
-	 * @param workflowData the workflow data.
-	 * @param destinationfolderId the Workflow Report destination folder.
-	 * @return the created Workflow Report.
-	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
-	 * @throws InternalErrorException if an internal error occurs.
-	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
-	 * @throws WorkspaceFolderNotFoundException  if the destination folder has not been found.
-	 * @throws WrongDestinationException if the destination type is not a folder.
-	 */
-	public WorkflowReport createWorkflowReport(String name, String description, String workflowId, String workflowStatus, String workflowData, String destinationfolderId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, WorkspaceFolderNotFoundException, WrongDestinationException;
-
-	/**
-	 * Creates a Workflow Template.
-	 * @param name the workflow Template name.
-	 * @param description the workflow Template description.
-	 * @param workflowId the workflow id.
-	 * @param workflowStatus the workflow status.
-	 * @param workflowData the workflow data.
-	 * @param destinationfolderId the Workflow Template destination folder.
-	 * @return the created Workflow Template.
-	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
-	 * @throws InternalErrorException if an internal error occurs.
-	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
-	 * @throws WorkspaceFolderNotFoundException  if the destination folder has not been found.
-	 * @throws WrongDestinationException if the destination type is not a folder.
-	 */
-	public WorkflowTemplate createWorkflowTemplate(String name, String description, String workflowId, String workflowStatus, String workflowData, String destinationfolderId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, WorkspaceFolderNotFoundException, WrongDestinationException; 
-	
-	
 	
 	
 	/**
@@ -918,30 +807,6 @@ public interface Workspace extends WorkspaceEventSource {
 			throws InternalErrorException, InsufficientPrivilegesException,
 			ItemAlreadyExistException, WrongDestinationException,
 			ItemNotFoundException, WorkspaceFolderNotFoundException;
-
-	
-	/**
-	 * @param name
-	 * @param description
-	 * @param tableId
-	 * @param template
-	 * @param provenance
-	 * @param operator
-	 * @param runtimeResourceName
-	 * @param destinationFolderId
-	 * @return
-	 * @throws InsufficientPrivilegesException
-	 * @throws InternalErrorException
-	 * @throws ItemAlreadyExistException
-	 * @throws WrongDestinationException
-	 * @throws WorkspaceFolderNotFoundException
-	 */
-	public TabularDataLink createTabularDataLink(String name, String description,
-			String tableId, String template, Provenance provenance,
-			String operator, String runtimeResourceName,
-			String destinationFolderId) throws InsufficientPrivilegesException,
-			InternalErrorException, ItemAlreadyExistException,
-			WrongDestinationException, WorkspaceFolderNotFoundException;
 
 
 	/**

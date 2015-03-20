@@ -3,11 +3,11 @@
  */
 package org.gcube.common.homelibrary.util;
 
+import org.gcube.common.homelibary.model.items.type.FolderItemType;
+import org.gcube.common.homelibary.model.items.type.WorkspaceItemType;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceItem;
-import org.gcube.common.homelibrary.home.workspace.WorkspaceItemType;
 import org.gcube.common.homelibrary.home.workspace.exceptions.WrongItemTypeException;
 import org.gcube.common.homelibrary.home.workspace.folder.FolderItem;
-import org.gcube.common.homelibrary.home.workspace.folder.FolderItemType;
 
 
 /**

@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.gcube.common.homelibrary.home.User;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
-import org.gcube.common.homelibrary.home.workspace.accessmanager.ACLType;
 import org.gcube.common.homelibrary.home.workspace.accounting.AccountingEntry;
 import org.gcube.common.homelibrary.home.workspace.accounting.AccountingEntryRead;
 import org.gcube.common.homelibrary.home.workspace.acl.Capabilities;
@@ -90,7 +89,7 @@ public interface WorkspaceItem {
 	 * @return the last action.
 	 * @throws InternalErrorException if an internal error occurs. 
 	 */
-	public WorkspaceItemAction getLastAction() throws InternalErrorException;
+	public org.gcube.common.homelibary.model.util.WorkspaceItemAction getLastAction() throws InternalErrorException;
 
 	/**
 	 * This item owner.

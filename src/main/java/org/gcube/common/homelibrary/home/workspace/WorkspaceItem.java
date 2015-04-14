@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.List;
 
 
+import org.gcube.common.homelibary.model.items.ItemDelegate;
 import org.gcube.common.homelibary.model.items.type.WorkspaceItemType;
 import org.gcube.common.homelibrary.home.User;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
@@ -97,7 +98,7 @@ public interface WorkspaceItem {
 	 * @return the owner.
 	 * @throws InternalErrorException if an internal error occurs.  
 	 */
-	public User getOwner() throws InternalErrorException;
+	public String getOwner() throws InternalErrorException;
 
 	/**
 	 * The item capabilities.
@@ -263,6 +264,7 @@ public interface WorkspaceItem {
 	 * @throws InternalErrorException
 	 */
 	void deleteACL(List<String> users) throws InternalErrorException;
+
 
 
 

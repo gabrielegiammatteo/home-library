@@ -84,7 +84,7 @@ public interface WorkspaceSmartFolder {
 	 * @return the owner.
 	 * @throws InternalErrorException if an internal error occurs.  
 	 */
-	public User getOwner() throws InternalErrorException;
+	public String getOwner() throws InternalErrorException;
 
 	/**
 	 * The item capabilities.

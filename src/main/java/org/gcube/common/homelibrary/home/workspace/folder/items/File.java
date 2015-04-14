@@ -53,13 +53,7 @@ public interface File {
 	 * @throws InternalErrorException if an error occurs. 
 	 */
 	public void getHardLink(String linkName) throws InternalErrorException;
-	
 
-	/**
-	 * @param mimeType
-	 * @param size
-	 * @throws InternalErrorException
-	 */
-	public void updateInfo(String mimeType, long size) throws InternalErrorException;
+	
 
 }

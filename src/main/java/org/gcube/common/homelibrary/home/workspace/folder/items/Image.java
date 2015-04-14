@@ -45,11 +45,11 @@ public interface Image extends File {
 	 */
 	public int getThumbnailHeight();
 	
-	/**
-	 * The image thumbnail length.
-	 * @return the thumbnail length.
-	 * @throws InternalErrorException if an internal error occurs. 
-	 */
-	public long getThumbnailLength() throws InternalErrorException;
+//	/**
+//	 * The image thumbnail length.
+//	 * @return the thumbnail length.
+//	 * @throws InternalErrorException if an internal error occurs. 
+//	 */
+//	public long getThumbnailLength() throws InternalErrorException;
 	
 }

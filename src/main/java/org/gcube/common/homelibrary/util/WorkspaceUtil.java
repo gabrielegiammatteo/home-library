@@ -8,6 +8,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
@@ -176,19 +179,25 @@ public class WorkspaceUtil {
 		try{
 
 			tmpFile = WorkspaceUtil.getTmpFile(is);	
-
+ 
+			
 			if (mimeType==null){
-				FileInputStream tmpIs = null;		
-				try{				
-					tmpIs = new FileInputStream(tmpFile);
-					mimeType = MimeTypeUtil.getMimeType(name, tmpIs);
-					is = new FileInputStream(tmpFile);
-				}catch (Exception e) {
-
-				}finally{
-					if (tmpIs!=null)
-						tmpIs.close();
-				}
+				
+				//mime detect java 7
+				 Path source = Paths.get(tmpFile.getAbsolutePath());
+				mimeType = Files.probeContentType(source);
+				
+//				FileInputStream tmpIs = null;		
+//				try{				
+//					tmpIs = new FileInputStream(tmpFile);
+//					mimeType = MimeTypeUtil.getMimeType(name, tmpIs);
+//					is = new FileInputStream(tmpFile);
+//				}catch (Exception e) {
+//
+//				}finally{
+//					if (tmpIs!=null)
+//						tmpIs.close();
+//				}
 			}
 			mimeTypeChecked = mimeType;
 

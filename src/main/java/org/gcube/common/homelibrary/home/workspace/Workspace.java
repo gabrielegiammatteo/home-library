@@ -31,6 +31,7 @@ import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalImage;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalPDFFile;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalResourceLink;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalUrl;
+import org.gcube.common.homelibrary.home.workspace.folder.items.GCubeItem;
 import org.gcube.common.homelibrary.home.workspace.folder.items.Query;
 import org.gcube.common.homelibrary.home.workspace.folder.items.QueryType;
 import org.gcube.common.homelibrary.home.workspace.folder.items.Report;
@@ -42,6 +43,7 @@ import org.gcube.common.homelibrary.home.workspace.folder.items.TabularDataLink.
 import org.gcube.common.homelibrary.home.workspace.search.SearchItemByOperator;
 import org.gcube.common.homelibrary.home.workspace.search.SearchFolderItem;
 import org.gcube.common.homelibrary.home.workspace.search.SearchItem;
+import org.gcube.common.homelibrary.home.workspace.search.util.SearchQuery;
 import org.gcube.common.homelibrary.home.workspace.sharing.WorkspaceMessageManager;
 import org.gcube.common.homelibrary.home.workspace.trash.WorkspaceTrashFolder;
 
@@ -566,6 +568,24 @@ public interface Workspace extends WorkspaceEventSource {
 			ItemAlreadyExistException, WrongDestinationException,
 			ItemNotFoundException, WorkspaceFolderNotFoundException;
 
+	
+	/**
+	 * Shared an exist {@link WorkspaceFolder} with a list of users
+	 * @param users. A list of portal logins. 
+	 * @param destinationFolderId
+	 * @return the shared folder
+	 * @throws InternalErrorException
+	 * @throws InsufficientPrivilegesException
+	 * @throws ItemAlreadyExistException
+	 * @throws WrongDestinationException
+	 * @throws ItemNotFoundException
+	 * @throws WorkspaceFolderNotFoundException
+	 */
+	public WorkspaceSharedFolder share(List<String> users, String itemId)
+			throws InternalErrorException, InsufficientPrivilegesException,
+			ItemAlreadyExistException, WrongDestinationException,
+			ItemNotFoundException, WorkspaceFolderNotFoundException;
+
 
 	/**
 	 * @param mimeType
@@ -737,6 +757,20 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws InternalErrorException
 	 */
 	int getTotalItems() throws InternalErrorException;
+
+	/**
+	 * @param properties
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	List<GCubeItem> searchGCubeItems(SearchQuery query)
+			throws InternalErrorException;
+
+	/**
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	public WorkspaceFolder getApplicationArea() throws InternalErrorException;
 
 
 }

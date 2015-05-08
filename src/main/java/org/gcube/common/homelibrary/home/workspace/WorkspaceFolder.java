@@ -229,7 +229,7 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws WrongDestinationException
 	 * @throws InternalErrorException
 	 */
-	public WorkspaceSharedFolder share(List<String> useers) throws InsufficientPrivilegesException,
+	public WorkspaceSharedFolder share(List<String> users) throws InsufficientPrivilegesException,
 	WrongDestinationException, InternalErrorException;
 
 	/**
@@ -272,17 +272,5 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	public List<WorkspaceItem> getLastItems(int limit)
 			throws InternalErrorException;
 
-	/**
-	 * Get the ACL of a WorkspaceSharedFolder
-	 * @return
-	 * @throws InternalErrorException
-	 */
-	ACLType getACLUser() throws InternalErrorException;
 
-	/**
-	 * Get a map of ACL of a WorkspaceSharedFolder
-	 * @return
-	 * @throws InternalErrorException
-	 */
-	Map<ACLType, List<String>> getACLOwner() throws InternalErrorException;
 }

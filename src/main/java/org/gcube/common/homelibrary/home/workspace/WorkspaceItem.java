@@ -5,12 +5,14 @@ package org.gcube.common.homelibrary.home.workspace;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 
 import org.gcube.common.homelibary.model.items.ItemDelegate;
 import org.gcube.common.homelibary.model.items.type.WorkspaceItemType;
 import org.gcube.common.homelibrary.home.User;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
+import org.gcube.common.homelibrary.home.workspace.accessmanager.ACLType;
 import org.gcube.common.homelibrary.home.workspace.accounting.AccountingEntry;
 import org.gcube.common.homelibrary.home.workspace.accounting.AccountingEntryRead;
 import org.gcube.common.homelibrary.home.workspace.acl.Capabilities;
@@ -98,7 +100,7 @@ public interface WorkspaceItem {
 	 * @return the owner.
 	 * @throws InternalErrorException if an internal error occurs.  
 	 */
-	public String getOwner() throws InternalErrorException;
+	public User getOwner() throws InternalErrorException;
 
 	/**
 	 * The item capabilities.
@@ -267,7 +269,19 @@ public interface WorkspaceItem {
 
 
 
+	/**
+	 * Get the ACL of a WorkspaceSharedFolder
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	ACLType getACLUser() throws InternalErrorException;
 
+	/**
+	 * Get a map of ACL of a WorkspaceSharedFolder
+	 * @return
+	 * @throws InternalErrorException
+	 */
+	Map<ACLType, List<String>> getACLOwner() throws InternalErrorException;
 
 
 }

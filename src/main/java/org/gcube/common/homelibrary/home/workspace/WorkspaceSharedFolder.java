@@ -9,15 +9,16 @@ import java.util.Map;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.accessmanager.ACLType;
 import org.gcube.common.homelibrary.home.workspace.exceptions.InsufficientPrivilegesException;
+import org.gcube.common.homelibrary.home.workspace.exceptions.WrongDestinationException;
 
 
 /**
  * @author gioia
  *
  */
-public interface WorkspaceSharedFolder extends WorkspaceFolder {
-	
-	
+
+public interface WorkspaceSharedFolder extends WorkspaceFolder{
+
 	/**
 	 * Get Administrators
 	 * @return Administrators
@@ -126,4 +127,10 @@ public interface WorkspaceSharedFolder extends WorkspaceFolder {
 	 */
 	List<String> getGroups() throws InternalErrorException;
 
+	
+	public WorkspaceSharedFolder share(List<String> users) throws InsufficientPrivilegesException,
+	WrongDestinationException, InternalErrorException;
+
+	
+	
 }

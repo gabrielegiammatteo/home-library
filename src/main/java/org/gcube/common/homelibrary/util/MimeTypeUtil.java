@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -147,6 +148,8 @@ public class MimeTypeUtil {
 	 */
 	public static String getMimeType(String filenameWithExtension, InputStream file){
 
+//		return Files.probeContentType(file);
+		
 		TikaConfig config = TikaConfig.getDefaultConfig();
 		Detector detector = config.getDetector();
 		TikaInputStream stream = TikaInputStream.get(file);

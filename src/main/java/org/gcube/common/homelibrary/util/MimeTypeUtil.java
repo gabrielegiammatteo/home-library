@@ -4,18 +4,16 @@
 package org.gcube.common.homelibrary.util;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.apache.tika.config.TikaConfig;
-import org.apache.tika.detect.Detector;
-import org.apache.tika.io.TikaInputStream;
-import org.apache.tika.metadata.Metadata;
-import org.apache.tika.mime.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,7 +38,7 @@ public class MimeTypeUtil {
 		"application/x-winzip",
 		"application/x-zip",
 		"application/zip",
-		"multipart/x-zip"};
+	"multipart/x-zip"};
 
 	protected static final Map<String, String> mimetype_extension_map = new LinkedHashMap<String, String>();
 	protected static final Map<String, String> extension_mimetype_map = new LinkedHashMap<String, String>();
@@ -141,58 +139,147 @@ public class MimeTypeUtil {
 	//		return MimeUtil.getMostSpecificMimeType(MimeUtil.getMimeTypes(file)).toString();
 	//	}
 	//
-	/**
-	 * @param file the file to check
-	 * @return the mime type.
-	 * @throws IOException 
-	 */
-	public static String getMimeType(String filenameWithExtension, InputStream file){
 
-//		return Files.probeContentType(file);
+
+	/**
+	 * @param name
+	 * @param absoluteFile
+	 * @return
+	 */
+	public static String getMimeType(File file) {
+
 		
-		TikaConfig config = TikaConfig.getDefaultConfig();
-		Detector detector = config.getDetector();
-		TikaInputStream stream = TikaInputStream.get(file);
-		Metadata metadata = new Metadata();
-		metadata.add(Metadata.RESOURCE_NAME_KEY, filenameWithExtension);
-		MediaType mediaType = null;
-
+		String mimeType = null;
+		Path source = Paths.get(file.getAbsolutePath());
 		try {
-			mediaType = detector.detect(stream, metadata);
-
+			mimeType = Files.probeContentType(source);
 		} catch (IOException e) {
-			logger.error("Error detecting mime type for file " + filenameWithExtension);
+		logger.error("Error getting mime type");
 		}
-		//		System.out.println("*********************************** " + mediaType.getBaseType().toString());
-		return mediaType.getBaseType().toString();
-		//		String mimeType = MimeUtil.getMostSpecificMimeType(MimeUtil.getMimeTypes(file)).toString();
-		//		return mimeType;
+		
+		return mimeType;
 	}
 
+		/**
+		 * @param file the file to check
+		 * @return the mime type.
+		 * @throws IOException 
+		 */
+		public static String getMimeType(String filenameWithExtension, InputStream file){
 
-	/**
-	 * @param args arguments.
-	 * @throws IOException if an error occurs.
-	 */
-	public static void main(String[] args) throws IOException {
-		//		System.out.println(MimeTypeUtil.getExtension("application/vnd.ms-works"));
+			//		return Files.probeContentType(file);
+			File tmpFile = null;
+			try{
 
-	}
+				tmpFile = WorkspaceUtil.getTmpFile(file);	
+			}catch (Exception e) {
+				// TODO: handle exception
+			}
+			return getMimeType(tmpFile);
+			//			
+			//		TikaConfig config = TikaConfig.getDefaultConfig();
+			//		Detector detector = config.getDetector();
+			//		TikaInputStream stream = TikaInputStream.get(file);
+			//		Metadata metadata = new Metadata();
+			//		metadata.add(Metadata.RESOURCE_NAME_KEY, filenameWithExtension);
+			//		MediaType mediaType = null;
+			//
+			//		try {
+			//			mediaType = detector.detect(stream, metadata);
+			//
+			//		} catch (IOException e) {
+			//			logger.error("Error detecting mime type for file " + filenameWithExtension);
+			//		}
+			//		//		System.out.println("*********************************** " + mediaType.getBaseType().toString());
+			//		return mediaType.getBaseType().toString();
+			//		String mimeType = MimeUtil.getMostSpecificMimeType(MimeUtil.getMimeTypes(file)).toString();
+			//		return mimeType;
+		}
 
-	/**
-	 * @param name the file name.
-	 * @param mimeType the mime type.
-	 * @return the right name.
-	 * @throws IOException 
-	 */
-	public static String getNameWithExtension(String name, String mimeType) throws IOException
-	{
 
-		logger.trace("getNameWithExtension name: "+name+" mimeType: "+mimeType);
+		/**
+		 * @param args arguments.
+		 * @throws IOException if an error occurs.
+		 */
+		public static void main(String[] args) throws IOException {
+			//		System.out.println(MimeTypeUtil.getExtension("application/vnd.ms-works"));
 
-		if (mimeType == null) return name;
+		}
 
-		//we check if there exists an extension
+		/**
+		 * @param name the file name.
+		 * @param mimeType the mime type.
+		 * @return the right name.
+		 * @throws IOException 
+		 */
+		public static String getNameWithExtension(String name, String mimeType) throws IOException
+		{
+
+			logger.trace("getNameWithExtension name: "+name+" mimeType: "+mimeType);
+
+			if (mimeType == null) return name;
+
+			//we check if there exists an extension
+			//		if (name.contains(".")){
+			//			logger.trace("contains an extension");
+			//
+			//			if (name.lastIndexOf(".") < name.length()-1) {
+			//
+			//				String ext = name.substring(name.lastIndexOf(".")+1);
+			//				logger.trace("ext: "+ext);
+			//
+			//				//we check if there is a mimetype associated with the extension
+			////				String mimetypeCandidate = MimeTypeUtil.getMimeType(ext);
+			//				String mimetypeCandidate = MimeTypeUtil.getMimeType( name, new BufferedInputStream());
+			//				logger.trace("mimetypeCandidate: "+mimetypeCandidate);
+			//
+			//				if (mimetypeCandidate!=null){
+			//					//the extension is correct
+			//					if (mimetypeCandidate.equalsIgnoreCase(mimeType)) {
+			//						logger.trace("mimetypeCandidate: "+mimetypeCandidate+" == "+mimeType+" mimetype");
+			//
+			//						return name;
+			//					}
+			//				}
+			//			}
+			//		} else logger.trace("no extension contained");
+
+			String extension = MimeTypeUtil.getExtension(mimeType);
+			logger.trace("extension: "+extension);
+
+			if (extension == null) extension = "";
+			else extension = "." + extension;
+
+			if (name.toLowerCase().endsWith(extension.toLowerCase())) {
+				logger.trace("extension already exist in name, returning name");
+				return name;
+			}
+
+			logger.trace("returning "+name+extension);
+
+			return name+extension;
+		}
+
+		/**
+		 * Check if the content type is a zip type.
+		 * @param contentType the content type to check.
+		 * @return <code>true</code> if is a zip file, <code>false</code> otherwise.
+		 */
+		public static boolean isZipContentType(String contentType)
+		{
+			for (String zip_mimetype:ZIP_MIMETYPES) if (zip_mimetype.equals(contentType)) return true;
+			return false;
+		}
+
+
+
+		//	/**
+		//	 * @param mimeType
+		//	 * @return
+		//	 * @throws IOException 
+		//	 */
+		//	public static String getMime(String name) throws IOException {
+		//		String mimetypeCandidate = null;
 		//		if (name.contains(".")){
 		//			logger.trace("contains an extension");
 		//
@@ -202,72 +289,14 @@ public class MimeTypeUtil {
 		//				logger.trace("ext: "+ext);
 		//
 		//				//we check if there is a mimetype associated with the extension
-		////				String mimetypeCandidate = MimeTypeUtil.getMimeType(ext);
-		//				String mimetypeCandidate = MimeTypeUtil.getMimeType( name, new BufferedInputStream());
+		//				mimetypeCandidate = MimeTypeUtil.getMimeType(new File(name), name);
 		//				logger.trace("mimetypeCandidate: "+mimetypeCandidate);
 		//
-		//				if (mimetypeCandidate!=null){
-		//					//the extension is correct
-		//					if (mimetypeCandidate.equalsIgnoreCase(mimeType)) {
-		//						logger.trace("mimetypeCandidate: "+mimetypeCandidate+" == "+mimeType+" mimetype");
 		//
-		//						return name;
-		//					}
-		//				}
 		//			}
-		//		} else logger.trace("no extension contained");
+		//		}
+		//		return mimetypeCandidate;
+		//	}
 
-		String extension = MimeTypeUtil.getExtension(mimeType);
-		logger.trace("extension: "+extension);
 
-		if (extension == null) extension = "";
-		else extension = "." + extension;
-
-		if (name.toLowerCase().endsWith(extension.toLowerCase())) {
-			logger.trace("extension already exist in name, returning name");
-			return name;
-		}
-
-		logger.trace("returning "+name+extension);
-
-		return name+extension;
 	}
-
-	/**
-	 * Check if the content type is a zip type.
-	 * @param contentType the content type to check.
-	 * @return <code>true</code> if is a zip file, <code>false</code> otherwise.
-	 */
-	public static boolean isZipContentType(String contentType)
-	{
-		for (String zip_mimetype:ZIP_MIMETYPES) if (zip_mimetype.equals(contentType)) return true;
-		return false;
-	}
-
-	//	/**
-	//	 * @param mimeType
-	//	 * @return
-	//	 * @throws IOException 
-	//	 */
-	//	public static String getMime(String name) throws IOException {
-	//		String mimetypeCandidate = null;
-	//		if (name.contains(".")){
-	//			logger.trace("contains an extension");
-	//
-	//			if (name.lastIndexOf(".") < name.length()-1) {
-	//
-	//				String ext = name.substring(name.lastIndexOf(".")+1);
-	//				logger.trace("ext: "+ext);
-	//
-	//				//we check if there is a mimetype associated with the extension
-	//				mimetypeCandidate = MimeTypeUtil.getMimeType(new File(name), name);
-	//				logger.trace("mimetypeCandidate: "+mimetypeCandidate);
-	//
-	//
-	//			}
-	//		}
-	//		return mimetypeCandidate;
-	//	}
-
-
-}

@@ -3,6 +3,7 @@
  */
 package org.gcube.common.homelibrary.home.workspace.folder.items;
 
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -28,7 +29,7 @@ public interface GCubeItem extends FolderItem {
 
 	public WorkspaceSharedFolder share(List<String> users) throws InternalErrorException;
 
-
+	public InputStream getData() throws InternalErrorException;
 	
 
 }

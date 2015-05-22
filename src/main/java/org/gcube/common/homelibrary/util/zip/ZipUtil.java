@@ -14,6 +14,8 @@ import org.apache.commons.io.IOUtils;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceItem;
+import org.gcube.common.homelibrary.home.workspace.folder.items.GCubeItem;
+import org.gcube.common.homelibrary.home.workspace.folder.items.ts.TimeSeries;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +40,30 @@ public class ZipUtil {
 		return zipWorkspaceItem(folder);
 	}
 
+	
+	/**
+	 * Zip the document into a tmp zip file.
+	 * @param document the document to compress.
+	 * @return the zip tmp file.
+	 * @throws IOException if an error occurs.
+	 * @throws InternalErrorException if an error occurs.
+	 */
+	public static File zipDocument(GCubeItem document) throws IOException, InternalErrorException
+	{
+		return zipWorkspaceItem(document);
+	}
+	
+	/**
+	 * @param ts the time series to zip.
+	 * @return the zipped file.
+	 * @throws IOException if an error occurs.
+	 * @throws InternalErrorException if an error occurs.
+	 */
+	public static File zipTimeSeries(TimeSeries ts) throws IOException, InternalErrorException
+	{
+		return zipWorkspaceItem(ts);
+	}
+	
 	
 	protected static File zipWorkspaceItem(WorkspaceItem workspaceItem) throws InternalErrorException, IOException
 	{
@@ -75,4 +101,7 @@ public class ZipUtil {
 		out.close();
 	}
 
+	
+
+	
 }

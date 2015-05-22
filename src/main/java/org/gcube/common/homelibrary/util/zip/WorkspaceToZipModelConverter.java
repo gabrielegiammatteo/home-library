@@ -15,7 +15,6 @@ import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceItem;
 import org.gcube.common.homelibrary.home.workspace.folder.FolderItem;
-import org.gcube.common.homelibrary.home.workspace.folder.items.AquaMapsItem;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalFile;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalUrl;
 import org.gcube.common.homelibrary.home.workspace.folder.items.File;

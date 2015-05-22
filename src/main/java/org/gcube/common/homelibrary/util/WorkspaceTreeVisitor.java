@@ -4,14 +4,12 @@
 package org.gcube.common.homelibrary.util;
 
 import java.io.PrintStream;
-import java.util.List;
 
 import org.gcube.common.homelibrary.home.User;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceItem;
 import org.gcube.common.homelibrary.home.workspace.folder.FolderItem;
-import org.gcube.common.homelibrary.home.workspace.folder.items.AquaMapsItem;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalFile;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalImage;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalPDFFile;
@@ -21,8 +19,7 @@ import org.gcube.common.homelibrary.home.workspace.folder.items.PDF;
 import org.gcube.common.homelibrary.home.workspace.folder.items.Query;
 import org.gcube.common.homelibrary.home.workspace.folder.items.Report;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ReportTemplate;
-import org.gcube.common.homelibrary.home.workspace.folder.items.WorkflowReport;
-import org.gcube.common.homelibrary.home.workspace.folder.items.WorkflowTemplate;
+
 
 /**
  * An utility to visit a workspace tree.
@@ -108,9 +105,6 @@ public class WorkspaceTreeVisitor extends IndentedVisitor {
 			case QUERY: visitQuery((Query)item); break;
 			case REPORT: visitReport((Report)item); break;
 			case REPORT_TEMPLATE: visitReportTemplate((ReportTemplate)item); break;
-			case AQUAMAPS_ITEM: visitAquaMapsItem((AquaMapsItem)item); break;
-			case WORKFLOW_REPORT: visitWorkflowReport((WorkflowReport) item); break;
-			case WORKFLOW_TEMPLATE: visitWorkflowTemplate((WorkflowTemplate) item); break;
 			//TODO add more types
 			default: {
 				printWorkspaceItem(item);
@@ -155,23 +149,6 @@ public class WorkspaceTreeVisitor extends IndentedVisitor {
 		printFolderItem(file);
 		println("MimeType "+file.getMimeType());
 		println("Length "+file.getLength());
-	}
-	
-	protected void visitAquaMapsItem(AquaMapsItem aquamapsitem) throws InternalErrorException
-	{
-		println("[AquaMapsItem]");
-		printFolderItem(aquamapsitem);
-		println("Author "+aquamapsitem.getAuthor());
-		println("MapName "+aquamapsitem.getMapName());
-		println("NumberOfSpecies "+aquamapsitem.getNumberOfSpecies());
-		println("BoundingBox "+aquamapsitem.getBoundingBox());
-		println("PsoThreshold "+aquamapsitem.getPsoThreshold());
-		println("NumberOfGeneratedImages "+aquamapsitem.getNumberOfGeneratedImages());	
-		println("images:");
-		indent();
-		for (Image image:aquamapsitem.getImages()) visitImageH(image);
-		outdent();
-		println("Length "+aquamapsitem.getLength());
 	}
 	
 	protected void visitImageH(Image img) throws InternalErrorException
@@ -232,18 +209,6 @@ public class WorkspaceTreeVisitor extends IndentedVisitor {
 		println("LastEdit "+sdf.format(reportTemplate.getLastEdit().getTime()));
 		println("Status "+reportTemplate.getStatus());
 		println("Length "+reportTemplate.getLength());
-	}
-	
-	protected void visitWorkflowReport(WorkflowReport report) throws InternalErrorException
-	{
-		println("[WorkflowReport]");
-		printFolderItem(report);
-	}
-	
-	protected void visitWorkflowTemplate(WorkflowTemplate template) throws InternalErrorException
-	{
-		println("[WorkflowTemplate]");
-		printFolderItem(template);
 	}
 	
 

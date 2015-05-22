@@ -29,17 +29,13 @@ import org.gcube.common.homelibrary.home.workspace.folder.FolderBulkCreatorManag
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalFile;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalImage;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalPDFFile;
-import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalResourceLink;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalUrl;
 import org.gcube.common.homelibrary.home.workspace.folder.items.GCubeItem;
 import org.gcube.common.homelibrary.home.workspace.folder.items.Query;
 import org.gcube.common.homelibrary.home.workspace.folder.items.QueryType;
 import org.gcube.common.homelibrary.home.workspace.folder.items.Report;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ReportTemplate;
-import org.gcube.common.homelibrary.home.workspace.folder.items.TabularDataLink;
-import org.gcube.common.homelibrary.home.workspace.folder.items.WorkflowReport;
-import org.gcube.common.homelibrary.home.workspace.folder.items.WorkflowTemplate;
-import org.gcube.common.homelibrary.home.workspace.folder.items.TabularDataLink.Provenance;
+import org.gcube.common.homelibrary.home.workspace.folder.items.ts.TimeSeries;
 import org.gcube.common.homelibrary.home.workspace.search.SearchItemByOperator;
 import org.gcube.common.homelibrary.home.workspace.search.SearchFolderItem;
 import org.gcube.common.homelibrary.home.workspace.search.SearchItem;
@@ -241,7 +237,113 @@ public interface Workspace extends WorkspaceEventSource {
 	 */
 	public ExternalUrl createExternalUrl(String name, String description, InputStream url, String destinationfolderId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException, WorkspaceFolderNotFoundException, IOException;
 
+	/**
+	 * Create a new Report Template into a folder.
+	 * @param name the template name.
+	 * @param description the template description.
+	 * @param created the template creation time.
+	 * @param lastEdit the last edit time.
+	 * @param author the template author.
+	 * @param lastEditBy the last template editor.
+	 * @param numberOfSections the number of sections.
+	 * @param status the template status.
+	 * @param templateData the template content.
+	 * @param destinationfolderId the destination folder.
+	 * @return the new template.
+	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
+	 * @throws WorkspaceFolderNotFoundException if the destination folder has not been found.
+	 * @throws InternalErrorException if an internal error occurs.
+	 * @throws ItemAlreadyExistException if a folder item with same name already exist.
+	 * @throws WrongDestinationException if the destination type is not a folder.
+	 */
+	public ReportTemplate createReportTemplate(String name, String description, Calendar created, Calendar lastEdit, String author, String lastEditBy, int numberOfSections, String status, InputStream templateData, String destinationfolderId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException, WorkspaceFolderNotFoundException;
 	
+	
+	/**
+	 * Create a new Report into a folder.
+	 * @param name the report name.
+	 * @param description the report description.
+	 * @param created the report creation time.
+	 * @param lastEdit the last edit time.
+	 * @param author the report author.
+	 * @param lastEditBy the last report editor.
+	 * @param templateName the source template name.
+	 * @param numberOfSections the number of sections.
+	 * @param status the report status.
+	 * @param reportData the report content.
+	 * @param destinationfolderId the destination folder.
+	 * @return the new report.
+	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
+	 * @throws WorkspaceFolderNotFoundException if the destination folder has not been found.
+	 * @throws InternalErrorException if an internal error occurs.
+	 * @throws ItemAlreadyExistException if a folder item with same name already exist.
+	 * @throws WrongDestinationException if the destination type is not a folder.
+	 */
+	public Report createReport(String name, String description, Calendar created, Calendar lastEdit, String author, String lastEditBy, String templateName, int numberOfSections, 
+			String status, InputStream reportData, String destinationfolderId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException, WorkspaceFolderNotFoundException;
+	
+	
+	/**
+	 * Create a new query into a folder.
+	 * @param name the query name.
+	 * @param description the query description.
+	 * @param query the query value.
+	 * @param queryType the query type.
+	 * @param destinationfolderId the destination folder.
+	 * @return the new query.
+	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
+	 * @throws WorkspaceFolderNotFoundException if the destination folder has not been found.
+	 * @throws InternalErrorException if an internal error occurs.
+	 * @throws ItemAlreadyExistException if a folder item with same name already exist.
+	 * @throws WrongDestinationException if the destination type is not a folder.
+	 */
+	public Query createQuery(String name, String description, String query, QueryType queryType, String destinationfolderId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException, WorkspaceFolderNotFoundException;
+
+	/**
+	 * Create a new query into a folder.
+	 * @param name the query name.
+	 * @param description the query description.
+	 * @param query the query.
+	 * @param queryType the query type.
+	 * @param destinationfolderId the destinatin folder.
+	 * @return the new query.
+	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
+	 * @throws WorkspaceFolderNotFoundException if the destination folder has not been found.
+	 * @throws InternalErrorException if an internal error occurs.
+	 * @throws ItemAlreadyExistException if a folder item with same name already exist.
+	 * @throws WrongDestinationException if the destination type is not a folder.
+	 */
+	public Query createQuery(String name, String description, InputStream query, QueryType queryType, String destinationfolderId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException, WorkspaceFolderNotFoundException;
+	
+	/**
+	 * Create a new Time Series.
+	 * @param name the item name.
+	 * @param description the item description.
+	 * @param timeseriesId the Time Series id.
+	 * @param title the Time Series title.
+	 * @param creator the Time Series creator.
+	 * @param timeseriesDescription the Time Series description. 
+	 * @param timeseriesCreationDate the Time Series creation date.
+	 * @param publisher the Time Series publisher.
+	 * @param sourceId the Time Series source id.
+	 * @param sourceName the Time Series source name.
+	 * @param rights the Time Series rights.
+	 * @param dimension the Time Series dimension.
+	 * @param headerLabels the Time Series headers label.
+	 * @param compressedCSV the Time Series csv compressed representation (with labels and UTF-8 encoded).
+	 * @param destinationfolderId the time series destination folder.
+	 * @return the created Time Series.
+	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
+	 * @throws InternalErrorException if an internal error occurs.
+	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
+	 * @throws WorkspaceFolderNotFoundException  if the destination folder has not been found.
+	 * @throws WrongDestinationException if the destination type is not a folder.
+	 */
+	public TimeSeries createTimeSeries(String name, String description, String timeseriesId, String title, String creator, String timeseriesDescription,
+			String timeseriesCreationDate, String publisher, String sourceId, String sourceName, String rights, long dimension, 
+			List<String> headerLabels, InputStream compressedCSV,
+			String destinationfolderId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, WorkspaceFolderNotFoundException, WrongDestinationException;
+
 	
 	/**
 	 * Remove an item.
@@ -488,26 +590,6 @@ public interface Workspace extends WorkspaceEventSource {
 	public String getUrlWebDav() throws InternalErrorException;
 
 
-	/**
-	 * @param name
-	 * @param mimeType
-	 * @param resourceId
-	 * @param description
-	 * @param destinationFolderId
-	 * @param plugin
-	 * @return
-	 * @throws WrongItemTypeException
-	 * @throws WorkspaceFolderNotFoundException
-	 * @throws WrongDestinationException
-	 * @throws InternalErrorException
-	 * @throws ItemAlreadyExistException
-	 * @throws InsufficientPrivilegesException
-	 * @throws ItemNotFoundException
-	 */
-	public ExternalResourceLink createExternalResourceLink(String name, String description,
-			String mimeType, String resourceId, String pluginName, String destinationFolderId)
-					throws InsufficientPrivilegesException, InternalErrorException,
-					ItemAlreadyExistException, WrongDestinationException, WorkspaceFolderNotFoundException;
 	
 	/**
 	 * Create a shared folder with a list of users
@@ -586,16 +668,6 @@ public interface Workspace extends WorkspaceEventSource {
 			ItemAlreadyExistException, WrongDestinationException,
 			ItemNotFoundException, WorkspaceFolderNotFoundException;
 
-
-	/**
-	 * @param mimeType
-	 * @param limit
-	 * @param offset
-	 * @throws InternalErrorException
-	 */
-	void orderResultBy(String mimeType, long limit, long offset)
-			throws InternalErrorException;
-
 	/**
 	 * @param itemId
 	 * @param fileData
@@ -640,13 +712,6 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws RepositoryException 
 	 */
 	public WorkspaceTrashFolder getTrash() throws InternalErrorException, ItemNotFoundException;
-
-//	/**
-//	 * Get the MySpecialFolders Id
-//	 * @return the MySpecialFolders Id
-//	 * @throws InternalErrorException 
-//	 */
-//	public String getMySpecialFoldersId() throws InternalErrorException;
 
 	/**
 	 * Get MySpecialFolders

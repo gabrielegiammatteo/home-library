@@ -90,7 +90,8 @@
 	<Changeset component="org.gcube.common.home-library.1-6-1"
 		date="2014-12-02">
 		<Change>Fixed Uri Resolver method</Change>
-		<Change>Added feature to move a shared folder in a private folder</Change>
+		<Change>Added feature to move a shared folder in a private folder
+		</Change>
 		<Change>Added @Deprecation to unknown class</Change>
 	</Changeset>
 	<Changeset component="org.gcube.common.home-library.1-7-0"
@@ -101,5 +102,9 @@
 		</Change>
 		<Change>getACL() methods moved to Abstract Folder
 		</Change>
+	</Changeset>
+	<Changeset component="org.gcube.common.home-library.1-7-1"
+		date="2015-05-15">
+		<Change>Fixed bug creating a new VRE folder</Change>
 	</Changeset>
 </ReleaseNotes>

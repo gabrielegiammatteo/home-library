@@ -171,6 +171,71 @@ public class WorkspaceUtil {
 	 * @throws ItemAlreadyExistException if an error occurs.
 	 * @throws IOException 
 	 */
+	public static FolderItem createExternalFile(WorkspaceFolder destinationFolder, String name, String description, String mimeType, String storageId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, IOException
+	{
+		return null;	
+
+//		String mimeTypeChecked;
+//		File tmpFile = null;
+//		try{
+//
+//			tmpFile = WorkspaceUtil.getTmpFile(is);	
+// 
+//			
+//			if (mimeType==null){
+//				
+//				//mime detect java 7
+//				 Path source = Paths.get(tmpFile.getAbsolutePath());
+//				mimeType = Files.probeContentType(source);
+//				
+////				FileInputStream tmpIs = null;		
+////				try{				
+////					tmpIs = new FileInputStream(tmpFile);
+////					mimeType = MimeTypeUtil.getMimeType(name, tmpIs);
+////					is = new FileInputStream(tmpFile);
+////				}catch (Exception e) {
+////
+////				}finally{
+////					if (tmpIs!=null)
+////						tmpIs.close();
+////				}
+//			}
+//			mimeTypeChecked = mimeType;
+//
+//			if (mimeTypeChecked!= null) {
+//
+//				if (mimeTypeChecked.startsWith("image")){
+//					return destinationFolder.createExternalImageItem(name, description, mimeTypeChecked, tmpFile);
+//				}else if (mimeTypeChecked.equals("application/pdf")){
+//					return destinationFolder.createExternalPDFFileItem(name, description, mimeTypeChecked, tmpFile);
+//				}else if (mimeTypeChecked.equals("text/uri-list")){
+//					return destinationFolder.createExternalUrlItem(name, description, tmpFile);
+//				}
+//
+//				return destinationFolder.createExternalFileItem(name, description, mimeTypeChecked, tmpFile);
+//			}
+//		}catch (Exception e) {
+//			// TODO: handle exception
+//		}
+//
+//
+//		return destinationFolder.createExternalFileItem(name, description, mimeType, tmpFile);
+
+	}
+	
+	/**
+	 * Create a external file in the specified folder.
+	 * @param destinationFolder the destination folder.
+	 * @param name the external file name.
+	 * @param description the external file description.
+	 * @param mimeType the external file mimetype.
+	 * @param is the external file data.
+	 * @return the created external file. 
+	 * @throws InsufficientPrivilegesException if an error occurs.
+	 * @throws InternalErrorException if an error occurs.
+	 * @throws ItemAlreadyExistException if an error occurs.
+	 * @throws IOException 
+	 */
 	public static FolderItem createExternalFile(WorkspaceFolder destinationFolder, String name, String description, String mimeType, InputStream is) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, IOException
 	{	
 

@@ -5,6 +5,8 @@ package org.gcube.common.homelibrary.home.workspace.accounting;
 
 import java.util.Calendar;
 
+import org.gcube.common.homelibary.model.items.accounting.AccountingEntryType;
+
 
 
 /**

@@ -15,6 +15,7 @@ import org.gcube.common.homelibrary.home.workspace.exceptions.InsufficientPrivil
 import org.gcube.common.homelibrary.home.workspace.exceptions.ItemAlreadyExistException;
 import org.gcube.common.homelibrary.home.workspace.exceptions.WrongDestinationException;
 import org.gcube.common.homelibrary.home.workspace.folder.FolderBulkCreator;
+import org.gcube.common.homelibrary.home.workspace.folder.FolderItem;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalFile;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalImage;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ExternalPDFFile;
@@ -92,6 +93,20 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 */
 	public ExternalImage createExternalImageItem(String name, String description, String mimeType, File tmpFile) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
 
+	/**
+	 * Create an External File into this folder.
+	 * @param name the external file name.
+	 * @param description the external file description.
+	 * @param mimeType the external file mime type.
+	 * @param storageId the storage ID used to save temporarily the file
+	 * @return the new external file.
+	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
+	 * @throws InternalErrorException if an internal error occurs.
+	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
+	 */
+	public FolderItem createExternalFileItem(String name, String description, String mimeType, String storageId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
+
+	
 
 	/**
 	 * Create an External File into this folder.

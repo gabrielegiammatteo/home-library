@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -836,6 +835,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws InternalErrorException
 	 */
 	public WorkspaceFolder getApplicationArea() throws InternalErrorException;
+
 
 
 }

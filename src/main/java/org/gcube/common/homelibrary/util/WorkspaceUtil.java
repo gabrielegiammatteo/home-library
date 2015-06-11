@@ -13,12 +13,17 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
+import org.gcube.common.homelibrary.home.HomeLibrary;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
 import org.gcube.common.homelibrary.home.workspace.accessmanager.ACLType;
 import org.gcube.common.homelibrary.home.workspace.exceptions.InsufficientPrivilegesException;
 import org.gcube.common.homelibrary.home.workspace.exceptions.ItemAlreadyExistException;
 import org.gcube.common.homelibrary.home.workspace.folder.FolderItem;
+import org.gcube.common.homelibrary.home.workspace.usermanager.GCubeGroup;
+import org.gcube.common.homelibrary.home.workspace.usermanager.UserManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -26,6 +31,7 @@ import org.gcube.common.homelibrary.home.workspace.folder.FolderItem;
  *
  */
 public class WorkspaceUtil {
+	protected static Logger logger = LoggerFactory.getLogger(WorkspaceUtil.class);
 
 	private static final String READ_ONLY 		= "jcr:read";
 	private static final String WRITE_OWNER 	= "jcr:write";
@@ -198,25 +204,25 @@ public class WorkspaceUtil {
 		try{
 
 			tmpFile = WorkspaceUtil.getTmpFile(is);	
- 
-			
+
+
 			if (mimeType==null){
-				
+
 				//mime detect java 7
-				 Path source = Paths.get(tmpFile.getAbsolutePath());
+				Path source = Paths.get(tmpFile.getAbsolutePath());
 				mimeType = Files.probeContentType(source);
-				
-//				FileInputStream tmpIs = null;		
-//				try{				
-//					tmpIs = new FileInputStream(tmpFile);
-//					mimeType = MimeTypeUtil.getMimeType(name, tmpIs);
-//					is = new FileInputStream(tmpFile);
-//				}catch (Exception e) {
-//
-//				}finally{
-//					if (tmpIs!=null)
-//						tmpIs.close();
-//				}
+
+				//				FileInputStream tmpIs = null;		
+				//				try{				
+				//					tmpIs = new FileInputStream(tmpFile);
+				//					mimeType = MimeTypeUtil.getMimeType(name, tmpIs);
+				//					is = new FileInputStream(tmpFile);
+				//				}catch (Exception e) {
+				//
+				//				}finally{
+				//					if (tmpIs!=null)
+				//						tmpIs.close();
+				//				}
 			}
 			mimeTypeChecked = mimeType;
 
@@ -264,7 +270,7 @@ public class WorkspaceUtil {
 				e.printStackTrace();
 			}
 		}
-//		System.out.println("tmp: " + tempFile.getAbsolutePath());
+		//		System.out.println("tmp: " + tempFile.getAbsolutePath());
 		return tempFile; 
 	}
 
@@ -290,4 +296,19 @@ public class WorkspaceUtil {
 		}		
 	}
 
+	public static List<String> getMembersByGroup(String id) throws InternalErrorException{
+
+		UserManager um = HomeLibrary
+				.getHomeManagerFactory().getUserManager();
+		GCubeGroup group = null;
+		List<String> members = null;
+		try{
+			group = um.getGroup(id);
+			members = group.getMembers();
+		}catch(Exception e){
+			throw new InternalErrorException(id + " is not a valid groupId", e);
+		}
+
+		return members;
+	}
 }

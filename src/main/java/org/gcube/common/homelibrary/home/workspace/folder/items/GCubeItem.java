@@ -25,7 +25,7 @@ public interface GCubeItem extends FolderItem {
 
 	public Map<String, String> getItemProperties() throws InternalErrorException;
 	
-	public void setItemProperties(Map<String, String> properties) throws InternalErrorException;
+//	public void setItemProperties(Map<String, String> properties) throws InternalErrorException;
 
 	public WorkspaceSharedFolder share(List<String> users) throws InternalErrorException;
 

@@ -526,6 +526,12 @@ public interface Workspace extends WorkspaceEventSource {
 	public List<SearchFolderItem> searchByMimeType(String mimeType)
 			throws InternalErrorException;
 
+	/**
+	 * Get items by type
+	 * @param type
+	 * @return
+	 * @throws InternalErrorException
+	 */
 	public List<SearchItem> getFolderItems(FolderItemType type) throws InternalErrorException;
 
 	/**

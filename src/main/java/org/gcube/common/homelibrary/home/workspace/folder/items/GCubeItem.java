@@ -5,7 +5,6 @@ package org.gcube.common.homelibrary.home.workspace.folder.items;
 
 import java.io.InputStream;
 import java.util.List;
-import java.util.Map;
 
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceSharedFolder;
@@ -22,10 +21,6 @@ public interface GCubeItem extends FolderItem {
 	public String getItemType();
 	
 	public String getCreator();
-
-	public Map<String, String> getItemProperties() throws InternalErrorException;
-	
-//	public void setItemProperties(Map<String, String> properties) throws InternalErrorException;
 
 	public WorkspaceSharedFolder share(List<String> users) throws InternalErrorException;
 

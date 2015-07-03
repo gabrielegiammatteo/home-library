@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.gcube.common.homelibary.model.items.type.FolderItemType;
+import org.gcube.common.homelibary.model.items.type.GenericItemType;
 import org.gcube.common.homelibrary.home.Home;
 import org.gcube.common.homelibrary.home.User;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
@@ -532,7 +533,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @return
 	 * @throws InternalErrorException
 	 */
-	public List<SearchItem> getFolderItems(FolderItemType type) throws InternalErrorException;
+	public List<SearchItem> getFolderItems(GenericItemType type) throws InternalErrorException;
 
 	/**
 	 * Check if the specified name is a valid name.
@@ -584,7 +585,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @return
 	 * @throws InternalErrorException
 	 */
-	public List<SearchItem> getFolderItems(FolderItemType... types)
+	public List<SearchItem> getFolderItems(GenericItemType... types)
 			throws InternalErrorException;
 
 

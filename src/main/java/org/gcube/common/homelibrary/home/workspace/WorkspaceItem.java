@@ -7,9 +7,12 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
+import javax.jcr.PathNotFoundException;
+import javax.jcr.RepositoryException;
+import javax.jcr.ValueFormatException;
 
-import org.gcube.common.homelibary.model.items.ItemDelegate;
 import org.gcube.common.homelibary.model.items.type.WorkspaceItemType;
+import org.gcube.common.homelibary.model.util.WorkspaceItemAction;
 import org.gcube.common.homelibrary.home.User;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.accessmanager.ACLType;
@@ -93,7 +96,7 @@ public interface WorkspaceItem {
 	 * @return the last action.
 	 * @throws InternalErrorException if an internal error occurs. 
 	 */
-	public org.gcube.common.homelibary.model.util.WorkspaceItemAction getLastAction() throws InternalErrorException;
+	public WorkspaceItemAction getLastAction() throws InternalErrorException;
 
 	/**
 	 * This item owner.
@@ -245,11 +248,18 @@ public interface WorkspaceItem {
 	/**
 	 * Get a public link for the item
 	 * @param shortenUrl
-	 * @return
+	 * @return storageId
 	 * @throws InternalErrorException
 	 */
 	public String getPublicLink(boolean shortUrl) throws InternalErrorException;
 
+	/**
+	 * Get a storageId
+	 * @return storageId
+	 * @throws InternalErrorException
+	 */
+	public String getStorageID() throws InternalErrorException;
+	
 
 	/**
 	 * Return true if the user has the right to read the resource at abspath
@@ -262,6 +272,7 @@ public interface WorkspaceItem {
 	boolean hasAccessRight(String user, String absPath) throws InternalErrorException;
 
 	/**
+	 * Delete ACL for a list of users
 	 * @param users
 	 * @throws InternalErrorException
 	 */

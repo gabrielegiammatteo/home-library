@@ -250,6 +250,7 @@ public class WorkspaceUtil {
 
 	public static File getTmpFile(InputStream in){
 
+//		System.out.println("GET TMP FILE");
 		File tempFile = null;
 		try{
 			tempFile = File.createTempFile("tempfile", ".tmp"); 
@@ -257,7 +258,7 @@ public class WorkspaceUtil {
 			try (FileOutputStream out = new FileOutputStream(tempFile)) {		
 				IOUtils.copy(in, out);
 			}
-			//			System.out.println("*************** tempfile " + tempFile.getAbsolutePath());
+//					System.out.println("*************** tempfile " + tempFile.getAbsolutePath());
 			//			in.reset();
 
 		}catch(IOException e){

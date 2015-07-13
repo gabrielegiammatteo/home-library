@@ -27,7 +27,11 @@ public interface FolderItem extends WorkspaceItem {
 	 */
 	public long getLength() throws InternalErrorException;
 	
-	
+	/**
+	 * The folder myme type
+	 * @return the myme type
+	 * @throws InternalErrorException
+	 */
 	public String getMimeType() throws InternalErrorException;
 
 

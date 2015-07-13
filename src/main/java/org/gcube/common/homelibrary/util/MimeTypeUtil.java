@@ -5,6 +5,8 @@ package org.gcube.common.homelibrary.util;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -14,6 +16,11 @@ import java.nio.file.Paths;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.tika.config.TikaConfig;
+import org.apache.tika.detect.Detector;
+import org.apache.tika.io.TikaInputStream;
+import org.apache.tika.metadata.Metadata;
+import org.apache.tika.mime.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -142,59 +149,53 @@ public class MimeTypeUtil {
 
 
 	/**
+	 * Mime type detect java 7
 	 * @param name
 	 * @param absoluteFile
 	 * @return
 	 */
-	public static String getMimeType(File file) {
-
-		
-		String mimeType = null;
-		Path source = Paths.get(file.getAbsolutePath());
-		try {
-			mimeType = Files.probeContentType(source);
-		} catch (IOException e) {
-		logger.error("Error getting mime type");
-		}
-		
-		return mimeType;
-	}
+//	public static String getMimeType(File file) {
+//
+//		
+//		String mimeType = null;
+//		Path source = Paths.get(file.getAbsolutePath());
+//		try {
+//			mimeType = Files.probeContentType(source);
+//		} catch (IOException e) {
+//		logger.error("Error getting mime type");
+//		}
+//		
+//		return mimeType;
+//	}
 
 		/**
 		 * @param file the file to check
 		 * @return the mime type.
 		 * @throws IOException 
 		 */
-		public static String getMimeType(String filenameWithExtension, InputStream file){
+	public static String getMimeType(String filenameWithExtension, InputStream file) throws IOException{
 
-			//		return Files.probeContentType(file);
-			File tmpFile = null;
-			try{
+		MediaType mediaType = null;
+		try {
+			
+			TikaConfig config = TikaConfig.getDefaultConfig();
+			Detector detector = config.getDetector();
+			TikaInputStream stream = TikaInputStream.get(file);
+			Metadata metadata = new Metadata();
+			metadata.add(Metadata.RESOURCE_NAME_KEY, filenameWithExtension);
+			
+			mediaType = detector.detect(stream, metadata);
 
-				tmpFile = WorkspaceUtil.getTmpFile(file);	
-			}catch (Exception e) {
-				// TODO: handle exception
-			}
-			return getMimeType(tmpFile);
-			//			
-			//		TikaConfig config = TikaConfig.getDefaultConfig();
-			//		Detector detector = config.getDetector();
-			//		TikaInputStream stream = TikaInputStream.get(file);
-			//		Metadata metadata = new Metadata();
-			//		metadata.add(Metadata.RESOURCE_NAME_KEY, filenameWithExtension);
-			//		MediaType mediaType = null;
-			//
-			//		try {
-			//			mediaType = detector.detect(stream, metadata);
-			//
-			//		} catch (IOException e) {
-			//			logger.error("Error detecting mime type for file " + filenameWithExtension);
-			//		}
-			//		//		System.out.println("*********************************** " + mediaType.getBaseType().toString());
-			//		return mediaType.getBaseType().toString();
-			//		String mimeType = MimeUtil.getMostSpecificMimeType(MimeUtil.getMimeTypes(file)).toString();
-			//		return mimeType;
+		} catch (IOException e) {
+			logger.error("Error detecting mime type for file " + filenameWithExtension);
+		}finally{
+			if (file!=null)
+				file.close();
 		}
+
+		return mediaType.getBaseType().toString();
+
+	}
 
 
 		/**

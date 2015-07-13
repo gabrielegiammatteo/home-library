@@ -35,6 +35,7 @@ import org.gcube.common.homelibrary.home.workspace.folder.items.Query;
 import org.gcube.common.homelibrary.home.workspace.folder.items.QueryType;
 import org.gcube.common.homelibrary.home.workspace.folder.items.Report;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ReportTemplate;
+import org.gcube.common.homelibrary.home.workspace.folder.items.WorkflowReport;
 import org.gcube.common.homelibrary.home.workspace.folder.items.ts.TimeSeries;
 import org.gcube.common.homelibrary.home.workspace.search.SearchItemByOperator;
 import org.gcube.common.homelibrary.home.workspace.search.SearchFolderItem;
@@ -816,6 +817,23 @@ public interface Workspace extends WorkspaceEventSource {
 			throws InsufficientPrivilegesException,
 			WorkspaceFolderNotFoundException, InternalErrorException,
 			ItemAlreadyExistException, WrongDestinationException;
+
+	/**
+	 * Creates a Workflow Report.
+	 * @param name the workflow Report name.
+	 * @param description the workflow Report description.
+	 * @param workflowId the workflow id.
+	 * @param workflowStatus the workflow status.
+	 * @param workflowData the workflow data.
+	 * @param destinationfolderId the Workflow Report destination folder.
+	 * @return the created Workflow Report.
+	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
+	 * @throws InternalErrorException if an internal error occurs.
+	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
+	 * @throws WorkspaceFolderNotFoundException  if the destination folder has not been found.
+	 * @throws WrongDestinationException if the destination type is not a folder.
+	 */
+	public WorkflowReport createWorkflowReport(String name, String description, String workflowId, String workflowStatus, String workflowData, String destinationfolderId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, WorkspaceFolderNotFoundException, WrongDestinationException;
 
 	/**
 	 * @return

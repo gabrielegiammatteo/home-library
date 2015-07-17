@@ -254,21 +254,18 @@ public class WorkspaceUtil {
 		File tempFile = null;
 		try{
 			tempFile = File.createTempFile("tempfile", ".tmp"); 
+			 tempFile.deleteOnExit();
 
 			try (FileOutputStream out = new FileOutputStream(tempFile)) {		
 				IOUtils.copy(in, out);
 			}
-//					System.out.println("*************** tempfile " + tempFile.getAbsolutePath());
-			//			in.reset();
-
 		}catch(IOException e){
 			e.printStackTrace();
 		}finally{
 			try {
 				in.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error("inpustream already closed");
 			}
 		}
 		//		System.out.println("tmp: " + tempFile.getAbsolutePath());

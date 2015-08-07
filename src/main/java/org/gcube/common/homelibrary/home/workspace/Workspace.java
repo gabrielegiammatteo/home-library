@@ -10,7 +10,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
-import org.gcube.common.homelibary.model.items.type.FolderItemType;
+import javax.jcr.RepositoryException;
+
 import org.gcube.common.homelibary.model.items.type.GenericItemType;
 import org.gcube.common.homelibrary.home.Home;
 import org.gcube.common.homelibrary.home.User;
@@ -46,12 +47,9 @@ import org.gcube.common.homelibrary.home.workspace.trash.WorkspaceTrashFolder;
 
 /**
  * Represents a user workspace.
- * @author Federico De Faveri defaveri@isti.cnr.it
+ * @author Valentina Marioli valentina.marioli@isti.cnr.it
  */
-/**
- * @author antonio
- *
- */
+
 public interface Workspace extends WorkspaceEventSource {
 	
 	/**
@@ -80,14 +78,18 @@ public interface Workspace extends WorkspaceEventSource {
 	 */
 	public WorkspaceFolder getRoot();
 	
-	
+	/**
+	 * Get the WorkspaceTree
+	 * @param item
+	 * @return WorkspaceTree
+	 * @throws InternalErrorException
+	 */
 	public List<WorkspaceItem> getWorkspaceTree(WorkspaceItem item) throws InternalErrorException;
 
 	/**
 	 * Add a Bookmark
 	 * @param name
 	 * @param folderId
-	 * @return
 	 * @throws ItemAlreadyExistException
 	 * @throws InternalErrorException
 	 * @throws RepositoryException 
@@ -98,7 +100,7 @@ public interface Workspace extends WorkspaceEventSource {
 	
 	/**
 	 * Returns all bookmarks
-	 * @return
+	 * @return a list of bookmarks
 	 * @throws InternalErrorException
 	 */
 	public List<Object> getBookmarks(String bookmarkFolderId) throws InternalErrorException;
@@ -108,7 +110,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @param name
 	 * @param description
 	 * @param query
-	 * @return
+	 * @return a WorkspaceSmartFolder
 	 * @throws ItemAlreadyExistException
 	 * @throws InternalErrorException
 	 */
@@ -117,11 +119,19 @@ public interface Workspace extends WorkspaceEventSource {
 	
 	/**
 	 * Returns all user smart folders
-	 * @return
+	 * @return a list of WorkspaceSmartFolder
 	 * @throws InternalErrorException
 	 */
 	public List<WorkspaceSmartFolder> getAllSmartFolders() throws InternalErrorException;
 	
+	
+	/**
+	 * Get Smart Folder
+	 * @param folderId
+	 * @return Smart Folder
+	 * @throws ItemNotFoundException
+	 * @throws InternalErrorException
+	 */
 	public WorkspaceSmartFolder getSmartFolder(String folderId) throws ItemNotFoundException,
 	InternalErrorException;  
 	
@@ -518,11 +528,19 @@ public interface Workspace extends WorkspaceEventSource {
 	 */
 	public WorkspaceItem find(String path) throws InternalErrorException;
 	
+	
+	/**
+	 * Search by Name
+	 * @param name
+	 * @return a list of SearchItem
+	 * @throws InternalErrorException
+	 */
 	public List<SearchItem> searchByName(String name) throws InternalErrorException;
 	
 	/**
+	 * Search By MimeType
 	 * @param mimeType
-	 * @return
+	 * @returnSearchIte a list of SearchFolderItem
 	 * @throws InternalErrorException
 	 */
 	public List<SearchFolderItem> searchByMimeType(String mimeType)
@@ -531,7 +549,7 @@ public interface Workspace extends WorkspaceEventSource {
 	/**
 	 * Get items by type
 	 * @param type
-	 * @return
+	 * @return a list of SearchItem 
 	 * @throws InternalErrorException
 	 */
 	public List<SearchItem> getFolderItems(GenericItemType type) throws InternalErrorException;
@@ -582,8 +600,9 @@ public interface Workspace extends WorkspaceEventSource {
 	public WorkspaceFolder decomposeAquaMapsItem(String itemId, String folderName, String destinationWorkspaceId) throws WrongItemTypeException, WorkspaceFolderNotFoundException, WrongDestinationException, InternalErrorException, ItemAlreadyExistException, InsufficientPrivilegesException, ItemNotFoundException;
 
 	/**
+	 * Get Folder Items
 	 * @param types
-	 * @return
+	 * @return a list of SearchItem
 	 * @throws InternalErrorException
 	 */
 	public List<SearchItem> getFolderItems(GenericItemType... types)
@@ -591,7 +610,8 @@ public interface Workspace extends WorkspaceEventSource {
 
 
 	/**
-	 * @return
+	 * Get WebDav url
+	 * @return the WebDav url
 	 * @throws InternalErrorException
 	 */
 	public String getUrlWebDav() throws InternalErrorException;
@@ -676,6 +696,7 @@ public interface Workspace extends WorkspaceEventSource {
 			ItemNotFoundException, WorkspaceFolderNotFoundException;
 
 	/**
+	 * Update an item
 	 * @param itemId
 	 * @param fileData
 	 * @throws InsufficientPrivilegesException
@@ -691,13 +712,14 @@ public interface Workspace extends WorkspaceEventSource {
 			ItemAlreadyExistException, WrongDestinationException, ItemNotFoundException;
 
 	/**
+	 * Create a GCubeItem
 	 * @param name
 	 * @param description
 	 * @param scopes
 	 * @param creator
 	 * @param itemType
 	 * @param destinationFolderId
-	 * @return
+	 * @return a GCubeItem
 	 */
 	public WorkspaceItem createGcubeItem(String name, String description,
 			List<String> scopes, String creator, String itemType, Map<String, String> properties, 
@@ -714,7 +736,8 @@ public interface Workspace extends WorkspaceEventSource {
 	public WorkspaceItem unshare(String itemId) throws InternalErrorException, ItemNotFoundException;
 
 	/**
-	 * @return
+	 * Get Trash Folder
+	 * @return the trash folder
 	 * @throws ItemNotFoundException 
 	 * @throws RepositoryException 
 	 */
@@ -730,38 +753,43 @@ public interface Workspace extends WorkspaceEventSource {
 			ItemNotFoundException;
 
 	/**
+	 * Advanced Search
 	 * @param name
 	 * @param date
 	 * @param size
-	 * @return
+	 * @return a list of SearchItem
 	 * @throws InternalErrorException
 	 */
 	public List<SearchItem> advancedSearch(String name, SearchItemByOperator date,
 			SearchItemByOperator size) throws InternalErrorException;
 
 	/**
+	 * Search By Properties
 	 * @param properties
-	 * @return
+	 * @return a list of WorkspaceItem
 	 * @throws InternalErrorException
 	 */
 	public List<WorkspaceItem> searchByProperties(List<String> properties)
 			throws InternalErrorException;
 
 	/**
+	 * Search FullText
 	 * @param text
-	 * @return
+	 * @return a list of SearchFolderItem
 	 * @throws InternalErrorException
 	 */
 	public List<SearchFolderItem> searchFullText(String text)
 			throws InternalErrorException;
 
 	/**
+	 * Get VRE Folder By Scope
 	 * @param scope
-	 * @return
+	 * @return the scope
 	 */
 	public WorkspaceSharedFolder getVREFolderByScope(String scope) throws ItemNotFoundException, InternalErrorException;
 
 	/**
+	 * Create an external image
 	 * @param name
 	 * @param description
 	 * @param mimeType
@@ -782,6 +810,7 @@ public interface Workspace extends WorkspaceEventSource {
 			ItemAlreadyExistException, WrongDestinationException;
 
 	/**
+	 * Create an External Url
 	 * @param name
 	 * @param description
 	 * @param tmpFile
@@ -800,6 +829,7 @@ public interface Workspace extends WorkspaceEventSource {
 			ItemAlreadyExistException, WrongDestinationException;
 
 	/**
+	 * Create an external file
 	 * @param name
 	 * @param description
 	 * @param mimeType
@@ -836,31 +866,45 @@ public interface Workspace extends WorkspaceEventSource {
 	public WorkflowReport createWorkflowReport(String name, String description, String workflowId, String workflowStatus, String workflowData, String destinationfolderId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, WorkspaceFolderNotFoundException, WrongDestinationException;
 
 	/**
-	 * @return
+	 * Get the disk usage of a worskpace
+	 * @return the disk usage
 	 * @throws InternalErrorException
 	 */
 	long getDiskUsage() throws InternalErrorException;
 
 	/**
-	 * @return
+	 * Get Total Items in a workspace
+	 * @return the numer of total Items
 	 * @throws InternalErrorException
 	 */
 	int getTotalItems() throws InternalErrorException;
 
 	/**
-	 * @param properties
-	 * @return
+	 * Search GCubeItems
+	 * @param query
+	 * @return a list of GCubeItem
 	 * @throws InternalErrorException
 	 */
 	List<GCubeItem> searchGCubeItems(SearchQuery query)
 			throws InternalErrorException;
 
 	/**
-	 * @return
+	 * Get Application Area
+	 * @return Application Area Folder
 	 * @throws InternalErrorException
 	 */
 	public WorkspaceFolder getApplicationArea() throws InternalErrorException;
 
+	
+	/**
+	 * Create a link of a given item in a destination folder
+	 * @param itemId
+	 * @param destinationFolderId
+	 * @return the link
+	 * @throws InternalErrorException 
+	 * @throws  
+	 */
+	WorkspaceItem createReference(String itemId, String destinationFolderId) throws InternalErrorException;
 
 
 }

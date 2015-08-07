@@ -4,6 +4,7 @@
 package org.gcube.common.homelibrary.util;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -56,27 +57,6 @@ public class WorkspaceUtil {
 		}
 		if (name==null)
 			name= initialName;
-		//		System.out.println("getuniqueName");
-		//		List<? extends WorkspaceItem> children = folder.getChildren();
-		//		List<String> names = new LinkedList<String>();
-		//		for (WorkspaceItem item:children) {
-		//			try{
-		////				System.out.println("here");
-		//				names.add(item.getName());
-		//			}catch (Exception e) {
-		//				// TODO: handle exception
-		//			}
-		//		}
-		//
-		//		String name = initialName;
-		//		int i = 0;
-		//
-		//		while(names.contains(name)){
-		//
-		//			name = initialName+"("+i+")";
-		//			i++;
-		//		}
-
 		return name;
 	}
 
@@ -202,27 +182,13 @@ public class WorkspaceUtil {
 		String mimeTypeChecked;
 		File tmpFile = null;
 		try{
-
 			tmpFile = WorkspaceUtil.getTmpFile(is);	
-
-
-			if (mimeType==null){
-
-				//mime detect java 7
-				Path source = Paths.get(tmpFile.getAbsolutePath());
-				mimeType = Files.probeContentType(source);
-
-				//				FileInputStream tmpIs = null;		
-				//				try{				
-				//					tmpIs = new FileInputStream(tmpFile);
-				//					mimeType = MimeTypeUtil.getMimeType(name, tmpIs);
-				//					is = new FileInputStream(tmpFile);
-				//				}catch (Exception e) {
-				//
-				//				}finally{
-				//					if (tmpIs!=null)
-				//						tmpIs.close();
-				//				}
+			if (mimeType==null){	
+				try{				
+					mimeType = MimeTypeUtil.getMimeType(name, tmpFile);
+				}catch (Exception e) {
+					logger.error("Error getting mimeType of " + name);
+				}
 			}
 			mimeTypeChecked = mimeType;
 
@@ -250,11 +216,11 @@ public class WorkspaceUtil {
 
 	public static File getTmpFile(InputStream in){
 
-//		System.out.println("GET TMP FILE");
+		//		System.out.println("GET TMP FILE");
 		File tempFile = null;
 		try{
 			tempFile = File.createTempFile("tempfile", ".tmp"); 
-			 tempFile.deleteOnExit();
+			tempFile.deleteOnExit();
 
 			try (FileOutputStream out = new FileOutputStream(tempFile)) {		
 				IOUtils.copy(in, out);

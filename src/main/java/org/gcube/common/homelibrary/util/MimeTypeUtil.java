@@ -168,34 +168,34 @@ public class MimeTypeUtil {
 //		return mimeType;
 //	}
 
-		/**
-		 * @param file the file to check
-		 * @return the mime type.
-		 * @throws IOException 
-		 */
-	public static String getMimeType(String filenameWithExtension, InputStream file) throws IOException{
-
-		MediaType mediaType = null;
-		try {
-			
-			TikaConfig config = TikaConfig.getDefaultConfig();
-			Detector detector = config.getDetector();
-			TikaInputStream stream = TikaInputStream.get(file);
-			Metadata metadata = new Metadata();
-			metadata.add(Metadata.RESOURCE_NAME_KEY, filenameWithExtension);
-			
-			mediaType = detector.detect(stream, metadata);
-
-		} catch (IOException e) {
-			logger.error("Error detecting mime type for file " + filenameWithExtension);
-		}finally{
-			if (file!=null)
-				file.close();
-		}
-
-		return mediaType.getBaseType().toString();
-
-	}
+//		/**
+//		 * @param file the file to check
+//		 * @return the mime type.
+//		 * @throws IOException 
+//		 */
+//	public static String getMimeType(String filenameWithExtension, InputStream file) throws IOException{
+//
+//		MediaType mediaType = null;
+//		try {
+//			
+//			TikaConfig config = TikaConfig.getDefaultConfig();
+//			Detector detector = config.getDetector();
+//			TikaInputStream stream = TikaInputStream.get(file);
+//			Metadata metadata = new Metadata();
+//			metadata.add(Metadata.RESOURCE_NAME_KEY, filenameWithExtension);
+//			
+//			mediaType = detector.detect(stream, metadata);
+//
+//		} catch (IOException e) {
+//			logger.error("Error detecting mime type for file " + filenameWithExtension);
+//		}finally{
+//			if (file!=null)
+//				file.close();
+//		}
+//
+//		return mediaType.getBaseType().toString();
+//
+//	}
 
 
 		/**
@@ -270,6 +270,30 @@ public class MimeTypeUtil {
 		{
 			for (String zip_mimetype:ZIP_MIMETYPES) if (zip_mimetype.equals(contentType)) return true;
 			return false;
+		}
+
+		/**
+		 * @param name
+		 * @param tmpFile
+		 * @return
+		 */
+		public static String getMimeType(String filenameWithExtension, File tmpFile) {
+			MediaType mediaType = null;
+			try {
+				
+				TikaConfig config = TikaConfig.getDefaultConfig();
+				Detector detector = config.getDetector();
+				TikaInputStream stream = TikaInputStream.get(tmpFile);
+				Metadata metadata = new Metadata();
+				metadata.add(Metadata.RESOURCE_NAME_KEY, filenameWithExtension);
+				
+				mediaType = detector.detect(stream, metadata);
+
+			} catch (IOException e) {
+				logger.error("Error detecting mime type for file " + filenameWithExtension);
+			}
+
+			return mediaType.getBaseType().toString();
 		}
 
 

@@ -80,13 +80,9 @@ public class ZipModelToWorkspaceCreator {
 
 		String name = folder.getUniqueName(zipItemName,false);	
 		String description = (zipFile.getComment()!=null)?zipFile.getComment():"";
-//		InputStream is = new FileInputStream(zipFile.getContentFile());
 
-		String mimeType = MimeTypeUtil.getMimeType(zipFile.getName(), new FileInputStream(zipFile.getContentFile()));
+		String mimeType = MimeTypeUtil.getMimeType(zipFile.getName(), zipFile.getContentFile());
 		
-//		//we don't have an extension, we create a generic external file
-//		FolderItem item = folder.createExternalFileItem(name, description, mimeType, is);
-
 		FolderItem item = WorkspaceUtil.createExternalFile(folder, name, description, mimeType, new FileInputStream(zipFile.getContentFile()));
 		
 		logger.trace("Item created "+item);

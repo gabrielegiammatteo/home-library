@@ -45,7 +45,7 @@ public class MimeTypeUtil {
 		"application/x-winzip",
 		"application/x-zip",
 		"application/zip",
-	"multipart/x-zip"};
+		"multipart/x-zip"};
 
 	protected static final Map<String, String> mimetype_extension_map = new LinkedHashMap<String, String>();
 	protected static final Map<String, String> extension_mimetype_map = new LinkedHashMap<String, String>();
@@ -273,9 +273,10 @@ public class MimeTypeUtil {
 		}
 
 		/**
-		 * @param name
+		 * Get mime type by file
+		 * @param filenameWithExtension
 		 * @param tmpFile
-		 * @return
+		 * @return the mime type of the given file
 		 */
 		public static String getMimeType(String filenameWithExtension, File tmpFile) {
 			MediaType mediaType = null;
@@ -296,7 +297,36 @@ public class MimeTypeUtil {
 			return mediaType.getBaseType().toString();
 		}
 
+		/**
+		 * Get mime type by inpustream
+		 * @param filenameWithExtension
+		 * @param file
+		 * @return the mime type of the given file
+		 * @throws IOException
+		 */
+		public static String getMimeType(String filenameWithExtension, InputStream file) throws IOException{
 
+			MediaType mediaType = null;
+			try {
+				
+				TikaConfig config = TikaConfig.getDefaultConfig();
+				Detector detector = config.getDetector();
+				TikaInputStream stream = TikaInputStream.get(file);
+				Metadata metadata = new Metadata();
+				metadata.add(Metadata.RESOURCE_NAME_KEY, filenameWithExtension);
+				
+				mediaType = detector.detect(stream, metadata);
+
+			} catch (IOException e) {
+				logger.error("Error detecting mime type for file " + filenameWithExtension);
+			}finally{
+				if (file!=null)
+					file.close();
+			}
+
+			return mediaType.getBaseType().toString();
+
+		}
 
 		//	/**
 		//	 * @param mimeType

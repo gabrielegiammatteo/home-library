@@ -5,6 +5,8 @@ package org.gcube.common.homelibrary.home.workspace.trash;
 
 import java.util.List;
 
+import javax.jcr.RepositoryException;
+
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.exceptions.ItemNotFoundException;
 
@@ -41,6 +43,7 @@ public interface WorkspaceTrashFolder{
 	 * @param id
 	 * @return
 	 * @throws InternalErrorException
+	 * @throws RepositoryException 
 	 */
-	public  WorkspaceTrashItem getTrashItemById(String id) throws InternalErrorException;
+	public  WorkspaceTrashItem getTrashItemById(String id) throws InternalErrorException, RepositoryException;
 }

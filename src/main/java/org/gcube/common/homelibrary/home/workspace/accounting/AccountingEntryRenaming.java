@@ -10,4 +10,6 @@ package org.gcube.common.homelibrary.home.workspace.accounting;
 public interface AccountingEntryRenaming extends AccountingEntry {
 	
 	String getOldItemName();
+	
+	String getNewItemName();
 }

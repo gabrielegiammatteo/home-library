@@ -19,11 +19,12 @@ public interface WorkspaceMessageManager {
 	 * Create a new send request.
 	 * @param message the sent object.
 	 * @param addressees the request addressees.
+	 * @return the message id
 	 * @throws ItemNotFoundException if the sent item is not found.
 	 * @throws InternalErrorException if an internal error occurs.
 	 * @throws RepositoryException 
 	 */
-	public void sendMessageToUsers(String subject, String body,
+	public String sendMessageToUsers(String subject, String body,
 			List<String> attachmentIds, List<User> addressees) throws InternalErrorException;
 		
 	
@@ -47,9 +48,10 @@ public interface WorkspaceMessageManager {
 	 * @param body
 	 * @param attachmentIds
 	 * @param portalLogins
+	 * @return the message id
 	 * @throws InternalErrorException
 	 */
-	void sendMessageToPortalLogins(String subject, String body,
+	String sendMessageToPortalLogins(String subject, String body,
 			List<String> attachmentIds, List<String> portalLogins)
 			throws InternalErrorException;
 

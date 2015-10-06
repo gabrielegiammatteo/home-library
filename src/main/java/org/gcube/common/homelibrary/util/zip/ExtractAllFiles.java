@@ -95,6 +95,7 @@ public class ExtractAllFiles {
 				else {
 
 					File contentFile = File.createTempFile("uploadZip", "tmp");
+					contentFile.deleteOnExit();
 					FileOutputStream fos = new FileOutputStream(contentFile);
 					byte[] buffer = new byte[1024];
 					int reads = 0;

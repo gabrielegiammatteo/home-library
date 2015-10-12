@@ -107,4 +107,17 @@
 		date="2015-05-15">
 		<Change>Fixed bug creating a new VRE folder</Change>
 	</Changeset>
+	<Changeset component="org.gcube.common.home-library.2-0-0"
+		date="2015-07-01">
+		<Change>Using http connections throught jackrabbit webapp instead of
+			rmi connections
+		</Change>
+	</Changeset>
+	<Changeset component="org.gcube.common.home-library.2-1-0"
+		date="2015-10-12">
+		<Change>WorkspaceMessageManager#sendMessageToPortalLogins method now
+			returns the messageId and not Void (#894)</Change>
+		<Change>Workspace#searchByName limited to a specific folder (#739)
+		</Change>
+	</Changeset>
 </ReleaseNotes>

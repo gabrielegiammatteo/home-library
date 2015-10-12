@@ -205,7 +205,7 @@ public class WorkspaceUtil {
 				return destinationFolder.createExternalFileItem(name, description, mimeTypeChecked, tmpFile);
 			}
 		}catch (Exception e) {
-			// TODO: handle exception
+			throw new InternalErrorException(e);
 		}
 
 

@@ -51,33 +51,33 @@ import org.gcube.common.homelibrary.home.workspace.trash.WorkspaceTrashFolder;
  */
 
 public interface Workspace extends WorkspaceEventSource {
-	
+
 	/**
 	 * Returns the item path separator.
 	 * @return the path separator.
 	 */
 	public String getPathSeparator();
-	
+
 	/**
 	 * Returns the user home.
 	 * @return the home.
 	 */
 	public Home getHome();
-	
+
 	/**
 	 * Returns the workspace owner.
 	 * @return the owner.
 	 * @throws InternalErrorException if an internal error occurs. 
 	 */
 	public User getOwner() throws InternalErrorException;
-	
+
 	/**
 	 * Returns the workspace root.
 	 * @return the root.
 	 * @throws InternalErrorException 
 	 */
 	public WorkspaceFolder getRoot();
-	
+
 	/**
 	 * Get the WorkspaceTree
 	 * @param item
@@ -97,34 +97,35 @@ public interface Workspace extends WorkspaceEventSource {
 	 */
 	public void addBookmark(String itemId, String destinationFolderId)
 			throws ItemAlreadyExistException, InternalErrorException, WrongDestinationException, ItemNotFoundException, WorkspaceFolderNotFoundException;
-	
+
 	/**
 	 * Returns all bookmarks
 	 * @return a list of bookmarks
 	 * @throws InternalErrorException
 	 */
 	public List<Object> getBookmarks(String bookmarkFolderId) throws InternalErrorException;
-	
+
 	/**
 	 * Create a smart folder
-	 * @param name
-	 * @param description
-	 * @param query
-	 * @return a WorkspaceSmartFolder
+	 * @param name the smart folder name
+	 * @param description the smart folder description
+	 * @param query the term to search
+	 * @param folderId the folder where to search the query
+	 * @return a workspace smart folder
 	 * @throws ItemAlreadyExistException
 	 * @throws InternalErrorException
 	 */
-	public WorkspaceSmartFolder createSmartFolder(String name, String description, String query) throws ItemAlreadyExistException,
+	public WorkspaceSmartFolder createSmartFolder(String name, String description, String query, String folderId) throws ItemAlreadyExistException,
 	InternalErrorException;
-	
+
 	/**
 	 * Returns all user smart folders
 	 * @return a list of WorkspaceSmartFolder
 	 * @throws InternalErrorException
 	 */
 	public List<WorkspaceSmartFolder> getAllSmartFolders() throws InternalErrorException;
-	
-	
+
+
 	/**
 	 * Get Smart Folder
 	 * @param folderId
@@ -134,7 +135,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 */
 	public WorkspaceSmartFolder getSmartFolder(String folderId) throws ItemNotFoundException,
 	InternalErrorException;  
-	
+
 	/**
 	 * Create a new folder with specified name.
 	 * The new folder is created into the specified folder.
@@ -150,7 +151,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws WorkspaceFolderNotFoundException if the destination folder has not been found. 
 	 */
 	public WorkspaceFolder createFolder(String name, String description, String destinationFolderId) throws InternalErrorException, InsufficientPrivilegesException, ItemAlreadyExistException, WrongDestinationException, ItemNotFoundException, WorkspaceFolderNotFoundException;
-	
+
 	/**
 	 * Create a new External Image into a folder.
 	 * @param name the external image name.
@@ -166,7 +167,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws WrongDestinationException if the destination type is not a folder.
 	 */
 	public ExternalImage createExternalImage(String name, String description, String mimeType, InputStream imageData, String destinationFolderId) throws InsufficientPrivilegesException, WorkspaceFolderNotFoundException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException;
-	
+
 	/**
 	 * Create a new External File into a folder.
 	 * @param name the external file name.
@@ -182,7 +183,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws WrongDestinationException if the destination type is not a folder.
 	 */
 	public ExternalFile createExternalFile(String name, String description, String mimeType, InputStream fileData, String destinationFolderId) throws InsufficientPrivilegesException, WorkspaceFolderNotFoundException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException;
-	
+
 	/**
 	 * Create a new External PDF File into a folder.
 	 * @param name the external PDF file name.
@@ -198,8 +199,8 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws WrongDestinationException if the destination type is not a folder.
 	 */
 	public ExternalPDFFile createExternalPDFFile(String name, String description, String mimeType, File tmpFile, String destinationFolderId) throws InsufficientPrivilegesException, WorkspaceFolderNotFoundException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException;
-	
-	
+
+
 	/**
 	 * Create a new External PDF File into a folder.
 	 * @param name the external PDF file name.
@@ -231,7 +232,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws IOException 
 	 */
 	public ExternalUrl createExternalUrl(String name, String description, String url, String destinationFolderId) throws InsufficientPrivilegesException, WorkspaceFolderNotFoundException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException, IOException;
-	
+
 	/**
 	 * Create a new External URL into a folder.
 	 * @param name the external URL name.
@@ -268,8 +269,8 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws WrongDestinationException if the destination type is not a folder.
 	 */
 	public ReportTemplate createReportTemplate(String name, String description, Calendar created, Calendar lastEdit, String author, String lastEditBy, int numberOfSections, String status, InputStream templateData, String destinationfolderId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException, WorkspaceFolderNotFoundException;
-	
-	
+
+
 	/**
 	 * Create a new Report into a folder.
 	 * @param name the report name.
@@ -292,8 +293,8 @@ public interface Workspace extends WorkspaceEventSource {
 	 */
 	public Report createReport(String name, String description, Calendar created, Calendar lastEdit, String author, String lastEditBy, String templateName, int numberOfSections, 
 			String status, InputStream reportData, String destinationfolderId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException, WorkspaceFolderNotFoundException;
-	
-	
+
+
 	/**
 	 * Create a new query into a folder.
 	 * @param name the query name.
@@ -325,7 +326,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws WrongDestinationException if the destination type is not a folder.
 	 */
 	public Query createQuery(String name, String description, InputStream query, QueryType queryType, String destinationfolderId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException, WorkspaceFolderNotFoundException;
-	
+
 	/**
 	 * Create a new Time Series.
 	 * @param name the item name.
@@ -355,7 +356,7 @@ public interface Workspace extends WorkspaceEventSource {
 			List<String> headerLabels, InputStream compressedCSV,
 			String destinationfolderId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, WorkspaceFolderNotFoundException, WrongDestinationException;
 
-	
+
 	/**
 	 * Remove an item.
 	 * @param itemId the item to remove.
@@ -364,7 +365,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
 	 */
 	public void removeItem(String itemId) throws ItemNotFoundException, InternalErrorException, InsufficientPrivilegesException;
-	
+
 	/**
 	 * Move a workspaceItem to a specified destination.
 	 * @param itemId the item to move.
@@ -378,7 +379,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws WorkspaceFolderNotFoundException if the destination folder is not found.
 	 */
 	public WorkspaceItem moveItem(String itemId, String destinationFolderId) throws ItemNotFoundException, WrongDestinationException, InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, WorkspaceFolderNotFoundException;
-	
+
 	/**
 	 * Rename an item.
 	 * @param itemId the item id.
@@ -398,7 +399,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws InternalErrorException if an internal error occurs.
 	 */
 	public void changeDescription(String itemId, String newDescription) throws ItemNotFoundException, InternalErrorException;
-	
+
 	/**
 	 * Return the item with the specified id.
 	 * @param itemId the item id.
@@ -406,7 +407,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws ItemNotFoundException if the item has not been found.
 	 */
 	public WorkspaceItem getItem(String itemId) throws ItemNotFoundException;
-		
+
 	/**
 	 * Return the item with the specified path.
 	 * @param path the item path.
@@ -422,7 +423,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws InternalErrorException if an internal error occurs.
 	 */
 	public Capabilities getCapabilities(String itemId) throws ItemNotFoundException, InternalErrorException; 
-	
+
 	/**
 	 * Remove an item from a folder.
 	 * @param childId the item to remove.
@@ -433,7 +434,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws WrongParentTypeException if the specified folder is neither a workspace nor a folder.
 	 */
 	public void removeChild(String childId, String folderId) throws ItemNotFoundException, InternalErrorException, InsufficientPrivilegesException, WrongParentTypeException;
-	
+
 	/**
 	 * Remove an item from a folder.
 	 * @param itemName the item name.
@@ -444,7 +445,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws WrongItemTypeException if the specified folder is neither a workspace nor a folder. 
 	 */
 	public void remove(String itemName, String folderId) throws ItemNotFoundException, InternalErrorException, InsufficientPrivilegesException, WrongItemTypeException;
-	
+
 	/**
 	 * Copy an item from a folder to another folder.
 	 * @param itemId the item to copy.
@@ -459,7 +460,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws WorkspaceFolderNotFoundException if the destination folder has not been found.
 	 */
 	public WorkspaceItem copy(String itemId, String newName, String destinationFolderId) throws ItemNotFoundException, WrongDestinationException, InternalErrorException, ItemAlreadyExistException, InsufficientPrivilegesException, WorkspaceFolderNotFoundException;
-	
+
 	/**
 	 * Copy an item from a folder to another folder. The item copy have the same name of the original.
 	 * @param itemId the item to copy.
@@ -473,7 +474,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws WorkspaceFolderNotFoundException if the destination folder has not been found.
 	 */
 	public WorkspaceItem copy(String itemId, String destinationFolderId) throws ItemNotFoundException, WrongDestinationException, InternalErrorException, ItemAlreadyExistException, InsufficientPrivilegesException, WorkspaceFolderNotFoundException;
-	
+
 	/**
 	 * Clone an item in the same folder.
 	 * This is a particular version of copy method where the destination folder is the same of original item. 
@@ -488,7 +489,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws WorkspaceFolderNotFoundException if the destination folder has not been found.
 	 */
 	public WorkspaceItem cloneItem(String itemId, String cloneName) throws ItemNotFoundException, ItemAlreadyExistException, InsufficientPrivilegesException, InternalErrorException, WrongDestinationException, WorkspaceFolderNotFoundException;
-	
+
 	/**
 	 * Check if an item with the specified name exists in the specified folder.
 	 * @param name the name to check.
@@ -499,7 +500,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws WrongItemTypeException if the folderId referrer to an item with type different from Workspace or folder.
 	 */
 	public boolean exists(String name, String folderId) throws InternalErrorException, ItemNotFoundException, WrongItemTypeException;
-	
+
 	/**
 	 * Check if an item with the specified id exists.
 	 * @param itemId the item id to check.
@@ -507,7 +508,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws InternalErrorException if an error occurs.
 	 */
 	public boolean exists(String itemId) throws InternalErrorException;
-	
+
 	/**
 	 * Get an item with the specified name in the specified folder.
 	 * @param name the item name to find.
@@ -518,8 +519,8 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws WrongItemTypeException if the folderId referrer to an item with type different from Workspace or folder.
 	 */
 	public WorkspaceItem find(String name, String folderId) throws InternalErrorException, ItemNotFoundException, WrongItemTypeException;
-	
-	
+
+
 	/**
 	 * Find an item using the specified path.
 	 * @param path the item path.
@@ -527,16 +528,16 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws InternalErrorException if an error occurs.
 	 */
 	public WorkspaceItem find(String path) throws InternalErrorException;
-	
-	
+
+
 	/**
 	 * Search by Name
 	 * @param name
 	 * @return a list of SearchItem
 	 * @throws InternalErrorException
 	 */
-	public List<SearchItem> searchByName(String name) throws InternalErrorException;
-	
+	public List<SearchItem> searchByName(String name, String folderId) throws InternalErrorException;
+
 	/**
 	 * Search By MimeType
 	 * @param mimeType
@@ -560,7 +561,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @return <code>true</code> if the name is valid, <code>false</code> otherwise.
 	 */
 	public boolean isValidName(String name);
-	
+
 	/**
 	 * Create a new folderBulkCreator for the specified folder.
 	 * @param folderId the target folder.
@@ -570,19 +571,19 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws InternalErrorException if an internal error occurs. 
 	 */
 	public FolderBulkCreator getNewFolderBulkCreator(String folderId) throws WorkspaceFolderNotFoundException, WrongItemTypeException, InternalErrorException;
-	
+
 	/**
 	 * Return this workspace folder bulk creator manager.
 	 * @return the manager.
 	 */
 	public FolderBulkCreatorManager getFolderBulkCreatorManager();
-	
+
 	/**
 	 * SendRequest manager.
 	 * @return the manager.
 	 */
 	public WorkspaceMessageManager getWorkspaceMessageManager();
-	
+
 	/**
 	 * Decompose the specified AquaMaps item.
 	 * @param itemId the aquamaps item id.
@@ -617,7 +618,7 @@ public interface Workspace extends WorkspaceEventSource {
 	public String getUrlWebDav() throws InternalErrorException;
 
 
-	
+
 	/**
 	 * Create a shared folder with a list of users
 	 * @param name
@@ -634,10 +635,10 @@ public interface Workspace extends WorkspaceEventSource {
 	 */
 	public WorkspaceSharedFolder createSharedFolder(String name, String description,
 			List<String> users, String destinationFolderId)
-			throws InternalErrorException, InsufficientPrivilegesException,
-			ItemAlreadyExistException, WrongDestinationException,
-			ItemNotFoundException, WorkspaceFolderNotFoundException;
-	
+					throws InternalErrorException, InsufficientPrivilegesException,
+					ItemAlreadyExistException, WrongDestinationException,
+					ItemNotFoundException, WorkspaceFolderNotFoundException;
+
 	/**
 	 * Create a shared folder associated with a groupId 
 	 * @param name the name of the folder
@@ -656,10 +657,10 @@ public interface Workspace extends WorkspaceEventSource {
 	 */
 	public WorkspaceSharedFolder createSharedFolder(String name, String description,
 			String groupId, String destinationFolderId, String displayName, boolean isVREFolder)
-			throws InternalErrorException, InsufficientPrivilegesException,
-			ItemAlreadyExistException, WrongDestinationException,
-			ItemNotFoundException, WorkspaceFolderNotFoundException;
-	
+					throws InternalErrorException, InsufficientPrivilegesException,
+					ItemAlreadyExistException, WrongDestinationException,
+					ItemNotFoundException, WorkspaceFolderNotFoundException;
+
 	/**
 	 * Shared an exist {@link WorkspaceFolder} with a list of users
 	 * @param users. A list of portal logins. 
@@ -677,7 +678,7 @@ public interface Workspace extends WorkspaceEventSource {
 			ItemAlreadyExistException, WrongDestinationException,
 			ItemNotFoundException, WorkspaceFolderNotFoundException;
 
-	
+
 	/**
 	 * Shared an exist {@link WorkspaceFolder} with a list of users
 	 * @param users. A list of portal logins. 
@@ -726,7 +727,7 @@ public interface Workspace extends WorkspaceEventSource {
 			String destinationFolderId) throws InsufficientPrivilegesException,
 			WorkspaceFolderNotFoundException, InternalErrorException,
 			ItemAlreadyExistException, WrongDestinationException, ItemNotFoundException;
-	
+
 	/**
 	 * Unshare a shared item
 	 * @param itemId
@@ -750,7 +751,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws ItemNotFoundException
 	 */
 	public WorkspaceFolder getMySpecialFolders() throws InternalErrorException,
-			ItemNotFoundException;
+	ItemNotFoundException;
 
 	/**
 	 * Advanced Search
@@ -824,9 +825,9 @@ public interface Workspace extends WorkspaceEventSource {
 	 */
 	ExternalUrl createExternalUrl(String name, String description,
 			File tmpFile, String destinationFolderId)
-			throws InsufficientPrivilegesException,
-			WorkspaceFolderNotFoundException, InternalErrorException,
-			ItemAlreadyExistException, WrongDestinationException;
+					throws InsufficientPrivilegesException,
+					WorkspaceFolderNotFoundException, InternalErrorException,
+					ItemAlreadyExistException, WrongDestinationException;
 
 	/**
 	 * Create an external file
@@ -844,9 +845,9 @@ public interface Workspace extends WorkspaceEventSource {
 	 */
 	ExternalFile createExternalFile(String name, String description,
 			String mimeType, File tmpFile, String destinationFolderId)
-			throws InsufficientPrivilegesException,
-			WorkspaceFolderNotFoundException, InternalErrorException,
-			ItemAlreadyExistException, WrongDestinationException;
+					throws InsufficientPrivilegesException,
+					WorkspaceFolderNotFoundException, InternalErrorException,
+					ItemAlreadyExistException, WrongDestinationException;
 
 	/**
 	 * Creates a Workflow Report.
@@ -895,7 +896,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 */
 	public WorkspaceFolder getApplicationArea() throws InternalErrorException;
 
-	
+
 	/**
 	 * Create a link of a given item in a destination folder
 	 * @param itemId

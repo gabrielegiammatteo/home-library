@@ -214,7 +214,7 @@ public class WorkspaceUtil {
 	}
 
 
-	public static File getTmpFile(InputStream in){
+	public static File getTmpFile(InputStream in) throws InternalErrorException{
 
 		//		System.out.println("GET TMP FILE");
 		File tempFile = null;
@@ -226,7 +226,7 @@ public class WorkspaceUtil {
 				IOUtils.copy(in, out);
 			}
 		}catch(IOException e){
-			e.printStackTrace();
+			throw new InternalErrorException(e);
 		}finally{
 			try {
 				in.close();

@@ -54,11 +54,11 @@ public interface File {
 	 */
 	public void getHardLink(String linkName) throws InternalErrorException;
 
-	/**
-	 * @param mimeType
-	 * @param size
-	 * @throws InternalErrorException
-	 */
-	public void updateInfo(java.io.File file) throws InternalErrorException;
+//	/**
+//	 * @param mimeType
+//	 * @param size
+//	 * @throws InternalErrorException
+//	 */
+//	public void updateInfo(java.io.File file) throws InternalErrorException;
 
 }

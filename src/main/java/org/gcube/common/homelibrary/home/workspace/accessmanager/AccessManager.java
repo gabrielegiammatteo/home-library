@@ -9,17 +9,11 @@ import java.util.Map;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 
 /**
- * @author valentina
+ * @author valentina marioli
  *
  */
 public interface AccessManager {
 	
-//	/**
-//	 * Get the permissions bound to a particular node.
-//	 * @param absPath
-//	 * @throws InternalErrorException
-//	 */
-//	public Map<String, List<String>> getACL(String absPath) throws InternalErrorException;
 	/**
 	 * Get the permissions which are effective for a particular node.
 	 * @param absPath
@@ -77,7 +71,7 @@ public interface AccessManager {
 	 * @throws InternalErrorException
 	 * @throws PathNotFoundException 
 	 */
-	void deleteAces(String resourcePath, List<String> users)
+	public boolean deleteAces(String resourcePath, List<String> users)
 			throws InternalErrorException;
 
 

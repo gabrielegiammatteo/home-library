@@ -15,7 +15,21 @@ import org.gcube.common.homelibrary.home.workspace.exceptions.ItemNotFoundExcept
  *
  */
 public interface WorkspaceTrashFolder{
+	
+	/**
+	 * Get trash id
+	 * @return the user trash id
+	 * @throws InternalErrorException
+	 */
+	public String getId() throws InternalErrorException;	
 
+	/**
+	 * Get trash path
+	 * @return the user trash path
+	 * @throws InternalErrorException
+	 */
+	public String getPath() throws InternalErrorException;
+	
 	/**
 	 * Empty Trash 
 	 * @return a list of WorkspaceItem ids not removed; the list is null if every item has been removed

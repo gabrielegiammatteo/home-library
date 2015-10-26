@@ -6,12 +6,11 @@ package org.gcube.common.homelibrary.util.zip;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-
 import org.apache.commons.io.IOUtils;
-
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipFile;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipFolder;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipItem;
@@ -62,8 +61,11 @@ public class ZipModelWriter {
 		zipEntry.setExtra(file.getExtra());
 
 		zos.putNextEntry(zipEntry);
-		IOUtils.copy(file.getContentStream(), zos);
+		
+		InputStream stream = file.getContentStream();
+		IOUtils.copy(stream, zos);
 		zos.closeEntry();
+		stream.close();
 	}
 
 }

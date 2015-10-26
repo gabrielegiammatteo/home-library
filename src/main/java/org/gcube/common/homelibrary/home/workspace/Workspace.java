@@ -907,5 +907,16 @@ public interface Workspace extends WorkspaceEventSource {
 	 */
 	WorkspaceItem createReference(String itemId, String destinationFolderId) throws InternalErrorException;
 
+	/**
+	 * Remove a list of items identified by ids
+	 * @param ids
+	 * @return a map of errors: Map<id, error>
+	 * @throws ItemNotFoundException
+	 * @throws InternalErrorException
+	 * @throws InsufficientPrivilegesException
+	 */
+	Map<String, String> removeItems(String... id) throws ItemNotFoundException,
+			InternalErrorException, InsufficientPrivilegesException;
+
 
 }

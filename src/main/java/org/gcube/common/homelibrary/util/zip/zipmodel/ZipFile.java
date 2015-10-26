@@ -63,8 +63,7 @@ public class ZipFile extends AbstractZipItem {
 	 * Returns the content stream.
 	 * @return
 	 */
-	public InputStream getContentStream()
-	{
+	public InputStream getContentStream(){
 		return contentStream;
 	}
 

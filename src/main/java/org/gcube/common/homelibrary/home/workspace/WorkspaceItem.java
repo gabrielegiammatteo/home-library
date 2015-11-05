@@ -7,10 +7,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
-import javax.jcr.PathNotFoundException;
 import javax.jcr.RepositoryException;
-import javax.jcr.ValueFormatException;
-
 import org.gcube.common.homelibary.model.items.type.WorkspaceItemType;
 import org.gcube.common.homelibary.model.util.WorkspaceItemAction;
 import org.gcube.common.homelibrary.home.User;
@@ -21,7 +18,6 @@ import org.gcube.common.homelibrary.home.workspace.accounting.AccountingEntryRea
 import org.gcube.common.homelibrary.home.workspace.acl.Capabilities;
 import org.gcube.common.homelibrary.home.workspace.exceptions.InsufficientPrivilegesException;
 import org.gcube.common.homelibrary.home.workspace.exceptions.ItemAlreadyExistException;
-import org.gcube.common.homelibrary.home.workspace.exceptions.ItemNotFoundException;
 import org.gcube.common.homelibrary.home.workspace.exceptions.WrongDestinationException;
 
 /**
@@ -90,7 +86,7 @@ public interface WorkspaceItem {
 	 * @throws InternalErrorException
 	 */
 	public String getLastUpdatedBy() throws InternalErrorException;
-	
+
 	/**
 	 * Return the last action on this Item.
 	 * @return the last action.
@@ -193,17 +189,35 @@ public interface WorkspaceItem {
 	public WorkspaceItem cloneItem(String cloneName) throws InternalErrorException, InsufficientPrivilegesException, ItemAlreadyExistException;
 
 	/**
-	 * @return
+	 * Mark items as hidden
+	 * @param flag <code>true</code> if the element is hidden, <code>false</code> if the element is visible.
+	 * @throws InternalErrorException
+	 */
+	public void setHidden(Boolean flag) throws InternalErrorException;
+	
+	/**
+	 *  Return a flag indicating whether the element is hidden
+	 * @return <code>true</code> if the element is hidden, <code>false</code> if the element is visible.
+	 * @throws InternalErrorException
+	 */
+	public boolean isHidden() throws InternalErrorException;
+	
+	/**
+	 *  Return a flag indicating whether the element is shared
+	 * @return <code>true</code> if the element is shared, <code>false</code> otherwise.
 	 * @throws InternalErrorException
 	 */
 	public boolean isShared() throws InternalErrorException;
+
 	/**
-	 * @return <code>true</code> if the element is shared and is marked as read, <code>false</code> otherwise.
+	 * Return a flag indicating whether the element marked as read
+	 * @return <code>true</code> if the element is marked as read, <code>false</code> otherwise.
 	 * @throws InternalErrorException
 	 */
 	public boolean isMarkedAsRead() throws InternalErrorException;
 
 	/**
+	 * Get a list of item readers.
 	 * @return the list of item readers.
 	 * @throws InternalErrorException 
 	 */
@@ -216,18 +230,16 @@ public interface WorkspaceItem {
 	public void markAsRead(boolean read) throws InternalErrorException;
 
 	/**
+	 * Get the id of the parent shared folder
 	 * @return the id of the parent shared folder if the item is shared, null otherwise.
 	 * @throws InternalErrorException
 	 */
 	public String getIdSharedFolder() throws InternalErrorException;
 
 	/**
-	 * @return
-	 * @throws ValueFormatException
-	 * @throws PathNotFoundException
-	 * @throws RepositoryException
+	 * Get the remote path of the element
+	 * @return the remote path of the element
 	 * @throws InternalErrorException
-	 * @throws ItemNotFoundException 
 	 */
 	public String getRemotePath() throws InternalErrorException;
 
@@ -237,7 +249,7 @@ public interface WorkspaceItem {
 	 * @throws InternalErrorException
 	 */
 	public boolean isTrashed() throws InternalErrorException;
-	
+
 	/**
 	 * Check if the item is a folder
 	 * @return true if the item is a folder
@@ -259,7 +271,7 @@ public interface WorkspaceItem {
 	 * @throws InternalErrorException
 	 */
 	public String getStorageID() throws InternalErrorException;
-	
+
 
 	/**
 	 * Return true if the user has the right to read the resource at abspath
@@ -278,8 +290,6 @@ public interface WorkspaceItem {
 	 */
 	void deleteACL(List<String> users) throws InternalErrorException;
 
-
-
 	/**
 	 * Get the ACL of a WorkspaceSharedFolder
 	 * @return
@@ -294,6 +304,6 @@ public interface WorkspaceItem {
 	 */
 	Map<ACLType, List<String>> getACLOwner() throws InternalErrorException;
 
-	
+
 
 }

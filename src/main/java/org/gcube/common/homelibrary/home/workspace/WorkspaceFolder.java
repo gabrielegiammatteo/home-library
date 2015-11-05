@@ -32,13 +32,23 @@ import org.gcube.common.homelibrary.home.workspace.folder.items.ts.TimeSeries;
  *
  */
 public interface WorkspaceFolder extends WorkspaceItem {
-
+	
+	
+	
 	/**
-	 * {@inheritDoc}
+	 * Get children of the current folder
+	 * @return a list of children
+	 * @throws InternalErrorException if an error occurs.
 	 */
-	@Override
 	public List<WorkspaceItem> getChildren() throws InternalErrorException;
 
+	/**
+	 * Get hidden children of the current folder
+	 * @return a list of hidden children
+	 * @throws InternalErrorException
+	 */
+	public List<WorkspaceItem> getHiddenChildren() throws InternalErrorException;
+	
 	/**
 	 * Check if an item with the specified name exists.
 	 * @param name the name to check.

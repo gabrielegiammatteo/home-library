@@ -363,5 +363,4 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	public List<WorkspaceItem> getLastItems(int limit)
 			throws InternalErrorException;
 
-
 }

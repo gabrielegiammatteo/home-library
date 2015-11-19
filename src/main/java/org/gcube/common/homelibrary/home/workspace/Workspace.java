@@ -79,6 +79,14 @@ public interface Workspace extends WorkspaceEventSource {
 	public WorkspaceFolder getRoot();
 
 	/**
+	 * Get a list of workspaceItem parents by id
+	 * @param id: the item id
+	 * @return a list of parents
+	 * @throws InternalErrorException
+	 */
+	public List<WorkspaceItem> getParentsById(String id) throws InternalErrorException;
+	
+	/**
 	 * Get the WorkspaceTree
 	 * @param item
 	 * @return WorkspaceTree

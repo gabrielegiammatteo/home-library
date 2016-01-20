@@ -37,7 +37,7 @@ public class ZipUtil {
 	 */
 	public static File zipFolder(WorkspaceFolder folder) throws IOException, InternalErrorException
 	{
-		return zipWorkspaceItem(folder);
+		return zipWorkspaceItem(folder, false);
 	}
 
 	
@@ -50,8 +50,11 @@ public class ZipUtil {
 	 */
 	public static File zipDocument(GCubeItem document) throws IOException, InternalErrorException
 	{
-		return zipWorkspaceItem(document);
+		return zipWorkspaceItem(document, false);
 	}
+	
+	
+
 	
 	/**
 	 * @param ts the time series to zip.
@@ -61,11 +64,51 @@ public class ZipUtil {
 	 */
 	public static File zipTimeSeries(TimeSeries ts) throws IOException, InternalErrorException
 	{
-		return zipWorkspaceItem(ts);
+		return zipWorkspaceItem(ts, false);
 	}
 	
 	
-	protected static File zipWorkspaceItem(WorkspaceItem workspaceItem) throws InternalErrorException, IOException
+	
+	/**
+	 * Zip the folder content into a tmp zip file.
+	 * @param folder the folder to be compressed.
+	 * @return the zip file.
+	 * @throws IOException if an error occurs.
+	 * @throws InternalErrorException if an error occurs.
+	 */
+	public static File zipFolder(WorkspaceFolder folder, boolean skipRoot) throws IOException, InternalErrorException
+	{
+		return zipWorkspaceItem(folder, skipRoot);
+	}
+
+	
+	/**
+	 * Zip the document into a tmp zip file.
+	 * @param document the document to compress.
+	 * @return the zip tmp file.
+	 * @throws IOException if an error occurs.
+	 * @throws InternalErrorException if an error occurs.
+	 */
+	public static File zipDocument(GCubeItem document, boolean skipRoot) throws IOException, InternalErrorException
+	{
+		return zipWorkspaceItem(document, skipRoot);
+	}
+	
+	
+
+	
+	/**
+	 * @param ts the time series to zip.
+	 * @return the zipped file.
+	 * @throws IOException if an error occurs.
+	 * @throws InternalErrorException if an error occurs.
+	 */
+	public static File zipTimeSeries(TimeSeries ts, boolean skipRoot) throws IOException, InternalErrorException
+	{
+		return zipWorkspaceItem(ts, skipRoot);
+	}
+	
+	protected static File zipWorkspaceItem(WorkspaceItem workspaceItem, boolean skipRoot) throws InternalErrorException, IOException
 	{
 		logger.trace("Zipping "+workspaceItem);
 		
@@ -78,7 +121,7 @@ public class ZipUtil {
 		
 		logger.trace("writing model");
 		ZipModelWriter zipModelWriter = new ZipModelWriter();
-		File zipFile = zipModelWriter.writeItem(item);
+		File zipFile = zipModelWriter.writeItem(item, skipRoot);
 		
 		logger.trace("conversion complete in file "+zipFile.getAbsolutePath());
 		return zipFile;

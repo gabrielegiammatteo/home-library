@@ -43,21 +43,24 @@ public class WorkspaceToZipModelConverter {
 	{
 		if (xstream!=null) return xstream;
 		xstream = new XStream();
-//		xstream.alias("timeseriesinfo", TimeSeriesInfo.class, TimeSeriesInfo.class);
+		//		xstream.alias("timeseriesinfo", TimeSeriesInfo.class, TimeSeriesInfo.class);
 		return xstream;
 	}
 
-	public ZipItem convert(WorkspaceItem workspaceItem) throws InternalErrorException, IOException
+
+	public ZipItem convert(WorkspaceItem workspaceItem, List<String> idsToExclude) throws InternalErrorException, IOException
 	{
 		switch (workspaceItem.getType()) {
 		case SHARED_FOLDER: 	
-		case FOLDER: return convertFolder((WorkspaceFolder) workspaceItem);	
-		case FOLDER_ITEM: return convertFolderItem((FolderItem) workspaceItem);	
+		case FOLDER: return convertFolder((WorkspaceFolder) workspaceItem, idsToExclude);	
+		case FOLDER_ITEM: return convertFolderItem((FolderItem) workspaceItem, idsToExclude);	
 		}
 		return null;
 	}
 
-	protected ZipFolder convertFolder(WorkspaceFolder workspaceFolder) throws InternalErrorException, IOException
+
+
+	protected ZipFolder convertFolder(WorkspaceFolder workspaceFolder, List<String> idsToExclude) throws InternalErrorException, IOException
 	{
 		String name = FileSystemNameUtil.cleanFileName(workspaceFolder.getName());
 		String comment = workspaceFolder.getDescription();
@@ -66,8 +69,15 @@ public class WorkspaceToZipModelConverter {
 
 		List<String> childrenNames = new LinkedList<String>();
 
-		for (WorkspaceItem child:workspaceFolder.getChildren()){
-			ZipItem childItem = convert(child);
+		for (WorkspaceItem child: workspaceFolder.getChildren()){
+			
+			if (idsToExclude != null){
+				if (idsToExclude.contains(child.getId()))
+					continue;
+			}
+			
+			
+			ZipItem childItem = convert(child, idsToExclude);
 			if (childItem==null) continue;
 
 			//we check if the name is unique
@@ -82,8 +92,13 @@ public class WorkspaceToZipModelConverter {
 		return zipFolder;
 	}
 
-	protected ZipItem convertFolderItem(FolderItem folderItem) throws InternalErrorException, IOException
+	protected ZipItem convertFolderItem(FolderItem folderItem, List<String> idsToExclude) throws InternalErrorException, IOException
 	{
+		
+		if (idsToExclude!=null){
+			if (idsToExclude.contains(folderItem.getId()))
+				return null;
+		}
 		String cleanedItemName = FileSystemNameUtil.cleanFileName(folderItem.getName());
 		String comment = folderItem.getDescription();
 		FolderItemType type = folderItem.getFolderItemType();
@@ -135,7 +150,7 @@ public class WorkspaceToZipModelConverter {
 		case IMAGE_DOCUMENT: //an ImageDocument is also a document
 		case PDF_DOCUMENT: //a PDFDocument is also a document
 		case URL_DOCUMENT: //an URLDocument is also a document
-	
+
 		default:{
 			return null;
 		}

@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -38,6 +39,7 @@ public class ZipModelWriter {
 	{
 
 		switch (item.getType()) {
+		
 		case FILE: addZipFile(zos, (ZipFile) item, flag); break;
 		case FOLDER: addZipFolder(zos, (ZipFolder) item, flag); break;
 		}

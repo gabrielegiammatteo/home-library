@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -37,7 +38,7 @@ public class ZipUtil {
 	 */
 	public static File zipFolder(WorkspaceFolder folder) throws IOException, InternalErrorException
 	{
-		return zipWorkspaceItem(folder, false);
+		return zipWorkspaceItem(folder, false, null);
 	}
 
 	
@@ -50,7 +51,7 @@ public class ZipUtil {
 	 */
 	public static File zipDocument(GCubeItem document) throws IOException, InternalErrorException
 	{
-		return zipWorkspaceItem(document, false);
+		return zipWorkspaceItem(document, false, null);
 	}
 	
 	
@@ -64,9 +65,8 @@ public class ZipUtil {
 	 */
 	public static File zipTimeSeries(TimeSeries ts) throws IOException, InternalErrorException
 	{
-		return zipWorkspaceItem(ts, false);
+		return zipWorkspaceItem(ts, false, null);
 	}
-	
 	
 	
 	/**
@@ -76,11 +76,12 @@ public class ZipUtil {
 	 * @throws IOException if an error occurs.
 	 * @throws InternalErrorException if an error occurs.
 	 */
-	public static File zipFolder(WorkspaceFolder folder, boolean skipRoot) throws IOException, InternalErrorException
+	public static File zipFolder(WorkspaceFolder folder, boolean skipRoot, List<String> idsToExclude) throws IOException, InternalErrorException
 	{
-		return zipWorkspaceItem(folder, skipRoot);
+		
+		return zipWorkspaceItem(folder, skipRoot, idsToExclude);
 	}
-
+	
 	
 	/**
 	 * Zip the document into a tmp zip file.
@@ -91,7 +92,7 @@ public class ZipUtil {
 	 */
 	public static File zipDocument(GCubeItem document, boolean skipRoot) throws IOException, InternalErrorException
 	{
-		return zipWorkspaceItem(document, skipRoot);
+		return zipWorkspaceItem(document, skipRoot, null);
 	}
 	
 	
@@ -105,16 +106,17 @@ public class ZipUtil {
 	 */
 	public static File zipTimeSeries(TimeSeries ts, boolean skipRoot) throws IOException, InternalErrorException
 	{
-		return zipWorkspaceItem(ts, skipRoot);
+		return zipWorkspaceItem(ts, skipRoot, null);
 	}
 	
-	protected static File zipWorkspaceItem(WorkspaceItem workspaceItem, boolean skipRoot) throws InternalErrorException, IOException
+	
+	protected static File zipWorkspaceItem(WorkspaceItem workspaceItem, boolean skipRoot, List<String> idsToExclude) throws InternalErrorException, IOException
 	{
 		logger.trace("Zipping "+workspaceItem);
 		
 		logger.trace("converting to zip model");
 		WorkspaceToZipModelConverter zipConverter = new WorkspaceToZipModelConverter();
-		ZipItem item = zipConverter.convert(workspaceItem);
+		ZipItem item = zipConverter.convert(workspaceItem, idsToExclude);
 		
 		ZipModelVisitor zipModelVisitor = new ZipModelVisitor();
 		zipModelVisitor.visitItem(item);

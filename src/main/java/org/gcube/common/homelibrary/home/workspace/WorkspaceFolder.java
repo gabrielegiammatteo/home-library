@@ -89,7 +89,6 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 */
 	public ExternalImage createExternalImageItem(String name, String description, String mimeType, InputStream imageData) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
 
-
 	/**
 	 * Create a new External Image into this folder.
 	 * @param name the external image name.
@@ -101,8 +100,50 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws InternalErrorException if an internal error occurs.
 	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
 	 */
-	public ExternalImage createExternalImageItem(String name, String description, String mimeType, File tmpFile) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
+	public ExternalImage createExternalImageItem(String name, String description, String mimeType, File imageData) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
 
+	/**
+	 * Create an External File into this folder.
+	 * @param name the external file name.
+	 * @param description the external file description.
+	 * @param mimeType the external file mime type.
+	 * @param fileData the external file data.
+	 * @return the new external file.
+	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
+	 * @throws InternalErrorException if an internal error occurs.
+	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
+	 */
+	public ExternalFile createExternalFileItem(String name, String description, String mimeType, File fileData) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
+
+	
+	/**
+	 * Create a new External PDF file into this folder.
+	 * @param name the external PDF name.
+	 * @param description the external PDF description.
+	 * @param mimeType the external PDF mime type.
+	 * @param tmpFile the PDF tmpFile
+	 * @return the new external PDF.
+	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
+	 * @throws InternalErrorException if an internal error occurs.
+	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
+	 */
+	public ExternalPDFFile createExternalPDFFileItem(String name, String description, String mimeType, File tmpFile) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
+
+
+	/**
+	 * Create an External URL into this folder.
+	 * @param name the external URL name.
+	 * @param description the external URL description.
+	 * @param url the URL.
+	 * @return the new URL file.
+	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
+	 * @throws InternalErrorException if an internal error occurs.
+	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
+	 * @throws IOException 
+	 */
+	public ExternalUrl createExternalUrlItem(String name, String description, File tmpFile) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
+
+	
 	/**
 	 * Create an External File into this folder.
 	 * @param name the external file name.
@@ -131,20 +172,6 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 */
 	public ExternalFile createExternalFileItem(String name, String description, String mimeType, InputStream fileData) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
 
-
-	/**
-	 * Create an External File into this folder.
-	 * @param name the external file name.
-	 * @param description the external file description.
-	 * @param mimeType the external file mime type.
-	 * @param fileData the external file data.
-	 * @return the new external file.
-	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
-	 * @throws InternalErrorException if an internal error occurs.
-	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
-	 */
-	public ExternalFile createExternalFileItem(String name, String description, String mimeType, File tmpFile) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
-
 	/**
 	 * Create a new External PDF file into this folder.
 	 * @param name the external PDF name.
@@ -157,20 +184,6 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
 	 */
 	public ExternalPDFFile createExternalPDFFileItem(String name, String description, String mimeType, InputStream fileData) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
-
-	/**
-	 * Create a new External PDF file into this folder.
-	 * @param name the external PDF name.
-	 * @param description the external PDF description.
-	 * @param mimeType the external PDF mime type.
-	 * @param tmpFile the PDF tmpFile
-	 * @return the new external PDF.
-	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
-	 * @throws InternalErrorException if an internal error occurs.
-	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
-	 */
-	public ExternalPDFFile createExternalPDFFileItem(String name, String description, String mimeType, File tmpFile) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
-
 
 
 	/**
@@ -199,21 +212,6 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 */
 	public ExternalUrl createExternalUrlItem(String name, String description, InputStream url) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
 
-
-	/**
-	 * Create an External URL into this folder.
-	 * @param name the external URL name.
-	 * @param description the external URL description.
-	 * @param url the URL.
-	 * @return the new URL file.
-	 * @throws InsufficientPrivilegesException if the user don't have sufficient privileges to perform this operation.
-	 * @throws InternalErrorException if an internal error occurs.
-	 * @throws ItemAlreadyExistException if an item with the specified name already exists.
-	 * @throws IOException 
-	 */
-	public ExternalUrl createExternalUrlItem(String name, String description, File tmpFile) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
-
-	
 
 	/**
 	 * Create a Report Template into this folder.
@@ -362,5 +360,18 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 */
 	public List<WorkspaceItem> getLastItems(int limit)
 			throws InternalErrorException;
+
+	/**
+	 * @param name
+	 * @param description
+	 * @param mimeType
+	 * @param is
+	 * @return
+	 * @throws InternalErrorException 
+	 * @throws ItemAlreadyExistException 
+	 * @throws InsufficientPrivilegesException 
+	 */
+	public FolderItem createExternalGenericItem(String name,
+			String description, InputStream is) throws InternalErrorException, InsufficientPrivilegesException, ItemAlreadyExistException;
 
 }

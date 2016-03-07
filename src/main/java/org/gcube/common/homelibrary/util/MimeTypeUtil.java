@@ -5,14 +5,9 @@ package org.gcube.common.homelibrary.util;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -39,13 +34,17 @@ public class MimeTypeUtil {
 	 */
 	public static final String BINARY_MIMETYPE = "application/octet-stream";
 	public static final String[] ZIP_MIMETYPES = new String[]{
+		"application/octet-stream",
 		"application/x-compress",
 		"application/x-compressed",
+		"application/x-zip-compressed",
 		"application/x-gzip",
 		"application/x-winzip",
 		"application/x-zip",
 		"application/zip",
 		"multipart/x-zip"};
+
+
 
 	protected static final Map<String, String> mimetype_extension_map = new LinkedHashMap<String, String>();
 	protected static final Map<String, String> extension_mimetype_map = new LinkedHashMap<String, String>();
@@ -304,14 +303,13 @@ public class MimeTypeUtil {
 		 * @return the mime type of the given file
 		 * @throws IOException
 		 */
-		public static String getMimeType(String filenameWithExtension, InputStream file) throws IOException{
-
+		public static String getMimeType(String filenameWithExtension, InputStream input) throws IOException{
+	
 			MediaType mediaType = null;
 			try {
-				
 				TikaConfig config = TikaConfig.getDefaultConfig();
 				Detector detector = config.getDetector();
-				TikaInputStream stream = TikaInputStream.get(file);
+				TikaInputStream stream = TikaInputStream.get(input);
 				Metadata metadata = new Metadata();
 				metadata.add(Metadata.RESOURCE_NAME_KEY, filenameWithExtension);
 				
@@ -320,11 +318,13 @@ public class MimeTypeUtil {
 			} catch (IOException e) {
 				logger.error("Error detecting mime type for file " + filenameWithExtension);
 			}finally{
-				if (file!=null)
-					file.close();
+//				if (file!=null)
+//					file.close();
 			}
-
-			return mediaType.getBaseType().toString();
+			
+			
+		return mediaType.getBaseType().toString();
+//			return "image/png";
 
 		}
 

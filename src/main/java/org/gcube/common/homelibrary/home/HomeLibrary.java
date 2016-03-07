@@ -179,9 +179,6 @@ public class HomeLibrary {
 	public static Home getUserHome(String portalLogin) throws InternalErrorException, HomeNotFoundException
 	{
 
-
-		//TODO: Homes caching
-
 		String username = portalLogin;
 		String scope = ScopeProvider.instance.get();
 
@@ -197,9 +194,6 @@ public class HomeLibrary {
 
 
 		staticLogger.info("loading home. (Username: "+username+", scope: "+scope+")");
-
-		//				NotificationsManager notificationManager = new ApplicationNotificationsManager(session);
-
 
 		HomeManagerFactory homeManagerFactory = getHomeManagerFactory();
 

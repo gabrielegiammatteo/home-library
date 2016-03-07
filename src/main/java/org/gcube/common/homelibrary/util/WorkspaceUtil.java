@@ -3,17 +3,10 @@
  */
 package org.gcube.common.homelibrary.util;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
-import org.apache.commons.io.IOUtils;
 import org.gcube.common.homelibrary.home.HomeLibrary;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
@@ -80,33 +73,6 @@ public class WorkspaceUtil {
 		if (name==null)
 			name= initialName;
 		return name;
-
-
-
-		//		List<? extends WorkspaceItem> children = folder.getChildren();
-		//
-		//		List<String> names = new LinkedList<String>();
-		//		for (WorkspaceItem item:children) {
-		//			try{
-		//				names.add(item.getName());
-		//			}catch (Exception e) {
-		//				// TODO: handle exception
-		//			}
-		//		}
-		//
-		//		String name = initialName;
-		//		int i = 1;
-		//
-		//		while(names.contains(name)){
-		//			//			name = initialName + "." + returnThreeDigitNo(i);
-		//			if (i==1)
-		//				name = initialName + "(copy)";
-		//			else
-		//				name = initialName + "(copy " + i +")";
-		//			i++;
-		//		}
-		//
-		//		return name;
 	}
 
 	/**
@@ -158,9 +124,7 @@ public class WorkspaceUtil {
 	 */
 	public static FolderItem createExternalFile(WorkspaceFolder destinationFolder, String name, String description, String mimeType, String storageId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, IOException
 	{
-
 		return destinationFolder.createExternalFileItem(name, description, mimeType, storageId);
-
 	}
 
 	/**
@@ -178,64 +142,7 @@ public class WorkspaceUtil {
 	 */
 	public static FolderItem createExternalFile(WorkspaceFolder destinationFolder, String name, String description, String mimeType, InputStream is) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, IOException
 	{	
-
-		String mimeTypeChecked;
-		File tmpFile = null;
-		try{
-			tmpFile = WorkspaceUtil.getTmpFile(is);	
-			if (mimeType==null){	
-				try{				
-					mimeType = MimeTypeUtil.getMimeType(name, tmpFile);
-				}catch (Exception e) {
-					logger.error("Error getting mimeType of " + name);
-				}
-			}
-			mimeTypeChecked = mimeType;
-
-			if (mimeTypeChecked!= null) {
-
-				if (mimeTypeChecked.startsWith("image")){
-					return destinationFolder.createExternalImageItem(name, description, mimeTypeChecked, tmpFile);
-				}else if (mimeTypeChecked.equals("application/pdf")){
-					return destinationFolder.createExternalPDFFileItem(name, description, mimeTypeChecked, tmpFile);
-				}else if (mimeTypeChecked.equals("text/uri-list")){
-					return destinationFolder.createExternalUrlItem(name, description, tmpFile);
-				}
-
-				return destinationFolder.createExternalFileItem(name, description, mimeTypeChecked, tmpFile);
-			}
-		}catch (Exception e) {
-			throw new InternalErrorException(e);
-		}
-
-
-		return destinationFolder.createExternalFileItem(name, description, mimeType, tmpFile);
-
-	}
-
-
-	public static File getTmpFile(InputStream in) throws InternalErrorException{
-
-		//		System.out.println("GET TMP FILE");
-		File tempFile = null;
-		try{
-			tempFile = File.createTempFile("tempfile", ".tmp"); 
-			tempFile.deleteOnExit();
-
-			try (FileOutputStream out = new FileOutputStream(tempFile)) {		
-				IOUtils.copy(in, out);
-			}
-		}catch(IOException e){
-			throw new InternalErrorException(e);
-		}finally{
-			try {
-				in.close();
-			} catch (IOException e) {
-				logger.error("inpustream already closed");
-			}
-		}
-		//		System.out.println("tmp: " + tempFile.getAbsolutePath());
-		return tempFile; 
+		return destinationFolder.createExternalGenericItem(name, description, is);
 	}
 
 
@@ -275,4 +182,7 @@ public class WorkspaceUtil {
 
 		return members;
 	}
+
+
+
 }

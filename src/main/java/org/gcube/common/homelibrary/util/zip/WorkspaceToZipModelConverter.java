@@ -25,6 +25,7 @@ import org.gcube.common.homelibrary.home.workspace.folder.items.ReportTemplate;
 import org.gcube.common.homelibrary.util.Extensions;
 import org.gcube.common.homelibrary.util.FileSystemNameUtil;
 import org.gcube.common.homelibrary.util.MimeTypeUtil;
+import org.gcube.common.homelibrary.util.WorkspaceUtil;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipFile;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipFolder;
 import org.gcube.common.homelibrary.util.zip.zipmodel.ZipItem;
@@ -43,7 +44,6 @@ public class WorkspaceToZipModelConverter {
 	{
 		if (xstream!=null) return xstream;
 		xstream = new XStream();
-		//		xstream.alias("timeseriesinfo", TimeSeriesInfo.class, TimeSeriesInfo.class);
 		return xstream;
 	}
 
@@ -53,31 +53,55 @@ public class WorkspaceToZipModelConverter {
 		switch (workspaceItem.getType()) {
 		case SHARED_FOLDER: 	
 		case FOLDER: return convertFolder((WorkspaceFolder) workspaceItem, idsToExclude);	
-		case FOLDER_ITEM: return convertFolderItem((FolderItem) workspaceItem, idsToExclude);	
+		case FOLDER_ITEM: return convertFolderItem((FolderItem) workspaceItem, idsToExclude);
+		default:
+			return null;	
 		}
-		return null;
+
 	}
 
+
+	public ZipItem convert(List<WorkspaceItem> items, List<String> idsToExclude) throws InternalErrorException, IOException
+	{
+		return zipItems("ZipItems", "zipping items", items, idsToExclude);
+	}
 
 
 	protected ZipFolder convertFolder(WorkspaceFolder workspaceFolder, List<String> idsToExclude) throws InternalErrorException, IOException
 	{
 		String name = FileSystemNameUtil.cleanFileName(workspaceFolder.getName());
 		String comment = workspaceFolder.getDescription();
+		List<WorkspaceItem> items = workspaceFolder.getChildren();
 
+		return zipItems(name, comment, items, idsToExclude);
+
+	}
+
+	/**
+	 * Zip a list of items 
+	 * @param name name of the zip folder	
+	 * @param comment description of the zip folder
+	 * @param items items to be compressed
+	 * @param idsToExclude item ids to exclude from the zip folder
+	 * @return a zip folder
+	 * @throws InternalErrorException 
+	 * @throws IOException 
+	 */
+	private ZipFolder zipItems(String name, String comment,
+			List<WorkspaceItem> items, List<String> idsToExclude) throws InternalErrorException, IOException {
 		ZipFolder zipFolder = new ZipFolder(null, name, comment, new byte[0]);
 
 		List<String> childrenNames = new LinkedList<String>();
 
-		for (WorkspaceItem child: workspaceFolder.getChildren()){
-			
+		for (WorkspaceItem item: items){
+
 			if (idsToExclude != null){
-				if (idsToExclude.contains(child.getId()))
+				if (idsToExclude.contains(item.getId()))
 					continue;
 			}
-			
-			
-			ZipItem childItem = convert(child, idsToExclude);
+
+
+			ZipItem childItem = convert(item, idsToExclude);
 			if (childItem==null) continue;
 
 			//we check if the name is unique
@@ -92,9 +116,10 @@ public class WorkspaceToZipModelConverter {
 		return zipFolder;
 	}
 
+
 	protected ZipItem convertFolderItem(FolderItem folderItem, List<String> idsToExclude) throws InternalErrorException, IOException
 	{
-		
+
 		if (idsToExclude!=null){
 			if (idsToExclude.contains(folderItem.getId()))
 				return null;

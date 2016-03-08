@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class ZipUtil {
-	 
+
 	protected static final Logger logger = LoggerFactory.getLogger(ZipUtil.class);
 
 	/**
@@ -41,7 +41,7 @@ public class ZipUtil {
 		return zipWorkspaceItem(folder, false, null);
 	}
 
-	
+
 	/**
 	 * Zip the document into a tmp zip file.
 	 * @param document the document to compress.
@@ -53,10 +53,10 @@ public class ZipUtil {
 	{
 		return zipWorkspaceItem(document, false, null);
 	}
-	
-	
 
-	
+
+
+
 	/**
 	 * @param ts the time series to zip.
 	 * @return the zipped file.
@@ -67,26 +67,41 @@ public class ZipUtil {
 	{
 		return zipWorkspaceItem(ts, false, null);
 	}
-	
-	
+
+
 	/**
 	 * Zip the folder content into a tmp zip file.
 	 * @param folder the folder to be compressed.
+	 * @param skipRoot
+	 * @param idsToExclude
 	 * @return the zip file.
-	 * @throws IOException if an error occurs.
+	 * @throws IOException
 	 * @throws InternalErrorException if an error occurs.
 	 */
 	public static File zipFolder(WorkspaceFolder folder, boolean skipRoot, List<String> idsToExclude) throws IOException, InternalErrorException
 	{
-		
 		return zipWorkspaceItem(folder, skipRoot, idsToExclude);
 	}
-	
-	
+
+	/**
+	 * Zip a list of items
+	 * @param items the items to be compressed.
+	 * @param idsToExclude
+	 * @return the zip file.
+	 * @throws IOException
+	 * @throws InternalErrorException
+	 */
+	public static File zipWorkspaceItems(List<WorkspaceItem> items, List<String> idsToExclude) throws IOException, InternalErrorException
+	{
+		return zipWorkspaceItem(items, idsToExclude);
+	}
+
+
 	/**
 	 * Zip the document into a tmp zip file.
 	 * @param document the document to compress.
-	 * @return the zip tmp file.
+	 * @param skipRoot if the root has to be skipped
+	 * @return the zip file.
 	 * @throws IOException if an error occurs.
 	 * @throws InternalErrorException if an error occurs.
 	 */
@@ -94,12 +109,12 @@ public class ZipUtil {
 	{
 		return zipWorkspaceItem(document, skipRoot, null);
 	}
-	
-	
 
-	
+
+
 	/**
 	 * @param ts the time series to zip.
+	 * @param skipRoot if the root has to be skipped
 	 * @return the zipped file.
 	 * @throws IOException if an error occurs.
 	 * @throws InternalErrorException if an error occurs.
@@ -108,27 +123,47 @@ public class ZipUtil {
 	{
 		return zipWorkspaceItem(ts, skipRoot, null);
 	}
-	
-	
+
+
 	protected static File zipWorkspaceItem(WorkspaceItem workspaceItem, boolean skipRoot, List<String> idsToExclude) throws InternalErrorException, IOException
 	{
 		logger.trace("Zipping "+workspaceItem);
-		
+
 		logger.trace("converting to zip model");
 		WorkspaceToZipModelConverter zipConverter = new WorkspaceToZipModelConverter();
 		ZipItem item = zipConverter.convert(workspaceItem, idsToExclude);
-		
+
 		ZipModelVisitor zipModelVisitor = new ZipModelVisitor();
 		zipModelVisitor.visitItem(item);
-		
+
 		logger.trace("writing model");
 		ZipModelWriter zipModelWriter = new ZipModelWriter();
 		File zipFile = zipModelWriter.writeItem(item, skipRoot);
-		
+
 		logger.trace("conversion complete in file "+zipFile.getAbsolutePath());
 		return zipFile;
 	}
-	
+
+	protected static File zipWorkspaceItem(List<WorkspaceItem> items, List<String> idsToExclude) throws InternalErrorException, IOException
+	{
+		logger.trace("Zipping items: "+items.toString());
+
+		logger.trace("converting to zip model");
+		WorkspaceToZipModelConverter zipConverter = new WorkspaceToZipModelConverter();
+		ZipItem item = zipConverter.convert(items, idsToExclude);
+
+		ZipModelVisitor zipModelVisitor = new ZipModelVisitor();
+		zipModelVisitor.visitItem(item);
+
+		logger.trace("writing model");
+		ZipModelWriter zipModelWriter = new ZipModelWriter();
+		File zipFile = zipModelWriter.writeItem(item, false);
+
+		logger.trace("conversion complete in file "+zipFile.getAbsolutePath());
+		return zipFile;
+	}
+
+
 	/**
 	 * Zip the file content.
 	 * @param input the input file content.
@@ -146,7 +181,7 @@ public class ZipUtil {
 		out.close();
 	}
 
-	
 
-	
+
+
 }

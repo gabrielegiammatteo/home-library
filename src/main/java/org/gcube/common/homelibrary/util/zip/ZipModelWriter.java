@@ -26,31 +26,31 @@ public class ZipModelWriter {
 
 	protected Logger logger = LoggerFactory.getLogger(ZipModelWriter.class);
 
-	public File writeItem(ZipItem item, boolean flag) throws IOException
+	public File writeItem(ZipItem item, boolean skipRoot) throws IOException
 	{
 		File zipFile = File.createTempFile("zippping", "gz");
 		ZipOutputStream out = new ZipOutputStream(new FileOutputStream(zipFile));
-		addZipItem(out, item, flag);
+		addZipItem(out, item, skipRoot);
 		out.close();
 		return zipFile;
 	}
 
-	protected void addZipItem(ZipOutputStream zos, ZipItem item, boolean flag) throws IOException
+	protected void addZipItem(ZipOutputStream zos, ZipItem item, boolean skipRoot) throws IOException
 	{
 
 		switch (item.getType()) {
 		
-		case FILE: addZipFile(zos, (ZipFile) item, flag); break;
-		case FOLDER: addZipFolder(zos, (ZipFolder) item, flag); break;
+		case FILE: addZipFile(zos, (ZipFile) item, skipRoot); break;
+		case FOLDER: addZipFolder(zos, (ZipFolder) item, skipRoot); break;
 		}
 	}
 
-	protected void addZipFolder(ZipOutputStream zos, ZipFolder folder, boolean flag) throws IOException
+	protected void addZipFolder(ZipOutputStream zos, ZipFolder folder, boolean skipRoot) throws IOException
 	{
 
 		if (folder.getChildren().size() == 0) {
 			ZipEntry zipEntry = null;
-			if (flag){
+			if (skipRoot){
 				String sub = folder.getPath().substring(folder.getPath().indexOf('/') + 1);
 				int start = sub.indexOf('/') + 1;
 				logger.trace("adding ZipFile path: "+ folder.getPath().substring(start));
@@ -62,7 +62,7 @@ public class ZipModelWriter {
 			zos.putNextEntry(zipEntry);
 			zos.closeEntry();
 		}
-		for (ZipItem item:folder.getChildren()) addZipItem(zos, item, flag); 
+		for (ZipItem item:folder.getChildren()) addZipItem(zos, item, skipRoot); 
 	}
 
 	protected void addZipFile(ZipOutputStream zos, ZipFile file, boolean flag) throws IOException

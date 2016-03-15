@@ -3,7 +3,6 @@
  */
 package org.gcube.common.homelibrary.home.workspace;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Calendar;
@@ -103,6 +102,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws RepositoryException 
 	 * @throws PathNotFoundException 
 	 */
+	@Deprecated
 	public void addBookmark(String itemId, String destinationFolderId)
 			throws ItemAlreadyExistException, InternalErrorException, WrongDestinationException, ItemNotFoundException, WorkspaceFolderNotFoundException;
 
@@ -111,6 +111,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @return a list of bookmarks
 	 * @throws InternalErrorException
 	 */
+	@Deprecated
 	public List<Object> getBookmarks(String bookmarkFolderId) throws InternalErrorException;
 
 	/**
@@ -753,6 +754,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @return a list of SearchItem
 	 * @throws InternalErrorException
 	 */
+	@Deprecated
 	public List<SearchItem> advancedSearch(String name, SearchItemByOperator date,
 			SearchItemByOperator size) throws InternalErrorException;
 
@@ -771,6 +773,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @return a list of SearchFolderItem
 	 * @throws InternalErrorException
 	 */
+	@Deprecated
 	public List<SearchFolderItem> searchFullText(String text)
 			throws InternalErrorException;
 
@@ -807,7 +810,7 @@ public interface Workspace extends WorkspaceEventSource {
 	long getDiskUsage() throws InternalErrorException;
 
 	/**
-	 * Get Total Items in a workspace
+	 * Get the total number of items in a workspace
 	 * @return the numer of total Items
 	 * @throws InternalErrorException
 	 */

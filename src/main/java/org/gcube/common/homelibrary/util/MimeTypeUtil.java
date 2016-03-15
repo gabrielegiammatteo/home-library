@@ -113,99 +113,6 @@ public class MimeTypeUtil {
 		return mimetype_extension_map.get(mimeType);
 	}
 
-	//	/**
-	//	 * @param extension the extension.
-	//	 * @return the related mime type.
-	//	 */
-	//	public static String getMimeType(String extension)
-	//	{
-	//		return extension_mimetype_map.get(extension);
-	//	}
-
-	/**
-	 * Get MIME Type
-	 * @return the string of the mime type
-	 */
-	//	public static String getMimeType(File file, String filenameWithExtension) throws IOException {
-	//		TikaConfig config = TikaConfig.getDefaultConfig();
-	//		Detector detector = config.getDetector();
-	//		TikaInputStream stream = TikaInputStream.get(file);
-	//		Metadata metadata = new Metadata();
-	//		metadata.add(Metadata.RESOURCE_NAME_KEY, filenameWithExtension);
-	//		MediaType mediaType = detector.detect(stream, metadata);
-	//		return mediaType.getBaseType().toString();
-	//	}
-
-	//	/**
-	//	 * @param file the file to check.
-	//	 * @return the mime type.
-	//	 */
-	//	public static String getMimeType(File file)
-	//	{
-	//		return MimeUtil.getMostSpecificMimeType(MimeUtil.getMimeTypes(file)).toString();
-	//	}
-	//
-
-
-	/**
-	 * Mime type detect java 7
-	 * @param name
-	 * @param absoluteFile
-	 * @return
-	 */
-//	public static String getMimeType(File file) {
-//
-//		
-//		String mimeType = null;
-//		Path source = Paths.get(file.getAbsolutePath());
-//		try {
-//			mimeType = Files.probeContentType(source);
-//		} catch (IOException e) {
-//		logger.error("Error getting mime type");
-//		}
-//		
-//		return mimeType;
-//	}
-
-//		/**
-//		 * @param file the file to check
-//		 * @return the mime type.
-//		 * @throws IOException 
-//		 */
-//	public static String getMimeType(String filenameWithExtension, InputStream file) throws IOException{
-//
-//		MediaType mediaType = null;
-//		try {
-//			
-//			TikaConfig config = TikaConfig.getDefaultConfig();
-//			Detector detector = config.getDetector();
-//			TikaInputStream stream = TikaInputStream.get(file);
-//			Metadata metadata = new Metadata();
-//			metadata.add(Metadata.RESOURCE_NAME_KEY, filenameWithExtension);
-//			
-//			mediaType = detector.detect(stream, metadata);
-//
-//		} catch (IOException e) {
-//			logger.error("Error detecting mime type for file " + filenameWithExtension);
-//		}finally{
-//			if (file!=null)
-//				file.close();
-//		}
-//
-//		return mediaType.getBaseType().toString();
-//
-//	}
-
-
-		/**
-		 * @param args arguments.
-		 * @throws IOException if an error occurs.
-		 */
-		public static void main(String[] args) throws IOException {
-			//		System.out.println(MimeTypeUtil.getExtension("application/vnd.ms-works"));
-
-		}
-
 		/**
 		 * @param name the file name.
 		 * @param mimeType the mime type.
@@ -218,31 +125,6 @@ public class MimeTypeUtil {
 			logger.trace("getNameWithExtension name: "+name+" mimeType: "+mimeType);
 
 			if (mimeType == null) return name;
-
-			//we check if there exists an extension
-			//		if (name.contains(".")){
-			//			logger.trace("contains an extension");
-			//
-			//			if (name.lastIndexOf(".") < name.length()-1) {
-			//
-			//				String ext = name.substring(name.lastIndexOf(".")+1);
-			//				logger.trace("ext: "+ext);
-			//
-			//				//we check if there is a mimetype associated with the extension
-			////				String mimetypeCandidate = MimeTypeUtil.getMimeType(ext);
-			//				String mimetypeCandidate = MimeTypeUtil.getMimeType( name, new BufferedInputStream());
-			//				logger.trace("mimetypeCandidate: "+mimetypeCandidate);
-			//
-			//				if (mimetypeCandidate!=null){
-			//					//the extension is correct
-			//					if (mimetypeCandidate.equalsIgnoreCase(mimeType)) {
-			//						logger.trace("mimetypeCandidate: "+mimetypeCandidate+" == "+mimeType+" mimetype");
-			//
-			//						return name;
-			//					}
-			//				}
-			//			}
-			//		} else logger.trace("no extension contained");
 
 			String extension = MimeTypeUtil.getExtension(mimeType);
 			logger.trace("extension: "+extension);
@@ -324,34 +206,8 @@ public class MimeTypeUtil {
 			
 			
 		return mediaType.getBaseType().toString();
-//			return "image/png";
 
 		}
-
-		//	/**
-		//	 * @param mimeType
-		//	 * @return
-		//	 * @throws IOException 
-		//	 */
-		//	public static String getMime(String name) throws IOException {
-		//		String mimetypeCandidate = null;
-		//		if (name.contains(".")){
-		//			logger.trace("contains an extension");
-		//
-		//			if (name.lastIndexOf(".") < name.length()-1) {
-		//
-		//				String ext = name.substring(name.lastIndexOf(".")+1);
-		//				logger.trace("ext: "+ext);
-		//
-		//				//we check if there is a mimetype associated with the extension
-		//				mimetypeCandidate = MimeTypeUtil.getMimeType(new File(name), name);
-		//				logger.trace("mimetypeCandidate: "+mimetypeCandidate);
-		//
-		//
-		//			}
-		//		}
-		//		return mimetypeCandidate;
-		//	}
 
 
 	}

@@ -7,30 +7,48 @@ package org.gcube.common.homelibrary.home.workspace.search;
  * @author valentina
  *
  */
-public interface SearchItemByOperator {
+public class SearchItemByOperator {
+
+	Operator operator = null;
+	Object value = null;
+	String min = null;
+	String max = null;
+
+	public enum Operator {
+	    TEST
+	}
 	
-	/**
-	 * Get operator
-	 * @return operator
-	 */
-	public String getOperator();
-	
-	/**
-	 * Get value
-	 * @return 
-	 * @return value
-	 */
-	public Object getValue();
+	public SearchItemByOperator(Operator operator, Object value) {
+		this.operator = operator;
+		this.value = value;
+	}
 
-	/**
-	 * @return
-	 */
-	public String getMin();
+	public SearchItemByOperator(String min, String max, boolean interval) {
+		if (interval){
+			this.min = min;
+			this.max = max;
+		}
+//		else{
+//			this.operator = min;
+//			this.value = max;
+//		}
 
-	/**
-	 * @return
-	 */
-	public String getMax();
+	}
 
+	public String getOperator() {
+		return null;
+	}
+
+	public Object getValue() {
+		return value;
+	}
+
+	public String getMin() {
+		return min;
+	}
+
+	public String getMax() {
+		return max;
+	}
 	
 }

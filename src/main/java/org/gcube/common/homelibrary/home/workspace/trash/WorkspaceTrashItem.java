@@ -5,11 +5,12 @@ package org.gcube.common.homelibrary.home.workspace.trash;
 
 import java.util.Calendar;
 
+import org.gcube.common.homelibary.model.items.type.WorkspaceItemType;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
 import org.gcube.common.homelibrary.home.workspace.WorkspaceFolder;
 
 /**
- * @author valentina
+ * @author Valentina Marioli
  *
  */
 
@@ -30,46 +31,53 @@ public interface WorkspaceTrashItem extends WorkspaceFolder {
 
 	/**
 	 * Get original parent Id to restore the item
-	 * @return
+	 * @return the original parent Id to restore the item
 	 */
 	String getOriginalParentId();
 	
 	/**
-	 * Get original path
-	 * @return
+	 * Get the path where the item was deleted
+	 * @return the path where the item was deleted
 	 */
 	String getDeletedFrom();
 
 	/**
-	 * Get the name of the user who deleted the item
-	 * @return
+	 * Get the user who deleted the item
+	 * @return the user who deleted the item
 	 */
 	String getDeletedBy();
 
 	/**
 	 * Get the date when the item was deleted
-	 * @return
+	 * @return the date when the item was deleted
 	 */
 	Calendar getDeletedTime();
 
 	/**
 	 * Return true if the trash item was a folder
-	 * @return
+	 * @return true if the trash item was a folder, false otherwise
 	 */
 	boolean isFolder();
 
 	/**
-	 * @return
+	 * Get mime type
+	 * @return the mime type of the trashed item
 	 * @throws InternalErrorException
 	 */
 	String getMimeType() throws InternalErrorException;
 	
 	/**
-	 * @return
+	 * Get the name of the trashed item
+	 * @return the name of the trashed item
 	 * @throws InternalErrorException
 	 */
 	String getName() throws InternalErrorException;
-	
+		
+	/**
+	 * Return this item type.
+	 * @return the type.
+	 */
+	WorkspaceItemType getType();
 
 
 }

@@ -6,6 +6,7 @@ package org.gcube.common.homelibrary.util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 import org.gcube.common.homelibrary.home.HomeLibrary;
 import org.gcube.common.homelibrary.home.exceptions.InternalErrorException;
@@ -46,7 +47,7 @@ public class WorkspaceUtil {
 		try{
 			name = folder.getUniqueName(initialName, false);
 		}catch (Exception e) {
-			// TODO: handle exception
+			logger.error("Impossibile to get an unique name for filename " + initialName);
 		}
 		if (name==null)
 			name= initialName;
@@ -124,7 +125,25 @@ public class WorkspaceUtil {
 	 */
 	public static FolderItem createExternalFile(WorkspaceFolder destinationFolder, String name, String description, String mimeType, String storageId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, IOException
 	{
-		return destinationFolder.createExternalFileItem(name, description, mimeType, storageId);
+		return destinationFolder.createExternalGenericItem(name, description, storageId);
+	}
+	
+	/**
+	 * Create a external file with properties
+	 * @param destinationFolder the destination folder.
+	 * @param name the external file name.
+	 * @param description the external file description.
+	 * @param mimeType the external file mimetype.
+	 * @param is the external file data.
+	 * @return the created external file. 
+	 * @throws InsufficientPrivilegesException if an error occurs.
+	 * @throws InternalErrorException if an error occurs.
+	 * @throws ItemAlreadyExistException if an error occurs.
+	 * @throws IOException 
+	 */
+	public static FolderItem createExternalFile(WorkspaceFolder destinationFolder, String name, String description, String storageId, Map<String, String> properties) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, IOException
+	{
+		return destinationFolder.createExternalGenericItem(name, description, storageId, properties);
 	}
 
 	/**
@@ -145,6 +164,23 @@ public class WorkspaceUtil {
 		return destinationFolder.createExternalGenericItem(name, description, is);
 	}
 
+	/**
+	 * Create an external file with properties
+	 * @param destinationFolder the destination folder.
+	 * @param name the external file name.
+	 * @param description the external file description.
+	 * @param mimeType the external file mimetype.
+	 * @param is the external file data.
+	 * @return the created external file. 
+	 * @throws InsufficientPrivilegesException if an error occurs.
+	 * @throws InternalErrorException if an error occurs.
+	 * @throws ItemAlreadyExistException if an error occurs.
+	 * @throws IOException 
+	 */
+	public static FolderItem createExternalFile(WorkspaceFolder destinationFolder, String name, String description, InputStream is, Map<String, String> properties) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, IOException
+	{	
+		return destinationFolder.createExternalGenericItem(name, description, is, properties);
+	}
 
 	public static ACLType getACLTypeByKey(List<String> list) {
 		switch(list.get(0)){
@@ -182,6 +218,7 @@ public class WorkspaceUtil {
 
 		return members;
 	}
+
 
 
 

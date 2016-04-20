@@ -92,7 +92,7 @@ public interface UserManager {
 	/**
 	 * Associate a user with a scope group 
 	 * 
-	 * @param scope: VRE name
+	 * @param scope: the VRE scope
 	 * @param username: an existing user to associate to a VRE group
 	 * @param portalLogin
 	 * @return true if the user has been successfully associated to the VRE group
@@ -106,7 +106,7 @@ public interface UserManager {
 	/**
 	 * Remove a user from a scope group 
 	 * 
-	 * @param scope: VRE name
+	 * @param scope: the VRE scope
 	 * @param userToRemove: an existing user to remove
 	 * @param portalLogin
 	 * @return true if the user has been successfully removed to the VRE group
@@ -120,25 +120,27 @@ public interface UserManager {
 	/**
 	 * Set Administrator to a folder
 	 * 
-	 * @param scope: VRE name
+	 * @param scope: the VRE scope
 	 * @param username: an existing user to remove from the VRE group
 	 * @param portalLogin
 	 * @return true if the user has been successfully set as administrator
 	 * @throws InternalErrorException
 	 * @throws ItemNotFoundException
 	 */
+	@Deprecated
 	public boolean setAdministrator(String scope, String username, String portalLogin) throws InternalErrorException , ItemNotFoundException;
 
 	/**
 	 * Remove Administrator from a folder
 	 * 
-	 * @param scope: VRE name
+	 * @param scope: the VRE scope
 	 * @param username: an existing user
 	 * @param portalLogin
 	 * @return true if the user has been successfully removed as administrator
 	 * @throws InternalErrorException
 	 * @throws ItemNotFoundException
 	 */
+	@Deprecated
 	public boolean removeAdministrator(String scope, String username, String portalLogin) throws InternalErrorException , ItemNotFoundException;
 
 	/**
@@ -147,31 +149,51 @@ public interface UserManager {
 	 * @return true if the groupId is a group
 	 * @throws InternalErrorException
 	 */
-	Boolean isGroup(String groupId) throws InternalErrorException;
+	public boolean isGroup(String groupId) throws InternalErrorException;
 
 	/**
 	 * Associate a user with a scope group 
 	 * 
-	 * @param scope: VRE name
+	 * @param scope: the VRE scope
 	 * @param username: an existing user to associate to a VRE group
 	 * @param portalLogin
 	 * @return true if the user has been successfully associated to the VRE group
 	 * @throws InternalErrorException
 	 * @throws ItemNotFoundException
 	 */
-	boolean associateUserToGroup(String scope, String userToAssociate)
+	public boolean associateUserToGroup(String scope, String userToAssociate)
 			throws InternalErrorException, ItemNotFoundException;
 
 	/**
 	 * Remove a user from a scope group 
 	 * 
-	 * @param scope: VRE name
+	 * @param scope: the VRE scope
 	 * @param userToRemove: an existing user to remove from the VRE group
 	 * @return true if the user has been successfully removed to the VRE group
 	 * @throws InternalErrorException
 	 * @throws ItemNotFoundException
 	 */
-	boolean removeUserFromGroup(String scope, String userToRemove)
+	public boolean removeUserFromGroup(String scope, String userToRemove)
+			throws InternalErrorException, ItemNotFoundException;
+
+	/**
+	 * @param scope
+	 * @param username
+	 * @return
+	 * @throws InternalErrorException
+	 * @throws ItemNotFoundException
+	 */
+	public boolean setAdministrator(String scope, String username)
+			throws InternalErrorException, ItemNotFoundException;
+
+	/**
+	 * @param scope
+	 * @param username
+	 * @return
+	 * @throws InternalErrorException
+	 * @throws ItemNotFoundException
+	 */
+	public boolean removeAdministrator(String scope, String username)
 			throws InternalErrorException, ItemNotFoundException;
 
 

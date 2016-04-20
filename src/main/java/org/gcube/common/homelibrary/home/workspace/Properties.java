@@ -44,6 +44,7 @@ public interface Properties {
 	 * Save modified properties
 	 * @throws InternalErrorException
 	 */
+	@Deprecated
 	public void update() throws InternalErrorException;
 
 }

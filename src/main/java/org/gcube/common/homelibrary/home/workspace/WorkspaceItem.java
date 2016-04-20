@@ -194,14 +194,14 @@ public interface WorkspaceItem {
 	 * @throws InternalErrorException
 	 */
 	public void setHidden(Boolean flag) throws InternalErrorException;
-	
+
 	/**
 	 *  Return a flag indicating whether the element is hidden
 	 * @return <code>true</code> if the element is hidden, <code>false</code> if the element is visible.
 	 * @throws InternalErrorException
 	 */
 	public boolean isHidden() throws InternalErrorException;
-	
+
 	/**
 	 *  Return a flag indicating whether the element is shared
 	 * @return <code>true</code> if the element is shared, <code>false</code> otherwise.
@@ -281,29 +281,35 @@ public interface WorkspaceItem {
 	 * @throws RepositoryException
 	 * @throws InternalErrorException
 	 */
-	boolean hasAccessRight(String user, String absPath) throws InternalErrorException;
+	public boolean hasAccessRight(String user, String absPath) throws InternalErrorException;
 
 	/**
 	 * Delete ACL for a list of users
 	 * @param users
 	 * @throws InternalErrorException
 	 */
-	void deleteACL(List<String> users) throws InternalErrorException;
+	public void deleteACL(List<String> users) throws InternalErrorException;
 
 	/**
 	 * Get the ACL of a WorkspaceSharedFolder
 	 * @return
 	 * @throws InternalErrorException
 	 */
-	ACLType getACLUser() throws InternalErrorException;
+	public ACLType getACLUser() throws InternalErrorException;
 
 	/**
 	 * Get a map of ACL of a WorkspaceSharedFolder
 	 * @return
 	 * @throws InternalErrorException
 	 */
-	Map<ACLType, List<String>> getACLOwner() throws InternalErrorException;
+	public Map<ACLType, List<String>> getACLOwner() throws InternalErrorException;
 
+	/**
+	 * Get the path of the items that are referencing the node based on this object.
+	 * @return the path of the items that are referencing the node
+	 * @throws InternalErrorException
+	 */
+	public List<String> getReferences() throws InternalErrorException;
 
 
 }

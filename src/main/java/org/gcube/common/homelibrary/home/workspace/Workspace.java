@@ -162,6 +162,22 @@ public interface Workspace extends WorkspaceEventSource {
 	public WorkspaceFolder createFolder(String name, String description, String destinationFolderId) throws InternalErrorException, InsufficientPrivilegesException, ItemAlreadyExistException, WrongDestinationException, ItemNotFoundException, WorkspaceFolderNotFoundException;
 
 	/**
+	 * Create a new folder with properties
+	 * @param name
+	 * @param description
+	 * @param destinationFolderId
+	 * @param properties
+	 * @return
+	 * @throws InternalErrorException
+	 * @throws InsufficientPrivilegesException
+	 * @throws ItemAlreadyExistException
+	 * @throws WrongDestinationException
+	 * @throws ItemNotFoundException
+	 * @throws WorkspaceFolderNotFoundException
+	 */
+	public WorkspaceFolder createFolder(String name, String description, String destinationFolderId, Map<String, String> properties) throws InternalErrorException, InsufficientPrivilegesException, ItemAlreadyExistException, WrongDestinationException, ItemNotFoundException, WorkspaceFolderNotFoundException;
+
+	/**
 	 * Create a new External Image into a folder.
 	 * @param name the external image name.
 	 * @param description the external image description.
@@ -178,6 +194,24 @@ public interface Workspace extends WorkspaceEventSource {
 	public ExternalImage createExternalImage(String name, String description, String mimeType, InputStream imageData, String destinationFolderId) throws InsufficientPrivilegesException, WorkspaceFolderNotFoundException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException;
 
 	/**
+	 * Create a new External Image with properties
+	 * @param name
+	 * @param description
+	 * @param mimeType
+	 * @param imageData
+	 * @param destinationFolderId
+	 * @param properties
+	 * @return
+	 * @throws InsufficientPrivilegesException
+	 * @throws WorkspaceFolderNotFoundException
+	 * @throws InternalErrorException
+	 * @throws ItemAlreadyExistException
+	 * @throws WrongDestinationException
+	 */
+	public ExternalImage createExternalImage(String name, String description, String mimeType, InputStream imageData, String destinationFolderId, Map<String, String> properties) throws InsufficientPrivilegesException, WorkspaceFolderNotFoundException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException;
+
+	
+	/**
 	 * Create a new External File into a folder.
 	 * @param name the external file name.
 	 * @param description the external file description.
@@ -192,6 +226,23 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws WrongDestinationException if the destination type is not a folder.
 	 */
 	public ExternalFile createExternalFile(String name, String description, String mimeType, InputStream fileData, String destinationFolderId) throws InsufficientPrivilegesException, WorkspaceFolderNotFoundException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException;
+
+	/**
+	 * Create a new External File with properties
+	 * @param name
+	 * @param description
+	 * @param mimeType
+	 * @param fileData
+	 * @param destinationFolderId
+	 * @param properties
+	 * @return
+	 * @throws InsufficientPrivilegesException
+	 * @throws WorkspaceFolderNotFoundException
+	 * @throws InternalErrorException
+	 * @throws ItemAlreadyExistException
+	 * @throws WrongDestinationException
+	 */
+	public ExternalFile createExternalFile(String name, String description, String mimeType, InputStream fileData, String destinationFolderId, Map<String, String> properties) throws InsufficientPrivilegesException, WorkspaceFolderNotFoundException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException;
 
 
 	/**
@@ -210,6 +261,25 @@ public interface Workspace extends WorkspaceEventSource {
 	 */
 	public ExternalPDFFile createExternalPDFFile(String name, String description, String mimeType, InputStream fileData, String destinationFolderId) throws InsufficientPrivilegesException, WorkspaceFolderNotFoundException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException;
 
+	/**
+	 * Create a new External PDF File with properties
+	 * @param name
+	 * @param description
+	 * @param mimeType
+	 * @param fileData
+	 * @param destinationFolderId
+	 * @param properties
+	 * @return
+	 * @throws InsufficientPrivilegesException
+	 * @throws WorkspaceFolderNotFoundException
+	 * @throws InternalErrorException
+	 * @throws ItemAlreadyExistException
+	 * @throws WrongDestinationException
+	 */
+	public ExternalPDFFile createExternalPDFFile(String name, String description, String mimeType, InputStream fileData, String destinationFolderId, Map<String, String> properties) throws InsufficientPrivilegesException, WorkspaceFolderNotFoundException, InternalErrorException, ItemAlreadyExistException, WrongDestinationException;
+
+	
+	
 	/**
 	 * Create a new External URL into a folder.
 	 * @param name the external URL name.
@@ -700,7 +770,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws WrongDestinationException
 	 * @throws ItemNotFoundException 
 	 */
-	void updateItem(String itemId, InputStream fileData)
+	public void updateItem(String itemId, InputStream fileData)
 			throws InsufficientPrivilegesException,
 			WorkspaceFolderNotFoundException, InternalErrorException,
 			ItemAlreadyExistException, WrongDestinationException, ItemNotFoundException;
@@ -807,14 +877,14 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @return the disk usage
 	 * @throws InternalErrorException
 	 */
-	long getDiskUsage() throws InternalErrorException;
+	public long getDiskUsage() throws InternalErrorException;
 
 	/**
 	 * Get the total number of items in a workspace
 	 * @return the numer of total Items
 	 * @throws InternalErrorException
 	 */
-	int getTotalItems() throws InternalErrorException;
+	public int getTotalItems() throws InternalErrorException;
 
 	/**
 	 * Search GCubeItems
@@ -822,7 +892,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @return a list of GCubeItem
 	 * @throws InternalErrorException
 	 */
-	List<GCubeItem> searchGCubeItems(SearchQuery query)
+	public List<GCubeItem> searchGCubeItems(SearchQuery query)
 			throws InternalErrorException;
 
 	/**
@@ -841,7 +911,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws InternalErrorException 
 	 * @throws  
 	 */
-	WorkspaceItem createReference(String itemId, String destinationFolderId) throws InternalErrorException;
+	public WorkspaceReference createReference(String itemId, String destinationFolderId) throws InternalErrorException;
 
 	/**
 	 * Remove a list of items identified by ids
@@ -851,8 +921,27 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @throws InternalErrorException
 	 * @throws InsufficientPrivilegesException
 	 */
-	Map<String, String> removeItems(String... id) throws ItemNotFoundException,
+	public Map<String, String> removeItems(String... id) throws ItemNotFoundException,
 			InternalErrorException, InsufficientPrivilegesException;
+
+
+	/**
+	 * @param scope
+	 * @param description
+	 * @param displayName
+	 * @return
+	 * @throws InternalErrorException
+	 * @throws InsufficientPrivilegesException
+	 * @throws ItemAlreadyExistException
+	 * @throws WrongDestinationException
+	 * @throws ItemNotFoundException
+	 * @throws WorkspaceFolderNotFoundException
+	 */
+	WorkspaceVREFolder createVREFolder(String scope, String description,
+			String displayName) throws InternalErrorException,
+			InsufficientPrivilegesException, ItemAlreadyExistException,
+			WrongDestinationException, ItemNotFoundException,
+			WorkspaceFolderNotFoundException;
 
 
 }

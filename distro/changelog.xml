@@ -127,4 +127,17 @@
 			the folder itself;
 		</Change>
 	</Changeset>
+	<Changeset component="org.gcube.common.home-library.2-3-0"
+		date="2016-04-20">
+		<Change>Feature #2765: HL: add multiple properties to WorkspaceItem
+			constructor;
+		</Change>
+		<Change>Feature #2505: Home Library Enhancement: getting zip file for
+			list of WorkspaceItem;
+		</Change>
+		<Change>Feature #2646: HL: Remove portalLogin in UserManager methods;
+		</Change>
+		<Change>Feature #2458: HL: add mime type to MimeTypeUtil ;
+		</Change>
+	</Changeset>
 </ReleaseNotes>

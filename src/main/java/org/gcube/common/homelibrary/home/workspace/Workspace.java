@@ -850,7 +850,7 @@ public interface Workspace extends WorkspaceEventSource {
 	/**
 	 * Get VRE Folder By Scope
 	 * @param scope
-	 * @return the scope
+	 * @return the VRE folder associated to such scope
 	 */
 	public WorkspaceSharedFolder getVREFolderByScope(String scope) throws ItemNotFoundException, InternalErrorException;
 
@@ -907,11 +907,12 @@ public interface Workspace extends WorkspaceEventSource {
 	 * Create a link of a given item in a destination folder
 	 * @param itemId
 	 * @param destinationFolderId
+	 * @param name for the link
 	 * @return the link
 	 * @throws InternalErrorException 
 	 * @throws  
 	 */
-	public WorkspaceReference createReference(String itemId, String destinationFolderId) throws InternalErrorException;
+	public WorkspaceReference createReference(String itemId, String destinationFolderId, String name) throws InternalErrorException;
 
 	/**
 	 * Remove a list of items identified by ids
@@ -942,6 +943,8 @@ public interface Workspace extends WorkspaceEventSource {
 			InsufficientPrivilegesException, ItemAlreadyExistException,
 			WrongDestinationException, ItemNotFoundException,
 			WorkspaceFolderNotFoundException;
+
+
 
 
 }

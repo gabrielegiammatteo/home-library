@@ -54,6 +54,15 @@ public interface File {
 	 */
 	public void getHardLink(String linkName) throws InternalErrorException;
 
+	/**
+	 * @return
+	 */
+	/**
+	 * The storage ID
+	 * @return the storage ID
+	 */
+	public String getStorageId() throws InternalErrorException;
+
 //	/**
 //	 * @param mimeType
 //	 * @param size

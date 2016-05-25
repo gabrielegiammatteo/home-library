@@ -49,6 +49,13 @@ public interface WorkspaceVREFolder extends WorkspaceSharedFolder {
 	 */
 	void changeOwner(String user) throws InternalErrorException, RepositoryException;
 	
+	/**
+	 * Set display name
+	 * @param displayName
+	 * @throws InternalErrorException
+	 * @throws RepositoryException 
+	 */
+	void setDisplayName(String displayName) throws InternalErrorException, RepositoryException;
 
 	 
 }

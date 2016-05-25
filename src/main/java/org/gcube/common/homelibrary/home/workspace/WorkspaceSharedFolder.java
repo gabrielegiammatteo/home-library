@@ -19,7 +19,13 @@ import org.gcube.common.homelibrary.home.workspace.exceptions.WrongDestinationEx
 
 public interface WorkspaceSharedFolder extends WorkspaceFolder{
 
+	/**
+	 * Get displayName
+	 * @return diplay name
+	 * @throws InternalErrorException
+	 */
 	String getDisplayName() throws InternalErrorException;
+	
 	/**
 	 * Get Administrators
 	 * @return Administrators
@@ -89,11 +95,6 @@ public interface WorkspaceSharedFolder extends WorkspaceFolder{
 	 */
 	void setACL(List<String> users, ACLType privilege)
 			throws InternalErrorException;
-
-//	/**
-//	 * @return the displayName for the VRE folder
-//	 */
-//	String getDisplayName();
 
 	/**
 	 * @return true if the shared folder is a VRE folder

@@ -361,6 +361,7 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	public List<WorkspaceItem> getLastItems(int limit)
 			throws InternalErrorException;
 
+
 	/**
 	 * Create a generic item
 	 * @param name
@@ -387,15 +388,21 @@ public interface WorkspaceFolder extends WorkspaceItem {
 			String description, InputStream is, Map<String, String> properties) throws InternalErrorException, InsufficientPrivilegesException, ItemAlreadyExistException;
 
 	/**
-	 * Create a generic item with properties by storage id
+	 * Create a generic item with properties by inpustream
 	 * @param name
 	 * @param description
-	 * @param mimeType
-	 * @param storageId
+	 * @param is
 	 * @param properties
-	 * @return the created item
+	 * @param mimetype
+	 * @param size
+	 * @return
+	 * @throws InternalErrorException
+	 * @throws InsufficientPrivilegesException
+	 * @throws ItemAlreadyExistException
 	 */
-	public FolderItem createExternalGenericItem(String name, String description, String storageId, Map<String, String> properties) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
+	public FolderItem createExternalGenericItem(String name, String description, InputStream is,
+			Map<String, String> properties, String mimetype, long size)
+			throws InternalErrorException, InsufficientPrivilegesException, ItemAlreadyExistException;	
 
 	/**
 	 * Create a generic item by storage id
@@ -406,6 +413,31 @@ public interface WorkspaceFolder extends WorkspaceItem {
 	 */
 	public FolderItem createExternalGenericItem(String name,
 			String description, String storageId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
+
+
+	/**
+	 * Create a generic item with properties by storage id
+	 * @param name
+	 * @param description
+	 * @param mimeType
+	 * @param storageId
+	 * @param properties
+	 * @return the created item
+	 */
+	public FolderItem createExternalGenericItem(String name, String description, String storageId, Map<String, String> properties) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
+
+	
+	/**
+	 * Create a generic item with properties by storage id
+	 * @param name
+	 * @param description
+	 * @param mimeType
+	 * @param storageId
+	 * @param properties
+	 * @return the created item
+	 */
+	public FolderItem createExternalGenericItem(String name, String description, String storageId, Map<String, String> properties, String mimeType, long size) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException;
+
 
 
 

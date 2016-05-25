@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ID></ID>
+	<Type>Service</Type>
+	<Profile>
+		<Description>Home Library interface</Description>
+		<Class>PortletsUser</Class>
+		<Name>home-library</Name>
+		 <Version>1.0.0</Version>
+		<Packages>
+			<Software>
+				<Name>home-library</Name>
+				<Version>2.4.0-SNAPSHOT</Version>
+				<MavenCoordinates>
+					<groupId>org.gcube.common</groupId>
+					<artifactId>home-library</artifactId>
+					<version>2.4.0-SNAPSHOT</version>
+				</MavenCoordinates>
+				<Files>
+					<File>home-library-2.4.0-SNAPSHOT.jar</File>
+				</Files>
+			</Software>
+		</Packages>
+	</Profile>
+</Resource>

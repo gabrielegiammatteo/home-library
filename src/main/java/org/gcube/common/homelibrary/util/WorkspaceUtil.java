@@ -110,12 +110,13 @@ public class WorkspaceUtil {
 		return name.replace('/', '_');
 	}
 
+
+	
 	/**
 	 * Create a external file in the specified folder.
 	 * @param destinationFolder the destination folder.
 	 * @param name the external file name.
 	 * @param description the external file description.
-	 * @param mimeType the external file mimetype.
 	 * @param is the external file data.
 	 * @return the created external file. 
 	 * @throws InsufficientPrivilegesException if an error occurs.
@@ -123,7 +124,7 @@ public class WorkspaceUtil {
 	 * @throws ItemAlreadyExistException if an error occurs.
 	 * @throws IOException 
 	 */
-	public static FolderItem createExternalFile(WorkspaceFolder destinationFolder, String name, String description, String mimeType, String storageId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, IOException
+	public static FolderItem createExternalFile(WorkspaceFolder destinationFolder, String name, String description, String storageId) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, IOException
 	{
 		return destinationFolder.createExternalGenericItem(name, description, storageId);
 	}
@@ -146,6 +147,26 @@ public class WorkspaceUtil {
 		return destinationFolder.createExternalGenericItem(name, description, storageId, properties);
 	}
 
+	
+
+	/**
+	 * Create a external file with properties
+	 * @param destinationFolder the destination folder.
+	 * @param name the external file name.
+	 * @param description the external file description.
+	 * @param mimeType the external file mimetype.
+	 * @param is the external file data.
+	 * @return the created external file. 
+	 * @throws InsufficientPrivilegesException if an error occurs.
+	 * @throws InternalErrorException if an error occurs.
+	 * @throws ItemAlreadyExistException if an error occurs.
+	 * @throws IOException 
+	 */
+	public static FolderItem createExternalFile(WorkspaceFolder destinationFolder, String name, String description, String storageId, Map<String, String> properties, String mimeType, long size) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, IOException
+	{
+		return destinationFolder.createExternalGenericItem(name, description, storageId, properties, mimeType, size);
+	}
+	
 	/**
 	 * Create a external file in the specified folder.
 	 * @param destinationFolder the destination folder.
@@ -159,9 +180,27 @@ public class WorkspaceUtil {
 	 * @throws ItemAlreadyExistException if an error occurs.
 	 * @throws IOException 
 	 */
-	public static FolderItem createExternalFile(WorkspaceFolder destinationFolder, String name, String description, String mimeType, InputStream is) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, IOException
+	public static FolderItem createExternalFile(WorkspaceFolder destinationFolder, String name, String description, InputStream is) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, IOException
 	{	
 		return destinationFolder.createExternalGenericItem(name, description, is);
+	}
+	
+	/**
+	 * Create an item by inpustream with a given mimetype
+	 * @param destinationFolder
+	 * @param name
+	 * @param description
+	 * @param mimeType
+	 * @param is
+	 * @return the created external file. 
+	 * @throws InsufficientPrivilegesException
+	 * @throws InternalErrorException
+	 * @throws ItemAlreadyExistException
+	 * @throws IOException
+	 */
+	public static FolderItem createExternalFile(WorkspaceFolder destinationFolder, String name, String description, String mimeType, InputStream is) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, IOException
+	{	
+		return destinationFolder.createExternalGenericItem(name, description, is, null, mimeType, 0);
 	}
 
 	/**
@@ -181,7 +220,31 @@ public class WorkspaceUtil {
 	{	
 		return destinationFolder.createExternalGenericItem(name, description, is, properties);
 	}
+	
+	/**
+	 * Create an external file with mimetype and properties
+	 * @param destinationFolder
+	 * @param name
+	 * @param description
+	 * @param is
+	 * @param mimeType
+	 * @param properties
+	 * @return the created external file. 
+	 * @throws InsufficientPrivilegesException
+	 * @throws InternalErrorException
+	 * @throws ItemAlreadyExistException
+	 * @throws IOException
+	 */
+	public static FolderItem createExternalFile(WorkspaceFolder destinationFolder, String name, String description, InputStream is, Map<String, String> properties, String mimeType, long size) throws InsufficientPrivilegesException, InternalErrorException, ItemAlreadyExistException, IOException
+	{	
+		return destinationFolder.createExternalGenericItem(name, description, is, properties, mimeType, size);
+	}
 
+	/**
+	 * Get ACL by key
+	 * @param list
+	 * @returna list of members
+	 */
 	public static ACLType getACLTypeByKey(List<String> list) {
 		switch(list.get(0)){
 
@@ -203,6 +266,12 @@ public class WorkspaceUtil {
 		}		
 	}
 
+	/**
+	 * Get members by group ID
+	 * @param id the gruoup ID
+	 * @return the members of a group ID
+	 * @throws InternalErrorException
+	 */
 	public static List<String> getMembersByGroup(String id) throws InternalErrorException{
 
 		UserManager um = HomeLibrary

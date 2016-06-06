@@ -51,4 +51,10 @@ public interface Properties {
 	 */
 	public void addProperties(Map<String, String> properties) throws InternalErrorException;
 
+
+	/**
+	 * Save modified properties
+	 * @throws InternalErrorException
+	 */
+	public void update() throws InternalErrorException;
 }

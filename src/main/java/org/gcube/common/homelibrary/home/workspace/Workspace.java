@@ -589,6 +589,7 @@ public interface Workspace extends WorkspaceEventSource {
 	 * @param path the item path.
 	 * @return the item if the item is found, <code>null</code> otherwise.
 	 * @throws InternalErrorException if an error occurs.
+	 * @throws ItemNotFoundException 
 	 */
 	public WorkspaceItem find(String path) throws InternalErrorException;
 
